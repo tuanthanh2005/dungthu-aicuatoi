@@ -169,7 +169,7 @@ class HomeController extends Controller
         $totalUserCount = Cache::remember('home.total_user_count', 300, function () {
             $realCount = \App\Models\User::where('role', '!=', 'admin')->count();
             // Nếu ít user thử nghiệm, tạo số thành viên lẻ tự nhiên (tăng dần theo user thực)
-            return $realCount > 100 ? $realCount : ($realCount + 1438);
+            return $realCount > 500 ? $realCount : ($realCount + 238);
         });
 
         $totalProductCount = Cache::remember('home.total_product_count', 300, function () {

@@ -15,7 +15,7 @@
         
         /* 1. Marquee Alert Bar styles */
         .marquee-alert-bar {
-            background: linear-gradient(135deg, #ff4e00 0%, #ec9f05 100%);
+            background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 50%, #a855f7 100%);
             color: #ffffff;
             overflow: hidden;
             display: flex;
@@ -23,7 +23,7 @@
             font-size: 13.5px;
             font-weight: 600;
             padding: 10px 0;
-            box-shadow: 0 4px 15px rgba(255, 78, 0, 0.15);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15);
             position: relative;
             z-index: 10;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -203,14 +203,14 @@
         }
 
         .hero-btn-main {
-            background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%);
+            background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
             color: #ffffff !important;
             font-weight: 700;
             font-size: 0.84rem;
             padding: 8px 22px;
             border-radius: 10px;
             border: none;
-            box-shadow: 0 3px 12px rgba(255, 94, 0, 0.25);
+            box-shadow: 0 3px 12px rgba(139, 92, 246, 0.25);
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
@@ -220,7 +220,7 @@
 
         .hero-btn-main:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 94, 0, 0.45);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.45);
         }
 
         .hero-btn-sub {
@@ -734,7 +734,7 @@
         }
 
         .tf-title:hover {
-            color: #ff4500;
+            color: #8b5cf6;
         }
 
         .tf-excerpt {
@@ -1033,7 +1033,7 @@
         }
 
         .tf-flash-item:hover {
-            border-color: #ff4500;
+            border-color: #8b5cf6;
         }
 
         .tf-flash-item img {
@@ -1823,14 +1823,14 @@
             <!-- Part 1 -->
             <div class="marquee-item">
                 <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
-                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin AICuaToi.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
                 <span>•</span>
                 <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
                 <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
             </div>
             <div class="marquee-item">
                 <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
-                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin AICuaToi.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
                 <span>•</span>
                 <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
                 <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
@@ -1838,14 +1838,14 @@
             <!-- Part 2 (Duplicate for seamless loop) -->
             <div class="marquee-item">
                 <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
-                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin AICuaToi.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
                 <span>•</span>
                 <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
                 <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
             </div>
             <div class="marquee-item">
                 <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
-                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin AICuaToi.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
                 <span>•</span>
                 <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
                 <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
@@ -1859,8 +1859,8 @@
             <div class="hero-banner-card-centered">
                 <!-- Top Badges -->
                 <div class="hero-center-badges">
-                    <div class="hero-ai-badge-clean">
-                        <i class="fa-solid fa-bolt"></i> DungThu.com AI Hub
+                    <div class="hero-ai-badge-clean" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(192, 132, 252, 0.12)); border: 1px solid rgba(139, 92, 246, 0.35); color: #7c3aed; font-weight: 700;">
+                        <i class="fa-solid fa-handshake" style="color: #8b5cf6;"></i> AICuaToi.com — Đối Tác của DungThu.com
                     </div>
                     <div class="hero-online-badge-clean" title="{{ __('Khách hàng đang online / xem sản phẩm thực tế') }}">
                         <span class="live-dot"></span>
@@ -1897,7 +1897,7 @@
                     <a href="{{ route('shop') }}" class="hero-btn-main">
                         <i class="fa-solid fa-store"></i> {{ __('Mua Tài Khoản AI') }}
                     </a>
-                    <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" 
+                    <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ifaku0ggmtg4xhxi7k0u') }}" 
                        target="_blank" class="hero-btn-sub">
                         <i class="fa-solid fa-users"></i> {{ __('Nhóm Zalo Hỗ Trợ') }}
                     </a>
@@ -2370,7 +2370,7 @@
                             data-bs-target="#advertisingModal">{{ __('Quảng cáo') }}</a>·
                         <a href="#" class="text-muted text-decoration-none" data-bs-toggle="modal"
                             data-bs-target="#contactModal">{{ __('Liên hệ') }}</a>
-                        <div class="w-100 mt-1">DungThu.com © {{ date('Y') }}</div>
+                        <div class="w-100 mt-1">© {{ date('Y') }} <strong>AICuaToi.com</strong> &mdash; {{ __('Đối Tác của') }} <a href="https://dungthu.com" target="_blank" style="color: #8b5cf6; font-weight: 700; text-decoration: none;">DungThu.com</a></div>
                     </div>
 
                 </div>
@@ -2622,3 +2622,6 @@
         })();
     </script>
 @endpush
+
+
+
