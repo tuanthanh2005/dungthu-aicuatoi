@@ -4,10 +4,8 @@
             <div class="col-lg-3 col-md-6">
                 <div class="footer-brand d-flex align-items-center gap-2 mb-2">
                     <img src="{{ asset('images/aicuatoi-logo.png') }}" alt="AICuaToi Logo" 
-                         style="width: 40px; height: 40px; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.4));">
-                    <span class="fw-bold fs-5">AICuaToi<span style="color: #a855f7;">.com</span></span>
-                </div>
-                    <span class="fw-bold fs-5">AICuaToi<span style="color: #a855f7;">.com</span></span>
+                         style="width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.4));">
+                    <span class="fw-bold fs-5 text-dark">AICuaToi<span style="color: #a855f7;">.com</span></span>
                 </div>
                 <div class="d-inline-flex align-items-center gap-1 badge rounded-pill px-3 py-1 text-white mb-2 shadow-sm" style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%); font-size: 11px;">
                     <i class="fa-solid fa-handshake"></i> {{ __('Đối Tác của DungThu.com') }}
@@ -50,14 +48,14 @@
             © {{ date('Y') }} <strong>AICuaToi.com</strong> &mdash; {{ __('Đối Tác của') }} <a href="https://dungthu.com" target="_blank" class="text-decoration-none fw-bold" style="color: #8b5cf6;">DungThu.com</a> &mdash; Made with <i class="fa-solid fa-heart text-danger"></i> in Vietnam
         </div>
     </div>
-    </div>
+</footer>
 
     <!-- About Modal -->
     <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content" style="border-radius: 20px; border: none;">
                 <div class="modal-header"
-                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 20px 20px 0 0; border: none; padding: 25px 30px;">
+                    style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); color: white; border-radius: 20px 20px 0 0; border: none; padding: 25px 30px;">
                     <h5 class="modal-title fw-bold" id="aboutModalLabel">
                         <i class="fas fa-info-circle me-2"></i>{{ __('Về Chúng Tôi') }}
                     </h5>
@@ -65,27 +63,20 @@
                         style="filter: brightness(0) invert(1);"></button>
                 </div>
                 <div class="modal-body p-4" style="font-size: 15px; line-height: 1.8; color: #4a5568;">
-                    <h6 class="fw-bold mb-3" style="color: #667eea;">{{ __('🎯 Sứ Mệnh Của Chúng Tôi') }}</h6>
-                    <p>{{ __('DungThu.com là một nền tảng cung cấp giải pháp công nghệ, thời trang và công cụ Marketing miễn phí cho cộng đồng Việt Nam. Chúng tôi cam kết mang lại giá trị tốt nhất cho khách hàng với sản phẩm chất lượng cao và giá cạnh tranh.') }}</p>
+                    <h6 class="fw-bold mb-3" style="color: #7c3aed;">{{ __('🎯 Sứ Mệnh Của Chúng Tôi') }}</h6>
+                    <p>{{ __('AICuaToi.com là một nền tảng cung cấp tài khoản AI, công cụ AI bản quyền và giải pháp số hàng đầu cho cộng đồng Việt Nam. Chúng tôi cam kết mang lại giá trị tốt nhất cho khách hàng với sản phẩm chất lượng cao và giá cạnh tranh.') }}</p>
 
-                    <h6 class="fw-bold mb-3 mt-4" style="color: #667eea;">{{ __('✨ Tại Sao Chọn DungThu?') }}</h6>
+                    <h6 class="fw-bold mb-3 mt-4" style="color: #7c3aed;">{{ __('✨ Tại Sao Chọn AICuaToi?') }}</h6>
                     <ul class="ms-3">
-                        <li><strong>{{ __('Sản phẩm chất lượng:') }}</strong> {{ __('Tất cả sản phẩm được kiểm định chất lượng trước khi bán') }}</li>
+                        <li><strong>{{ __('Sản phẩm chất lượng:') }}</strong> {{ __('Tất cả tài khoản được kích hoạt chính hãng và bảo hành uy tín') }}</li>
                         <li><strong>{{ __('Giá cạnh tranh:') }}</strong> {{ __('Giá tốt nhất trên thị trường') }}</li>
                         <li><strong>{{ __('Hỗ trợ 24/7:') }}</strong> {{ __('Đội ngũ chuyên gia sẵn sàng hỗ trợ bạn') }}</li>
                         <li><strong>{{ __('An toàn:') }}</strong> {{ __('Bảo vệ thông tin cá nhân và giao dịch an toàn') }}</li>
                     </ul>
 
-                    <h6 class="fw-bold mb-3 mt-4" style="color: #667eea;">{{ __('📊 Thành Tích') }}</h6>
-                    <ul class="ms-3">
-                        <li>{{ __('👥 Hơn 5.000 khách hàng tin tưởng') }}</li>
-                        <li>{{ __('📦 Hơn 1.000 đơn hàng thành công mỗi tháng') }}</li>
-                        <li>{{ __('⭐ Đánh giá 4.8/5 từ khách hàng') }}</li>
-                    </ul>
-
                     <div class="alert alert-success mt-4" style="border-radius: 12px;">
                         <i class="fas fa-heart me-2"></i>
-                        <strong>{{ __('Cảm ơn bạn đã tin tưởng DungThu.com!') }}</strong>
+                        <strong>{{ __('Cảm ơn bạn đã tin tưởng AICuaToi.com!') }}</strong>
                     </div>
                 </div>
             </div>
@@ -97,7 +88,7 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content" style="border-radius: 20px; border: none;">
                 <div class="modal-header"
-                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 20px 20px 0 0; border: none; padding: 25px 30px;">
+                    style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); color: white; border-radius: 20px 20px 0 0; border: none; padding: 25px 30px;">
                     <h5 class="modal-title fw-bold" id="privacyModalLabel">
                         <i class="fas fa-shield-alt me-2"></i>{{ __('Chính Sách Bảo Mật') }}
                     </h5>
@@ -105,7 +96,7 @@
                         style="filter: brightness(0) invert(1);"></button>
                 </div>
                 <div class="modal-body p-4" style="font-size: 15px; line-height: 1.8; color: #4a5568;">
-                    <h6 class="fw-bold mb-3" style="color: #667eea;">{{ __('📋 Thông Tin Chúng Tôi Thu Thập') }}</h6>
+                    <h6 class="fw-bold mb-3" style="color: #7c3aed;">{{ __('📋 Thông Tin Chúng Tôi Thu Thập') }}</h6>
                     <p>{{ __('Chúng tôi thu thập những thông tin sau để phục vụ bạn tốt hơn:') }}</p>
                     <ul class="ms-3">
                         <li>{{ __('Tên, email, số điện thoại khi bạn đăng ký') }}</li>
@@ -113,28 +104,8 @@
                         <li>{{ __('Lịch sử mua hàng và sở thích sản phẩm') }}</li>
                     </ul>
 
-                    <h6 class="fw-bold mb-3 mt-4" style="color: #667eea;">{{ __('🔒 Bảo Vệ Thông Tin') }}</h6>
+                    <h6 class="fw-bold mb-3 mt-4" style="color: #7c3aed;">{{ __('🔒 Bảo Vệ Thông Tin') }}</h6>
                     <p>{{ __('Chúng tôi sử dụng mã hóa SSL/TLS cho tất cả giao tiếp và không chia sẻ thông tin cá nhân với bên thứ ba.') }}</p>
-
-                    <h6 class="fw-bold mb-3 mt-4" style="color: #667eea;">{{ __('💾 Cách Sử Dụng Thông Tin') }}</h6>
-                    <ul class="ms-3">
-                        <li>{{ __('Xử lý và giao hàng đơn hàng') }}</li>
-                        <li>{{ __('Gửi thông báo về tình trạng đơn hàng') }}</li>
-                        <li>{{ __('Cải thiện dịch vụ và sản phẩm') }}</li>
-                        <li>{{ __('Tuân thủ pháp luật') }}</li>
-                    </ul>
-
-                    <h6 class="fw-bold mb-3 mt-4" style="color: #667eea;">{{ __('👥 Quyền Của Bạn') }}</h6>
-                    <ul class="ms-3">
-                        <li>{{ __('Truy cập và xem thông tin cá nhân') }}</li>
-                        <li>{{ __('Chỉnh sửa hoặc cập nhật thông tin') }}</li>
-                        <li>{{ __('Yêu cầu xóa tài khoản') }}</li>
-                    </ul>
-
-                    <div class="alert alert-info mt-4" style="border-radius: 12px;">
-                        <i class="fas fa-info-circle me-2"></i>
-                        <strong>{{ __('Cần hỗ trợ?') }}</strong> {{ __('Liên hệ email: tranthanhtuanfix@gmail.com') }}
-                    </div>
                 </div>
             </div>
         </div>
@@ -146,7 +117,7 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content" style="border-radius: 20px; border: none;">
                 <div class="modal-header"
-                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 20px 20px 0 0; border: none; padding: 25px 30px;">
+                    style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); color: white; border-radius: 20px 20px 0 0; border: none; padding: 25px 30px;">
                     <h5 class="modal-title fw-bold" id="advertisingModalLabel">
                         <i class="fas fa-bullhorn me-2"></i>{{ __('Liên Hệ Quảng Cáo') }}
                     </h5>
@@ -154,47 +125,19 @@
                         style="filter: brightness(0) invert(1);"></button>
                 </div>
                 <div class="modal-body p-4" style="font-size: 15px; line-height: 1.8; color: #4a5568;">
-                    <h6 class="fw-bold mb-3" style="color: #667eea;">{{ __('📢 Cơ Hội Quảng Cáo') }}</h6>
-                    <p>{{ __('DungThu.com có hàng ngàn khách hàng tiềm năng hàng tháng. Chúng tôi cung cấp các giải pháp quảng cáo linh hoạt giúp thương hiệu của bạn tiếp cận khán giả chính xác.') }}</p>
-
-                    <h6 class="fw-bold mb-3 mt-4" style="color: #667eea;">{{ __('🎯 Các Gói Quảng Cáo') }}</h6>
-                    <div class="bg-light p-3 rounded-3 mb-3">
-                        <strong>{{ __('Gói Basic:') }}</strong> {{ __('100.000đ/tháng') }}<br>
-                        <small>{{ __('Banner trên trang chủ, hiển thị 30 ngày') }}</small>
-                    </div>
-                    <div class="bg-light p-3 rounded-3 mb-3">
-                        <strong>{{ __('Gói Premium:') }}</strong> {{ __('300.000đ/tháng') }}<br>
-                        <small>{{ __('2 vị trí banner, quảng cáo email, báo cáo chi tiết') }}</small>
-                    </div>
-                    <div class="bg-light p-3 rounded-3">
-                        <strong>{{ __('Gói Enterprise:') }}</strong> {{ __('Liên hệ để tư vấn') }}<br>
-                        <small>{{ __('Giải pháp tùy chỉnh, partnership kéo dài') }}</small>
-                    </div>
-
-                    <h6 class="fw-bold mb-3 mt-4" style="color: #667eea;">{{ __('✨ Tại Sao Chọn Chúng Tôi?') }}</h6>
-                    <ul class="ms-3">
-                        <li>{{ __('Khán giả chất lượng cao') }}</li>
-                        <li>{{ __('Báo cáo chi tiết về hiệu suất') }}</li>
-                        <li>{{ __('Giá cạnh tranh') }}</li>
-                        <li>{{ __('Hỗ trợ 24/7') }}</li>
-                    </ul>
-
-                    <div class="alert alert-primary mt-4" style="border-radius: 12px;">
-                        <i class="fas fa-envelope me-2"></i>
-                        <strong>{{ __('Liên hệ quảng cáo:') }}</strong> tranthanhtuanfix@gmail.com<br>
-                        <i class="fab fa-telegram me-2"></i>
-                        <strong>Telegram:</strong> @specademy
-                    </div>
+                    <h6 class="fw-bold mb-3" style="color: #7c3aed;">{{ __('📢 Cơ Hội Quảng Cáo') }}</h6>
+                    <p>{{ __('AICuaToi.com có hàng ngàn khách hàng tiềm năng hàng tháng. Chúng tôi cung cấp các giải pháp quảng cáo linh hoạt giúp thương hiệu của bạn tiếp cận khán giả chính xác.') }}</p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Contact Modal -->
     <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" style="border-radius: 20px; border: none;">
                 <div class="modal-header"
-                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 20px 20px 0 0; border: none; padding: 25px 30px;">
+                    style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); color: white; border-radius: 20px 20px 0 0; border: none; padding: 25px 30px;">
                     <h5 class="modal-title fw-bold" id="contactModalLabel">
                         <i class="fas fa-phone-alt me-2"></i>{{ __('Liên Hệ Chúng Tôi') }}
                     </h5>
@@ -207,49 +150,16 @@
                     </p>
 
                     <!-- Email Contact -->
-                    <a href="mailto:tranthanhtuanfix@gmail.com" class="d-block p-3 mb-3 rounded-3"
-                        style="background: linear-gradient(135deg, #f093fb15 0%, #f5576c15 100%); border: 2px solid #f5576c; text-decoration: none; color: inherit; transition: all 0.3s ease;">
+                    <a href="mailto:support@aicuatoi.com" class="d-block p-3 mb-3 rounded-3"
+                        style="background: #faf5ff; border: 2px solid #8b5cf6; text-decoration: none; color: inherit;">
                         <div style="text-align: center;">
                             <i class="fas fa-envelope"
-                                style="font-size: 2rem; color: #f5576c; margin-bottom: 10px; display: block;"></i>
+                                style="font-size: 2rem; color: #8b5cf6; margin-bottom: 10px; display: block;"></i>
                             <h6 class="fw-bold mt-2 mb-1">📧 Email</h6>
-                            <small style="color: #718096;">tranthanhtuanfix@gmail.com</small>
+                            <small style="color: #718096;">support@aicuatoi.com</small>
                         </div>
                     </a>
-
-                    <!-- Telegram Contact -->
-                    <a href="https://t.me/specademy" target="_blank" class="d-block p-3 mb-3 rounded-3"
-                        style="background: linear-gradient(135deg, #4facfe15 0%, #00f2fe15 100%); border: 2px solid #0088cc; text-decoration: none; color: inherit; transition: all 0.3s ease;">
-                        <div style="text-align: center;">
-                            <i class="fab fa-telegram"
-                                style="font-size: 2rem; color: #0088cc; margin-bottom: 10px; display: block;"></i>
-                            <h6 class="fw-bold mt-2 mb-1">💬 Telegram</h6>
-                            <small style="color: #718096;">{{ __('Chat trực tiếp với chúng tôi') }}</small>
-                        </div>
-                    </a>
-
-                    <!-- Zalo Contact -->
-                    <a href="https://zalo.me/0708910952" target="_blank" class="d-block p-3 mb-3 rounded-3"
-                        style="background: linear-gradient(135deg, #43e97b15 0%, #38f9d715 100%); border: 2px solid #0068ff; text-decoration: none; color: inherit; transition: all 0.3s ease;">
-                        <div style="text-align: center;">
-                            <i class="fas fa-comments"
-                                style="font-size: 2rem; color: #0068ff; margin-bottom: 10px; display: block;"></i>
-                            <h6 class="fw-bold mt-2 mb-1">📱 Zalo</h6>
-                            <small style="color: #718096;">{{ __('Chat trực tiếp với chúng tôi') }}</small>
-                        </div>
-                    </a>
-
-                    <!-- Info Box -->
-                    <div class="alert alert-info mt-4 mb-0" style="border-radius: 12px;">
-                        <i class="fas fa-info-circle me-2"></i>
-                        <small>
-                            <strong>{{ __('Giờ hoạt động:') }}</strong> {{ __('Tất cả các ngày, từ 8:00 AM - 10:00 PM') }}<br>
-                            <strong>{{ __('Thời gian phản hồi:') }}</strong> {{ __('Trong vòng 1-2 giờ') }}
-                        </small>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-
