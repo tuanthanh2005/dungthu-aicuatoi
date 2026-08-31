@@ -23,7 +23,7 @@ class AdminMiddleware
         $method = strtoupper($request->getMethod());
         $routeName = $request->route() ? $request->route()->getName() : null;
 
-        // Cộng tác viên Blog chỉ được truy cập trang quản lý bài viết.
+        // 1. Phân quyền cho Blog Editor
         if ($user->role === 'blog_editor') {
             if (!$routeName || !\Illuminate\Support\Str::is('admin.blogs*', $routeName)) {
                 return redirect()->route('admin.blogs')
@@ -33,75 +33,22 @@ class AdminMiddleware
             return $next($request);
         }
 
-
-
-        // 1. Phân quyền truy cập cho SieuSuperAdmin
-        if ($user->role === 'sieusuperadmin' && $routeName) {
-            $allowedRoutePatterns = [
-                'admin.dashboard',
-                'admin.verify-pin',
-                'admin.verify-pin.post',
-                'admin.lock',
-                'admin.sidebar-counters',
-                'admin.orders*',
-                'admin.chat*',
-                'admin.products*',
-                'admin.categories*',
-                'admin.features*',
-                'admin.customer-durations*',
-                'admin.blogs*',
-                'admin.blog-topics*',
-                'admin.users*',
-                'admin.online-users*',
-                'admin.banned-ips*',
-                'admin.suspicious-ips*',
-                'admin.coupons*',
-                'admin.menu-settings*',
-                'admin.google-indexing.submit-all',
-                'admin.telegram*',
-            ];
-
-            $isAllowed = false;
-            foreach ($allowedRoutePatterns as $pattern) {
-                if (\Illuminate\Support\Str::is($pattern, $routeName)) {
-                    $isAllowed = true;
-                    break;
-                }
-            }
-
-            if (!$isAllowed) {
-                \Illuminate\Support\Facades\Log::warning("Unauthorized admin access attempt by SieuSuperAdmin (User ID: {$user->id}) to route: {$routeName} from IP: {$request->ip()}");
-                abort(403, "Tài khoản của bạn không được cấp quyền truy cập tính năng này.");
-            }
-
-            // Ghi nhật ký các hành động thay đổi dữ liệu nhạy cảm
-            if (in_array($method, ['POST', 'PUT', 'PATCH', 'DELETE'])) {
-                \Illuminate\Support\Facades\Log::info("SieuSuperAdmin Action: User ID {$user->id} performed {$method} on URL {$request->fullUrl()} from IP: {$request->ip()}", [
-                    'input' => $request->except(['gate_password', 'password', 'password_confirmation', '_token']),
-                ]);
-            }
+        // 2. SieuSuperAdmin: Toàn quyền tối cao truy cập 100% tất cả các tính năng không bị giới hạn
+        if ($user->role === 'sieusuperadmin' || $user->role === 'admin') {
+            return $next($request);
         }
 
-        // 2. Phân quyền chặn Superadmin thường (superadmin_1) truy cập các trang độc quyền của SieuSuperAdmin
+        // 3. Superadmin_1 (Quản trị viên web con): Chỉ chặn các mục hạ tầng web mẹ (Menu, Buff, Proxy)
         if ($user->role === 'superadmin_1' && $routeName) {
             $restrictedRoutePatterns = [
-                'admin.online-users*',
-                'admin.coupons*',
                 'admin.menu-settings*',
-                'admin.buff*',
-                'admin.card-exchanges*',
-                'admin.abandoned-carts*',
-                'admin.preorders*',
-                'admin.affiliates*',
-                'admin.seo-keywords*',
-                'admin.system-notifications*',
-                'admin.google-indexing*',
+                'admin.buff.*',
+                'admin.proxies.*',
             ];
 
             foreach ($restrictedRoutePatterns as $pattern) {
                 if (\Illuminate\Support\Str::is($pattern, $routeName)) {
-                    \Illuminate\Support\Facades\Log::warning("Unauthorized admin access attempt by superadmin_1 (User ID: {$user->id}) to sieusuperadmin route: {$routeName} from IP: {$request->ip()}");
-                    abort(403, "Quyền hạn của bạn không đủ để truy cập khu vực này.");
+                    abort(403, "Quyền hạn của bạn không đủ để truy cập khu vực hạ tầng này.");
                 }
             }
         }
