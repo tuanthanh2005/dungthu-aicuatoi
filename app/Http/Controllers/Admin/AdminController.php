@@ -71,9 +71,14 @@ class AdminController extends Controller
         return $newImage;
     }
     
-    // Lưu ảnh đã crop
+    // Lưu ảnh đã crop (Tự động đồng bộ vào cả public_html và public)
     private function saveImage($image, $path, $extension)
     {
+        $dir = dirname($path);
+        if (!is_dir($dir)) {
+            @mkdir($dir, 0777, true);
+        }
+
         switch(strtolower($extension)) {
             case 'jpg':
             case 'jpeg':
@@ -88,6 +93,29 @@ class AdminController extends Controller
             default:
                 imagejpeg($image, $path, 90);
         }
+        @chmod($path, 0777);
+
+        // Tự động sao chép sang thư mục public đối ứng để luôn hiển thị đúng 100%
+        try {
+            $altPath = null;
+            if (str_contains($path, 'public_html')) {
+                $rel = str_replace(PathHelper::publicRootPath(), '', $path);
+                $altPath = public_path(ltrim($rel, "/\\"));
+            } else {
+                $rel = str_replace(public_path(), '', $path);
+                $altPath = PathHelper::publicRootPath(ltrim($rel, "/\\"));
+            }
+
+            if ($altPath && $altPath !== $path) {
+                $altDir = dirname($altPath);
+                if (!is_dir($altDir)) {
+                    @mkdir($altDir, 0777, true);
+                }
+                @copy($path, $altPath);
+                @chmod($altPath, 0777);
+            }
+        } catch (\Throwable $e) {}
+
         imagedestroy($image);
     }
 
