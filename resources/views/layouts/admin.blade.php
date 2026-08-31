@@ -97,13 +97,11 @@
             <span class="nav-icon"><i class="fas fa-layer-group"></i></span>
             <span class="nav-text">Danh mục</span>
         </a>
-        @if(auth()->user()->role === 'sieusuperadmin')
         <a href="{{ route('admin.features') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.features*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-star"></i></span>
             <span class="nav-text">Tính năng SP</span>
         </a>
-        @endif
         <a href="{{ route('admin.products', ['flash_sale' => 1]) }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.products') && request('flash_sale') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-bolt"></i></span>
