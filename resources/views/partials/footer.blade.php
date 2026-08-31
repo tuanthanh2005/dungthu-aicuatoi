@@ -3,10 +3,10 @@
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
                 <div class="footer-brand">
-                    <div class="brand-icon" style="background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);"><i class="fa-solid fa-robot"></i></div>
-                    AICuaToi.com
+                    <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+                    DungThu.com
                 </div>
-                <p class="small text-muted">{{ __('Nền tảng cung cấp tài khoản AI, giải pháp công nghệ AI và công cụ số chất lượng hàng đầu Việt Nam.') }}</p>
+                <p class="small text-muted">{{ __('Nền tảng cung cấp giải pháp công nghệ, công cụ Marketing và sản phẩm số chất lượng cho cộng đồng Việt Nam.') }}</p>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h6 class="fw-bold mb-3">{{ __('Liên kết nhanh') }}</h6>
@@ -40,7 +40,7 @@
                 </ul>
             </div>
         </div>
-        <div class="footer-copy">{{ date('Y') }} AICuaToi.com &mdash; AI Của Tôi &mdash; Made with <i
+        <div class="footer-copy">{{ date('Y') }} AICuaToi.com &mdash; Đối Tác của DungThu.com &mdash; Made with <i
                 class="fa-solid fa-heart text-danger"></i> in Vietnam</div>
     </div>
     </div>
