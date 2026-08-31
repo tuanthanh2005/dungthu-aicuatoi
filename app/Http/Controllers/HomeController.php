@@ -168,22 +168,19 @@ class HomeController extends Controller
 
         $totalUserCount = Cache::remember('home.total_user_count', 300, function () {
             $realCount = \App\Models\User::where('role', '!=', 'admin')->count();
-            // Mặc định từ 239 user (tự động tăng dần khi có khách đăng ký mới)
-            return $realCount > 500 ? $realCount : ($realCount + 238);
+            // Nếu ít user thử nghiệm, tạo số thành viên lẻ tự nhiên (tăng dần theo user thực)
+            return $realCount > 100 ? $realCount : ($realCount + 1438);
         });
 
         $totalProductCount = Cache::remember('home.total_product_count', 300, function () {
             return Product::active()->count();
         });
 
-        $todayVisitors = Cache::remember('home.today_visitors.' . date('YmdH'), 300, function () {
-            $count = 0;
-            if (\Illuminate\Support\Facades\Schema::hasTable('online_sessions')) {
-                $count = \App\Models\OnlineSession::whereDate('last_activity', \Carbon\Carbon::today())->count();
-            }
-            $baseHourOffset = ((int) date('H') + 1) * 37 + 219;
-            return $count > 50 ? $count : ($count + $baseHourOffset);
-        });
+        // Đếm 100% số lượt truy cập thật trong ngày hôm nay từ online_sessions
+        $todayVisitors = 0;
+        if (\Illuminate\Support\Facades\Schema::hasTable('online_sessions')) {
+            $todayVisitors = \App\Models\OnlineSession::whereDate('last_activity', \Carbon\Carbon::today())->count();
+        }
 
         return view('home', compact(
             'categories',
