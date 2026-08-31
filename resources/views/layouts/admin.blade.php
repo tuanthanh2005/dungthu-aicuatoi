@@ -7,7 +7,7 @@
     <title>@yield('title', 'Admin') — DungThu</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('images/dungthu.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/aicuatoi-logo.png') }}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
