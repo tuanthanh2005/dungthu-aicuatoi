@@ -4,25 +4,24 @@ namespace App\Helpers;
 
 class PathHelper
 {
+    /**
+     * Get the absolute root path based on config('filesystems.disks.public_uploads.root').
+     * Single source of truth for all public uploaded assets.
+     */
     public static function publicRootPath(string $path = ''): string
     {
-        $cleanPath = ltrim($path, "/\\");
+        $root = config('filesystems.disks.public_uploads.root');
 
-        // 1. Check if public_path() has the file
-        if ($cleanPath !== '' && file_exists(public_path($cleanPath))) {
-            return public_path($cleanPath);
+        if (!$root || (!is_dir($root) && !is_dir(dirname($root)))) {
+            $root = public_path();
         }
 
-        // 2. Check preferred / public_html
-        $preferred = config('filesystems.disks.public_uploads.root') ?: base_path('../public_html');
-        if (is_dir($preferred)) {
-            $candidate = rtrim($preferred, DIRECTORY_SEPARATOR) . ($cleanPath !== '' ? DIRECTORY_SEPARATOR . $cleanPath : '');
-            if ($cleanPath === '' || file_exists($candidate)) {
-                return $candidate;
-            }
+        $root = rtrim($root, DIRECTORY_SEPARATOR);
+
+        if ($path === '') {
+            return $root;
         }
 
-        // Default to public_path
-        return $cleanPath !== '' ? public_path($cleanPath) : public_path();
+        return $root . DIRECTORY_SEPARATOR . ltrim($path, "/\\");
     }
 }
