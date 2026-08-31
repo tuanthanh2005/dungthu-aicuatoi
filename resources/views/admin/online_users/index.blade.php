@@ -1,0 +1,1053 @@
+@extends('layouts.admin')
+
+@section('title', $activeTab === 'manage' ? 'Quản Lý & Thống Kê Truy Cập' : 'Khách Hàng Đang Xem Hàng (Live)')
+
+@push('styles')
+<style>
+    .live-dot-indicator {
+        width: 10px;
+        height: 10px;
+        background-color: #10b981;
+        border-radius: 50%;
+        display: inline-block;
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+        animation: liveDotPulse 1.6s infinite ease-in-out;
+    }
+
+    @keyframes liveDotPulse {
+        0% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+        }
+        70% {
+            transform: scale(1.15);
+            box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+        }
+        100% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+        }
+    }
+
+    .stat-card-custom {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 20px;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        height: 100%;
+    }
+
+    .stat-icon-wrapper {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+    }
+
+    .bg-icon-green { background: rgba(16, 185, 129, 0.12); color: #059669; }
+    .bg-icon-blue { background: rgba(59, 130, 246, 0.12); color: #2563eb; }
+    .bg-icon-purple { background: rgba(139, 92, 246, 0.12); color: #7c3aed; }
+    .bg-icon-orange { background: rgba(249, 115, 22, 0.12); color: #ea580c; }
+    .bg-icon-teal { background: rgba(20, 184, 166, 0.12); color: #0d9488; }
+
+    .stat-info .stat-value {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #111827;
+        line-height: 1.2;
+    }
+
+    .stat-info .stat-label {
+        font-size: 0.82rem;
+        color: #6b7280;
+        font-weight: 600;
+    }
+
+    .user-avatar-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: #ffffff;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+
+    .guest-avatar-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #f3f4f6;
+        color: #6b7280;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        border: 1px solid #e5e7eb;
+        flex-shrink: 0;
+    }
+
+    .url-badge {
+        max-width: 320px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        color: #2563eb;
+        background: #eff6ff;
+        padding: 4px 10px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .url-badge:hover {
+        background: #dbeafe;
+        color: #1d4ed8;
+    }
+
+    .badge-guest {
+        background: #f3f4f6;
+        color: #4b5563;
+        font-weight: 600;
+        font-size: 0.72rem;
+        padding: 2px 8px;
+        border-radius: 6px;
+    }
+
+    .badge-member {
+        background: #ecfdf5;
+        color: #047857;
+        font-weight: 700;
+        font-size: 0.72rem;
+        padding: 2px 8px;
+        border-radius: 6px;
+    }
+
+    .nav-tabs-custom {
+        border-bottom: 2px solid #e5e7eb;
+    }
+
+    .nav-tabs-custom .nav-link {
+        border: none;
+        border-bottom: 3px solid transparent;
+        color: #6b7280;
+        font-weight: 600;
+        padding: 12px 24px;
+        font-size: 0.95rem;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        transition: all 0.2s ease;
+    }
+
+    .nav-tabs-custom .nav-link:hover {
+        color: #111827;
+        background: #f9fafb;
+    }
+
+    .nav-tabs-custom .nav-link.active {
+        color: #4f46e5;
+        border-bottom-color: #4f46e5;
+        background: #ffffff;
+        font-weight: 800;
+    }
+</style>
+@endpush
+
+@section('content')
+<div class="container-fluid py-3">
+
+    <!-- Top Header & Navigation Tabs -->
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body p-3 p-md-4 pb-0">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-3">
+                <div>
+                    <h4 class="fw-bold m-0 d-flex align-items-center gap-2">
+                        <i class="fas fa-users-viewfinder text-primary"></i> Khách Hàng Truy Cập & Xem Hàng
+                    </h4>
+                    <p class="text-muted small m-0 mt-1">Quản lý theo dõi trực tiếp khách hàng online real-time và thống kê truy cập lưu trữ 3 tháng</p>
+                </div>
+
+                @php
+                    $exportUrl = \Illuminate\Support\Facades\Route::has('admin.online-users.export')
+                        ? route('admin.online-users.export', request()->all())
+                        : url('/admin/online-users/export?' . http_build_query(request()->all()));
+                @endphp
+
+                @if($activeTab === 'online')
+                    <div class="d-flex align-items-center gap-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.reload();">
+                            <i class="fas fa-sync-alt me-1"></i> Làm mới
+                        </button>
+
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button type="button" class="btn btn-outline-primary active" id="btnAutoRefresh" onclick="toggleAutoRefresh();">
+                                <i class="fas fa-play me-1"></i> Tự động làm mới (<span id="refreshTimerCount">5</span>s)
+                            </button>
+                        </div>
+                    </div>
+                @else
+                    <div class="d-flex align-items-center gap-2">
+                        <a href="{{ $exportUrl }}" class="btn btn-success btn-sm px-3 fw-bold shadow-sm">
+                            <i class="fas fa-file-excel me-1"></i> Xuất file Excel (Tối đa 100 bản ghi)
+                        </a>
+
+                        <div class="dropdown">
+                            <button class="btn btn-outline-danger btn-sm dropdown-toggle fw-bold shadow-sm" type="button" id="topClearHistoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-broom me-1"></i> Dọn dẹp nhật ký
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="topClearHistoryDropdown">
+                                <li>
+                                    <form action="{{ route('admin.online-users.clear-history') }}" method="POST" onsubmit="return confirm('Xóa lịch sử truy cập cũ hơn 7 ngày?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="days" value="7">
+                                        <button type="submit" class="dropdown-item text-dark">
+                                            <i class="fas fa-calendar-minus me-2 text-warning"></i>Xóa log cũ > 7 ngày
+                                        </button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form action="{{ route('admin.online-users.clear-history') }}" method="POST" onsubmit="return confirm('Xóa lịch sử truy cập cũ hơn 14 ngày?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="days" value="14">
+                                        <button type="submit" class="dropdown-item text-dark">
+                                            <i class="fas fa-calendar-times me-2 text-secondary"></i>Xóa log cũ > 14 ngày
+                                        </button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form action="{{ route('admin.online-users.clear-history') }}" method="POST" onsubmit="return confirm('Xóa lịch sử truy cập cũ hơn 30 ngày?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="days" value="30">
+                                        <button type="submit" class="dropdown-item text-dark">
+                                            <i class="fas fa-history me-2 text-info"></i>Xóa log cũ > 30 ngày
+                                        </button>
+                                    </form>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form action="{{ route('admin.online-users.clear-history') }}" method="POST" onsubmit="return confirm('⚠️ CẢNH BÁO: Xóa TOÀN BỘ lịch sử truy cập? (Vẫn giữ nguyên các phiên online hiện tại)');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="days" value="all">
+                                        <button type="submit" class="dropdown-item text-danger fw-bold">
+                                            <i class="fas fa-trash-alt me-2"></i>Xóa TOÀN BỘ lịch sử
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+            </div>
+
+            <!-- Tabs Header -->
+            <ul class="nav nav-tabs nav-tabs-custom">
+                <li class="nav-item">
+                    <a class="nav-link {{ $activeTab === 'online' ? 'active' : '' }}" href="{{ route('admin.online-users.index', ['tab' => 'online']) }}">
+                        <span class="live-dot-indicator me-1"></span> Online | Khách đang xem (Live)
+                        <span class="badge bg-success ms-1">{{ number_format($totalOnline) }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $activeTab === 'manage' ? 'active' : '' }}" href="{{ route('admin.online-users.index', ['tab' => 'manage']) }}">
+                        <i class="fas fa-chart-line text-primary me-1"></i> Quản Lý & Thống Kê Truy Cập
+                        <span class="badge bg-secondary ms-1">3 Tháng</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    @if($activeTab === 'online')
+        <!-- ========================================== -->
+        <!-- TAB 1: ONLINE REAL-TIME LIVE MONITOR       -->
+        <!-- ========================================== -->
+
+        <!-- Summary Cards -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="stat-card-custom">
+                    <div class="stat-icon-wrapper bg-icon-green">
+                        <i class="fas fa-users-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value text-success">{{ number_format($totalOnline) }}</div>
+                        <div class="stat-label">Tổng khách online real-time</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card-custom">
+                    <div class="stat-icon-wrapper bg-icon-blue">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value text-primary">{{ number_format($loggedInCount) }}</div>
+                        <div class="stat-label">Thành viên đã đăng nhập</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card-custom">
+                    <div class="stat-icon-wrapper bg-icon-purple">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value text-purple" style="color:#7c3aed;">{{ number_format($guestCount) }}</div>
+                        <div class="stat-label">Khách vãng lai (Chưa đăng nhập)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card-custom">
+                    <div class="stat-icon-wrapper bg-icon-orange">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value text-warning fs-6">
+                            @if($topPages->count() > 0)
+                                @php
+                                    $topPath = parse_url($topPages->first()->current_url, PHP_URL_PATH) ?: '/';
+                                @endphp
+                                {{ Str::limit($topPath, 20) }}
+                                <span class="badge bg-warning text-dark ms-1">{{ $topPages->first()->count }} lượt</span>
+                            @else
+                                Trang chủ
+                            @endif
+                        </div>
+                        <div class="stat-label">Trang được xem nhiều nhất</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search & Filter Card -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card-body p-3">
+                <form action="{{ route('admin.online-users.index') }}" method="GET" class="row g-2 align-items-center">
+                    <input type="hidden" name="tab" value="online">
+                    <div class="col-md-5">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text bg-light border-end-0"><i class="fas fa-search text-muted"></i></span>
+                            <input type="text" name="search" class="form-control border-start-0" placeholder="Tìm theo tên, email, IP, đường dẫn URL..." value="{{ request('search') }}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <select name="type" class="form-select form-select-sm" onchange="this.form.submit()">
+                            <option value="">-- Tất cả loại khách --</option>
+                            <option value="logged_in" {{ request('type') == 'logged_in' ? 'selected' : '' }}>Thành viên đã đăng nhập</option>
+                            <option value="guests" {{ request('type') == 'guests' ? 'selected' : '' }}>Khách chưa đăng nhập (Vãng lai)</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 d-flex gap-2">
+                        <button type="submit" class="btn btn-sm btn-primary px-3"><i class="fas fa-filter me-1"></i> Lọc</button>
+                        @if(request()->hasAny(['search', 'type']))
+                            <a href="{{ route('admin.online-users.index', ['tab' => 'online']) }}" class="btn btn-sm btn-light border px-3">Xóa lọc</a>
+                        @endif
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Active Users Table -->
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="ps-4" style="width: 130px;">Trạng thái</th>
+                                <th>Người dùng / Khách hàng</th>
+                                <th>Địa chỉ IP & Thiết bị</th>
+                                <th>Trang đang xem (URL)</th>
+                                <th>Tương tác gần nhất</th>
+                                <th class="text-end pe-4">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($sessions as $session)
+                                @php
+                                    $diffInSeconds = $session->last_activity->diffInSeconds(now());
+                                    $isLive = $diffInSeconds <= 300;
+                                @endphp
+                                <tr>
+                                    <!-- Status -->
+                                    <td class="ps-4">
+                                        @if($isLive)
+                                            <span class="d-inline-flex align-items-center gap-1 text-success fw-bold small">
+                                                <span class="live-dot-indicator"></span> Online
+                                            </span>
+                                        @else
+                                            <span class="d-inline-flex align-items-center gap-1 text-muted small">
+                                                <i class="fas fa-circle text-secondary" style="font-size: 8px;"></i> Vừa rời
+                                            </span>
+                                        @endif
+                                    </td>
+
+                                    <!-- User Info -->
+                                    <td>
+                                        <div class="d-flex align-items-center gap-3">
+                                            @if($session->user)
+                                                <div class="user-avatar-circle">
+                                                    {{ strtoupper(substr($session->user->name, 0, 1)) }}
+                                                </div>
+                                                <div>
+                                                    <div class="fw-bold text-dark mb-0">
+                                                        {{ $session->user->name }}
+                                                        <span class="badge-member ms-1">Thành viên</span>
+                                                    </div>
+                                                    <div class="small text-muted">{{ $session->user->email }}</div>
+                                                </div>
+                                            @else
+                                                <div class="guest-avatar-circle">
+                                                    <i class="fas fa-user"></i>
+                                                </div>
+                                                <div>
+                                                    <div class="fw-bold text-dark mb-0">
+                                                        Khách vãng lai
+                                                        <span class="badge-guest ms-1">Guest</span>
+                                                    </div>
+                                                    <div class="small text-muted font-monospace">Session: {{ substr($session->session_id, 0, 12) }}...</div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </td>
+
+                                    <!-- IP & Device -->
+                                    <td>
+                                        <div class="fw-bold font-monospace text-dark small">
+                                            <i class="fas fa-network-wired me-1 text-muted"></i>{{ $session->ip_address ?: 'Unknown IP' }}
+                                        </div>
+                                        <div class="small text-muted mt-1">
+                                            @if($session->device_type === 'mobile')
+                                                <i class="fas fa-mobile-alt text-primary me-1" title="Điện thoại"></i> Mobile
+                                            @elseif($session->device_type === 'tablet')
+                                                <i class="fas fa-tablet-alt text-info me-1" title="Máy tính bảng"></i> Tablet
+                                            @else
+                                                <i class="fas fa-desktop text-secondary me-1" title="Máy tính"></i> Desktop
+                                            @endif
+                                            <span class="ms-1 text-truncate d-inline-block align-middle" style="max-width: 140px;" title="{{ $session->user_agent }}">
+                                                • {{ Str::limit($session->user_agent, 20) }}
+                                            </span>
+                                        </div>
+                                    </td>
+
+                                    <!-- Current Page URL -->
+                                    <td>
+                                        @php
+                                            $parsedPath = parse_url($session->current_url, PHP_URL_PATH) ?: '/';
+                                        @endphp
+                                        <a href="{{ $session->current_url }}" target="_blank" class="url-badge" title="{{ $session->current_url }}">
+                                            <i class="fas fa-external-link-alt me-1 fs-xs"></i>{{ $parsedPath }}
+                                        </a>
+                                    </td>
+
+                                    <!-- Last Activity -->
+                                    <td>
+                                        <div class="fw-bold text-dark small">
+                                            {{ $session->last_activity->diffForHumans() }}
+                                        </div>
+                                        <div class="small text-muted">
+                                            {{ $session->last_activity->format('H:i:s d/m/Y') }}
+                                        </div>
+                                    </td>
+
+                                    <!-- Action -->
+                                    <td class="text-end pe-4">
+                                        <div class="d-inline-flex gap-1 align-items-center">
+                                            @if($session->user_id)
+                                                <a href="{{ route('admin.users.history', $session->user_id) }}" class="btn btn-sm btn-outline-info" title="Xem lịch sử user">
+                                                    <i class="fas fa-user-gear me-1"></i> Hồ sơ
+                                                </a>
+                                            @endif
+                                            <a href="{{ $session->current_url }}" target="_blank" class="btn btn-sm btn-outline-primary" title="Mở trang trong tab mới">
+                                                <i class="fas fa-external-link-alt me-1"></i> Xem trang
+                                            </a>
+                                            @php
+                                                $kickRoute = \Illuminate\Support\Facades\Route::has('admin.online-users.kick')
+                                                    ? route('admin.online-users.kick', $session->id)
+                                                    : (\Illuminate\Support\Facades\Route::has('admin.online-users.delete')
+                                                        ? route('admin.online-users.delete', $session->id)
+                                                        : '#');
+                                            @endphp
+                                            <form action="{{ $kickRoute }}" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn ngắt phiên làm việc của khách hàng này?');">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-outline-warning" title="Ngắt kết nối phiên">
+                                                    <i class="fas fa-power-off me-1"></i> Ngắt phiên
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center py-5 text-muted">
+                                        <i class="fas fa-users-slash fs-2 mb-3 d-block text-secondary opacity-50"></i>
+                                        Không có khách hàng nào đang hoạt động trong khoảng thời gian vừa qua.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+
+                @if($sessions->hasPages())
+                    <div class="p-3 border-top">
+                        {{ $sessions->links() }}
+                    </div>
+                @endif
+            </div>
+        </div>
+
+    @else
+        <!-- ========================================== -->
+        <!-- TAB 2: QUẢN LÝ & THỐNG KÊ TRUY CẬP          -->
+        <!-- ========================================== -->
+
+        <!-- Historical Stats Summary Cards -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="stat-card-custom">
+                    <div class="stat-icon-wrapper bg-icon-green">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value text-success">{{ number_format($todayVisitors ?? 0) }}</div>
+                        <div class="stat-label">Lượt truy cập hôm nay</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card-custom">
+                    <div class="stat-icon-wrapper bg-icon-blue">
+                        <i class="fas fa-calendar-minus"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value text-primary">{{ number_format($yesterdayVisitors ?? 0) }}</div>
+                        <div class="stat-label">Lượt truy cập hôm qua</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card-custom">
+                    <div class="stat-icon-wrapper bg-icon-purple">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value text-purple" style="color:#7c3aed;">{{ number_format($thisMonthVisitors ?? 0) }}</div>
+                        <div class="stat-label">Lượt truy cập tháng này</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card-custom">
+                    <div class="stat-icon-wrapper bg-icon-teal">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value text-teal fs-6" style="color:#0d9488;">
+                            <span class="badge bg-teal text-white px-2 py-1" style="background:#0d9488;">Lưu 3 tháng</span>
+                        </div>
+                        <div class="stat-label">Thời hạn tự động dọn dẹp</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Visited Pages Ranking (Sắp xếp giảm dần, có phân trang) -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card-header bg-white py-3 border-bottom border-light d-flex align-items-center justify-content-between flex-wrap gap-2">
+                <div>
+                    <h6 class="fw-bold m-0 text-dark d-flex align-items-center gap-2">
+                        <i class="fas fa-fire text-danger"></i> Bảng Xếp Hạng Trang Được Truy Cập Nhiều Nhất (Phân trang & Xếp giảm dần)
+                    </h6>
+                    <small class="text-muted">Danh sách các URL có lượt truy cập cao nhất, sắp xếp từ lớn đến nhỏ</small>
+                </div>
+                <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-3 py-2 rounded-pill fw-bold">
+                    <i class="fas fa-arrow-down-wide-short me-1"></i> Xếp lượt xem giảm dần
+                </span>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="ps-4" style="width: 80px;">Hạng</th>
+                                <th>Đường dẫn trang (URL)</th>
+                                <th class="text-center">Tổng lượt xem</th>
+                                <th class="text-center">Thành viên xem</th>
+                                <th class="text-center">Khách vãng lai xem</th>
+                                <th>Lượt xem gần nhất</th>
+                                <th class="text-end pe-4">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($topVisitedPages ?? [] as $index => $page)
+                                @php
+                                    $rank = ($topVisitedPages->currentPage() - 1) * $topVisitedPages->perPage() + $index + 1;
+                                    $parsedPath = parse_url($page->current_url, PHP_URL_PATH) ?: '/';
+                                @endphp
+                                <tr>
+                                    <!-- Rank badge -->
+                                    <td class="ps-4">
+                                        @if($rank === 1)
+                                            <span class="badge bg-warning text-dark fs-6 rounded-circle p-2" title="Hạng 1" style="width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;">🥇</span>
+                                        @elseif($rank === 2)
+                                            <span class="badge bg-secondary text-white fs-6 rounded-circle p-2" title="Hạng 2" style="width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;">🥈</span>
+                                        @elseif($rank === 3)
+                                            <span class="badge bg-danger-subtle text-danger border border-danger fs-6 rounded-circle p-2" title="Hạng 3" style="width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;">🥉</span>
+                                        @else
+                                            <span class="badge bg-light text-dark border rounded-circle p-2 fw-bold" style="width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;">#{{ $rank }}</span>
+                                        @endif
+                                    </td>
+
+                                    <!-- URL Path -->
+                                    <td>
+                                        <a href="{{ $page->current_url }}" target="_blank" class="url-badge font-monospace fw-bold" title="{{ $page->current_url }}">
+                                            <i class="fas fa-link me-1 text-muted fs-xs"></i>{{ $parsedPath }}
+                                        </a>
+                                        <div class="small text-muted text-truncate mt-1" style="max-width: 380px;">{{ $page->current_url }}</div>
+                                    </td>
+
+                                    <!-- Total Views -->
+                                    <td class="text-center">
+                                        <span class="badge bg-danger text-white fs-6 px-3 py-2 rounded-pill fw-bold">
+                                            <i class="fas fa-fire me-1"></i>{{ number_format($page->total_views) }} lượt
+                                        </span>
+                                    </td>
+
+                                    <!-- Member Views -->
+                                    <td class="text-center">
+                                        <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill fw-bold">
+                                            {{ number_format($page->logged_in_views) }}
+                                        </span>
+                                    </td>
+
+                                    <!-- Guest Views -->
+                                    <td class="text-center">
+                                        <span class="badge bg-secondary-subtle text-secondary border px-3 py-1 rounded-pill fw-bold">
+                                            {{ number_format($page->guest_views) }}
+                                        </span>
+                                    </td>
+
+                                    <!-- Last Visited At -->
+                                    <td>
+                                        <div class="small text-dark fw-bold">
+                                            {{ \Carbon\Carbon::parse($page->last_visited_at)->diffForHumans() }}
+                                        </div>
+                                        <div class="small text-muted">
+                                            {{ \Carbon\Carbon::parse($page->last_visited_at)->format('H:i:s d/m/Y') }}
+                                        </div>
+                                    </td>
+
+                                    <!-- Action -->
+                                    <td class="text-end pe-4">
+                                        <a href="{{ $page->current_url }}" target="_blank" class="btn btn-sm btn-outline-primary" title="Mở trang trong tab mới">
+                                            <i class="fas fa-external-link-alt me-1"></i> Xem trang
+                                        </a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center py-4 text-muted">Chưa có dữ liệu xếp hạng trang.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+
+                @if(isset($topVisitedPages) && $topVisitedPages->hasPages())
+                    <div class="p-3 border-top d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <span class="small text-muted">Trang xếp hạng {{ $topVisitedPages->currentPage() }} / {{ $topVisitedPages->lastPage() }} (Tổng {{ number_format($topVisitedPages->total()) }} trang được xem)</span>
+                        {{ $topVisitedPages->appends(request()->except('top_page'))->links() }}
+                    </div>
+                @endif
+            </div>
+        </div>
+
+        <!-- Daily Breakdown Summary Table (Last 14 days) -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card-header bg-white py-3 border-bottom border-light">
+                <h6 class="fw-bold m-0 d-flex align-items-center gap-2 text-dark">
+                    <i class="fas fa-chart-bar text-primary"></i> Thống kê số lượng khách truy cập theo ngày (14 ngày gần nhất)
+                </h6>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped align-middle mb-0 text-center">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Ngày</th>
+                                <th>Tổng lượt khách</th>
+                                <th>Thành viên đã đăng nhập</th>
+                                <th>Khách vãng lai</th>
+                                <th>Tỷ lệ thành viên</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($dailyStats ?? [] as $stat)
+                                @php
+                                    $ratio = $stat->total > 0 ? round(($stat->logged_in / $stat->total) * 100, 1) : 0;
+                                @endphp
+                                <tr>
+                                    <td class="fw-bold text-dark">{{ \Carbon\Carbon::parse($stat->date)->format('d/m/Y') }}</td>
+                                    <td class="fw-bold text-primary">{{ number_format($stat->total) }}</td>
+                                    <td class="text-success fw-bold">{{ number_format($stat->logged_in) }}</td>
+                                    <td class="text-muted">{{ number_format($stat->guests) }}</td>
+                                    <td>
+                                        <span class="badge bg-light text-dark border">{{ $ratio }}%</span>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-muted py-3">Chưa có dữ liệu thống kê theo ngày.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters & Excel Export Form Card -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card-header bg-white py-3 border-bottom border-light d-flex align-items-center justify-content-between flex-wrap gap-2">
+                <h6 class="fw-bold m-0 text-dark">
+                    <i class="fas fa-filter text-primary me-1"></i> Bộ Lọc & Tìm Kiếm Lịch Sử
+                </h6>
+
+                <div class="d-flex align-items-center gap-2">
+                    <a href="{{ $exportUrl }}" class="btn btn-success btn-sm px-3 fw-bold shadow-sm">
+                        <i class="fas fa-file-excel me-1"></i> Xuất file Excel (Tối đa 100 bản ghi)
+                    </a>
+                    
+                    <div class="dropdown">
+                        <button class="btn btn-outline-danger btn-sm dropdown-toggle fw-bold shadow-sm" type="button" id="clearHistoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-broom me-1"></i> Dọn dẹp nhật ký
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="clearHistoryDropdown">
+                            <li>
+                                <form action="{{ route('admin.online-users.clear-history') }}" method="POST" onsubmit="return confirm('Xóa lịch sử truy cập cũ hơn 7 ngày?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="days" value="7">
+                                    <button type="submit" class="dropdown-item text-dark">
+                                        <i class="fas fa-calendar-minus me-2 text-warning"></i>Xóa log cũ > 7 ngày
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('admin.online-users.clear-history') }}" method="POST" onsubmit="return confirm('Xóa lịch sử truy cập cũ hơn 14 ngày?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="days" value="14">
+                                    <button type="submit" class="dropdown-item text-dark">
+                                        <i class="fas fa-calendar-times me-2 text-secondary"></i>Xóa log cũ > 14 ngày
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('admin.online-users.clear-history') }}" method="POST" onsubmit="return confirm('Xóa lịch sử truy cập cũ hơn 30 ngày?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="days" value="30">
+                                    <button type="submit" class="dropdown-item text-dark">
+                                        <i class="fas fa-history me-2 text-info"></i>Xóa log cũ > 30 ngày
+                                    </button>
+                                </form>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form action="{{ route('admin.online-users.clear-history') }}" method="POST" onsubmit="return confirm('⚠️ CẢNH BÁO: Xóa TOÀN BỘ lịch sử truy cập? (Vẫn giữ nguyên các phiên online hiện tại)');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="days" value="all">
+                                    <button type="submit" class="dropdown-item text-danger fw-bold">
+                                        <i class="fas fa-trash-alt me-2"></i>Xóa TOÀN BỘ lịch sử
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-3">
+                <form action="{{ route('admin.online-users.index') }}" method="GET" class="row g-2 align-items-center">
+                    <input type="hidden" name="tab" value="manage">
+
+                    <div class="col-md-3">
+                        <label class="form-label small fw-bold text-muted mb-1">Từ ngày</label>
+                        <input type="date" name="date_from" class="form-control form-control-sm" value="{{ request('date_from') }}">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label small fw-bold text-muted mb-1">Đến ngày</label>
+                        <input type="date" name="date_to" class="form-control form-control-sm" value="{{ request('date_to') }}">
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="form-label small fw-bold text-muted mb-1">Loại khách</label>
+                        <select name="type" class="form-select form-select-sm">
+                            <option value="">-- Tất cả --</option>
+                            <option value="logged_in" {{ request('type') == 'logged_in' ? 'selected' : '' }}>Đã đăng nhập</option>
+                            <option value="guests" {{ request('type') == 'guests' ? 'selected' : '' }}>Khách vãng lai</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="form-label small fw-bold text-muted mb-1">Từ khóa</label>
+                        <input type="text" name="search" class="form-control form-control-sm" placeholder="Tên, Email, IP, URL..." value="{{ request('search') }}">
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-end gap-1 mt-auto">
+                        <button type="submit" class="btn btn-sm btn-primary w-100 fw-bold"><i class="fas fa-search me-1"></i> Lọc</button>
+                        @if(request()->hasAny(['search', 'type', 'date_from', 'date_to']))
+                            <a href="{{ route('admin.online-users.index', ['tab' => 'manage']) }}" class="btn btn-sm btn-light border" title="Xóa lọc">Xóa</a>
+                        @endif
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Historical Log Table -->
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-header bg-white py-3 border-bottom border-light d-flex align-items-center justify-content-between flex-wrap gap-2">
+                <h6 class="fw-bold m-0 text-dark">
+                    <i class="fas fa-list text-primary me-1"></i> Danh Sách Lịch Sử Khách Truy Cập (Định dạng Excel)
+                </h6>
+
+                <div class="d-flex align-items-center gap-2">
+                    <form action="{{ route('admin.online-users.clear-history') }}" method="POST" onsubmit="return confirm('Xóa tất cả nhật ký truy cập cũ hơn 7 ngày?');" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="days" value="7">
+                        <button type="submit" class="btn btn-warning btn-sm fw-bold text-dark shadow-sm">
+                            <i class="fas fa-broom me-1"></i> Xóa log > 7 ngày
+                        </button>
+                    </form>
+
+                    <form action="{{ route('admin.online-users.clear-history') }}" method="POST" onsubmit="return confirm('⚠️ CẢNH BÁO: Xóa TOÀN BỘ lịch sử truy cập? (Vẫn giữ các phiên online hiện tại)');" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="days" value="all">
+                        <button type="submit" class="btn btn-danger btn-sm fw-bold text-white shadow-sm">
+                            <i class="fas fa-trash-alt me-1"></i> Xóa tất cả log
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="ps-4">#</th>
+                                <th>Người dùng / Khách hàng</th>
+                                <th>Địa chỉ IP & Thiết bị</th>
+                                <th>Trang truy cập (URL)</th>
+                                <th>Thời gian tương tác</th>
+                                <th>Thời gian tạo phiên</th>
+                                <th class="text-end pe-4">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($sessions as $index => $session)
+                                <tr>
+                                    <td class="ps-4 fw-bold text-muted">{{ $sessions->firstItem() + $index }}</td>
+
+                                    <!-- User Info -->
+                                    <td>
+                                        <div class="d-flex align-items-center gap-3">
+                                            @if($session->user)
+                                                <div class="user-avatar-circle">
+                                                    {{ strtoupper(substr($session->user->name, 0, 1)) }}
+                                                </div>
+                                                <div>
+                                                    <div class="fw-bold text-dark mb-0">
+                                                        {{ $session->user->name }}
+                                                        <span class="badge-member ms-1">Thành viên</span>
+                                                    </div>
+                                                    <div class="small text-muted">{{ $session->user->email }}</div>
+                                                </div>
+                                            @else
+                                                <div class="guest-avatar-circle">
+                                                    <i class="fas fa-user"></i>
+                                                </div>
+                                                <div>
+                                                    <div class="fw-bold text-dark mb-0">
+                                                        Khách vãng lai
+                                                        <span class="badge-guest ms-1">Guest</span>
+                                                    </div>
+                                                    <div class="small text-muted font-monospace">Session: {{ substr($session->session_id, 0, 10) }}...</div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </td>
+
+                                    <!-- IP & Device -->
+                                    <td>
+                                        <div class="fw-bold font-monospace text-dark small">
+                                            <i class="fas fa-network-wired me-1 text-muted"></i>{{ $session->ip_address ?: 'Unknown IP' }}
+                                        </div>
+                                        <div class="small text-muted mt-1">
+                                            @if($session->device_type === 'mobile')
+                                                <i class="fas fa-mobile-alt text-primary me-1"></i> Mobile
+                                            @elseif($session->device_type === 'tablet')
+                                                <i class="fas fa-tablet-alt text-info me-1"></i> Tablet
+                                            @else
+                                                <i class="fas fa-desktop text-secondary me-1"></i> Desktop
+                                            @endif
+                                        </div>
+                                    </td>
+
+                                    <!-- Current Page URL -->
+                                    <td>
+                                        @php
+                                            $parsedPath = parse_url($session->current_url, PHP_URL_PATH) ?: '/';
+                                        @endphp
+                                        <a href="{{ $session->current_url }}" target="_blank" class="url-badge" title="{{ $session->current_url }}">
+                                            <i class="fas fa-external-link-alt me-1 fs-xs"></i>{{ $parsedPath }}
+                                        </a>
+                                    </td>
+
+                                    <!-- Last Activity -->
+                                    <td>
+                                        <div class="fw-bold text-dark small">
+                                            {{ $session->last_activity ? $session->last_activity->format('H:i:s d/m/Y') : '--' }}
+                                        </div>
+                                        <div class="small text-muted">
+                                            {{ $session->last_activity ? $session->last_activity->diffForHumans() : '' }}
+                                        </div>
+                                    </td>
+
+                                    <!-- Created At -->
+                                    <td>
+                                        <div class="small text-muted">
+                                            {{ $session->created_at ? $session->created_at->format('H:i:s d/m/Y') : '--' }}
+                                        </div>
+                                    </td>
+
+                                    <!-- Action -->
+                                    <td class="text-end pe-4">
+                                        <div class="d-inline-flex gap-1 align-items-center">
+                                            @if($session->user_id)
+                                                <a href="{{ route('admin.users.history', $session->user_id) }}" class="btn btn-sm btn-outline-info" title="Xem hồ sơ user">
+                                                    <i class="fas fa-user-gear"></i>
+                                                </a>
+                                            @endif
+                                            <a href="{{ $session->current_url }}" target="_blank" class="btn btn-sm btn-outline-primary" title="Xem trang">
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                            @php
+                                                $kickRoute = \Illuminate\Support\Facades\Route::has('admin.online-users.kick')
+                                                    ? route('admin.online-users.kick', $session->id)
+                                                    : (\Illuminate\Support\Facades\Route::has('admin.online-users.delete')
+                                                        ? route('admin.online-users.delete', $session->id)
+                                                        : '#');
+                                            @endphp
+                                            <form action="{{ $kickRoute }}" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc muốn xóa phiên này?');">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-outline-warning" title="Xóa phiên">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center py-5 text-muted">
+                                        <i class="fas fa-folder-open fs-2 mb-3 d-block text-secondary opacity-50"></i>
+                                        Không tìm thấy lịch sử truy cập nào phù hợp với bộ lọc.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+
+                @if($sessions->hasPages())
+                    <div class="p-3 border-top">
+                        {{ $sessions->links() }}
+                    </div>
+                @endif
+            </div>
+        </div>
+    @endif
+
+</div>
+@endsection
+
+@push('scripts')
+@if($activeTab === 'online')
+<script>
+    let autoRefresh = true;
+    let timerSeconds = 5;
+    let timerInterval = null;
+
+    function startTimer() {
+        if (timerInterval) clearInterval(timerInterval);
+        
+        timerInterval = setInterval(() => {
+            if (!autoRefresh) return;
+            
+            timerSeconds--;
+            const timerEl = document.getElementById('refreshTimerCount');
+            if (timerEl) timerEl.textContent = timerSeconds;
+            
+            if (timerSeconds <= 0) {
+                window.location.reload();
+            }
+        }, 1000);
+    }
+
+    function toggleAutoRefresh() {
+        autoRefresh = !autoRefresh;
+        const btn = document.getElementById('btnAutoRefresh');
+        
+        if (autoRefresh) {
+            btn.classList.add('active', 'btn-outline-primary');
+            btn.classList.remove('btn-outline-secondary');
+            btn.innerHTML = '<i class="fas fa-play me-1"></i> Tự động làm mới (<span id="refreshTimerCount">5</span>s)';
+            timerSeconds = 5;
+            startTimer();
+        } else {
+            btn.classList.remove('active', 'btn-outline-primary');
+            btn.classList.add('btn-outline-secondary');
+            btn.innerHTML = '<i class="fas fa-pause me-1"></i> Tự động làm mới (Đã dừng)';
+            if (timerInterval) clearInterval(timerInterval);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        startTimer();
+    });
+</script>
+@endif
+@endpush

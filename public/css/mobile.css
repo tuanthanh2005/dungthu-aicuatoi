@@ -1,0 +1,625 @@
+/* Mobile-first tweaks applied site-wide (loaded after page styles). */
+
+/* Prevent horizontal scroll caused by long words / badges */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Allow long unbroken strings (e.g., product/blog titles) to wrap instead of overflowing */
+.blog-title,
+.breadcrumb,
+.breadcrumb-item,
+.container h1,
+.container h2,
+.container h3 {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* Card titles on mobile - show full text, no truncation */
+.card-title,
+.product-title-2lines {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    /* Remove line clamp to show full title on mobile */
+}
+
+/* Breadcrumbs: allow wrapping on small/long slugs */
+.breadcrumb {
+    flex-wrap: wrap;
+}
+
+@media (max-width: 991.98px) {
+
+    /* Navbar: better spacing when collapsed */
+    .navbar {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .navbar-glass .navbar-brand {
+        font-size: 1.4rem !important;
+    }
+
+    .navbar-glass .navbar-toggler {
+        padding: 0.5rem 0.7rem;
+        border-radius: 10px;
+    }
+
+    .navbar-glass .navbar-collapse {
+        padding-top: 1rem;
+        padding-bottom: 0.5rem;
+        background: white;
+        margin-top: 0.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        position: relative;
+        z-index: 1050;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+
+    .navbar-glass .navbar-nav {
+        padding: 0.5rem 1rem;
+        align-items: flex-start !important;
+    }
+
+    .navbar-glass .nav-link {
+        margin: 0 !important;
+        padding: 0.85rem 1rem !important;
+        font-size: 1.05rem !important;
+        font-weight: 500 !important;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .navbar-glass .nav-link:hover,
+    .navbar-glass .nav-link:active {
+        background: #f8f9fa;
+        color: var(--primary) !important;
+    }
+
+    .navbar-glass .nav-link i {
+        width: 20px;
+        margin-right: 8px;
+    }
+
+    .navbar-glass .dropdown-menu {
+        border-radius: 12px;
+        font-size: 1.05rem;
+    }
+
+    /* If navbar is collapsed, make CTA buttons easy to tap */
+    .navbar-glass .navbar-collapse .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.75rem 1.5rem;
+        font-size: 1.05rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Dropdown items: bigger tap targets */
+    .dropdown-menu .dropdown-item {
+        padding: 0.85rem 1.2rem;
+        font-size: 1.05rem;
+    }
+
+    .dropdown-menu .dropdown-item i {
+        width: 20px;
+    }
+}
+
+@media (max-width: 767.98px) {
+
+    /* Remove line clamp on mobile for full title display */
+    .tiktok-deal-card h6,
+    .blog-excerpt {
+        display: block !important;
+        -webkit-line-clamp: unset !important;
+        -webkit-box-orient: initial !important;
+        overflow: visible !important;
+        height: auto !important;
+    }
+
+    /* Tăng font-size giá tiền trên mobile lên 3px */
+    .product-card .text-primary.fw-bold,
+    .product-card .text-success.fw-bold,
+    .tiktok-deal-card .text-danger.fw-bold {
+        font-size: calc(1rem + 3px) !important;
+    }
+
+    /* Sale badge + original price: keep compact on small screens */
+    .product-card .sale-badge {
+        font-size: 0.75rem;
+        padding: 0.25em 0.5em;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    /* Reduce huge hero paddings on phones */
+    .hero-section {
+        padding: 45px 0 13px !important;
+    }
+
+    /* Card-exchange hero is inline-styled in the view; keep it compact on mobile */
+    .card-exchange-hero {
+        padding: 80px 0 45px !important;
+    }
+
+    /* Giảm font size tất cả text xuống 5px trên mobile */
+    body {
+        font-size: calc(1rem - 5px) !important;
+    }
+
+    .text-muted,
+    .lead,
+    p,
+    li,
+    span,
+    .description-content {
+        font-size: calc(1rem - 5px) !important;
+    }
+
+    /* Typography */
+    h1,
+    .h1 {
+        font-size: calc(1.35rem + 1.2vw);
+    }
+
+    h2,
+    .h2 {
+        font-size: calc(1.2rem + 0.9vw);
+    }
+
+    h3,
+    .h3 {
+        font-size: calc(1.05rem + 0.7vw);
+    }
+
+    /* Common padding reductions */
+    .card-body.p-4 {
+        padding: 1rem !important;
+    }
+
+    .card-body.p-5 {
+        padding: 1.25rem !important;
+    }
+
+    /* Large controls/buttons feel too big on phones */
+    .form-control-lg,
+    .form-select-lg {
+        padding: 0.7rem 0.9rem;
+        font-size: 1rem;
+    }
+
+    .btn-lg {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+
+    /* Buttons: better tap targets, less cramped */
+    .btn {
+        border-radius: 12px;
+    }
+
+    /* Product/detail pages often use a d-flex row for action buttons; stack on mobile */
+    form .d-flex.gap-3 {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    form .d-flex.gap-3>.btn,
+    form .d-flex.gap-3>a.btn,
+    form .d-flex.gap-3>button.btn {
+        width: 100%;
+    }
+
+    /* Common action rows (submit + secondary buttons): stack to 1 column */
+    .d-flex.gap-3.flex-wrap>.btn,
+    .d-flex.gap-3.flex-wrap>a.btn {
+        flex: 1 1 100%;
+    }
+
+    /* In cards/forms, full-width primary actions feel better */
+    .card .btn-lg,
+    form .btn-lg {
+        width: 100%;
+    }
+
+    /* Common "filter buttons" rows on shop pages: make them 2 columns */
+    .d-flex.flex-wrap.gap-3.justify-content-center>.btn,
+    .d-flex.flex-wrap.gap-3.justify-content-center>a.btn {
+        flex: 1 1 calc(50% - 0.75rem);
+        min-width: unset !important;
+        padding: 0.7rem 0.8rem !important;
+        font-size: 0.95rem !important;
+    }
+
+    /* Keep filter buttons as 2 columns even though rules above make buttons full-width */
+    .d-flex.flex-wrap.gap-3.justify-content-center>.btn,
+    .d-flex.flex-wrap.gap-3.justify-content-center>a.btn {
+        width: auto;
+    }
+
+    /* Forms: a bit tighter */
+    .form-label {
+        margin-bottom: 0.45rem !important;
+    }
+
+    /* SweetAlert toast: don't overflow on small screens */
+    .swal2-toast {
+        width: min(340px, 92vw) !important;
+        margin: 0.75rem !important;
+    }
+
+    /* Many pages use inline margin-top: 80px for fixed navbar; reduce on phones */
+    [style*="margin-top: 80px"],
+    [style*="margin-top:80px"] {
+        margin-top: 60px !important;
+    }
+
+    /* Card-exchange page spacing */
+    .exchange-page {
+        margin-top: 60px !important;
+    }
+
+    /* Tabs: prevent wrapping, allow horizontal scroll */
+    .nav-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* nav-fill tabs (e.g., product detail) shouldn't squeeze; make them scrollable cards */
+    .nav-tabs.nav-fill .nav-item {
+        flex: 0 0 auto !important;
+    }
+
+    .nav-tabs.nav-fill .nav-link {
+        min-width: 140px;
+        padding: 0.75rem 0.9rem !important;
+        margin: 0 0.35rem !important;
+    }
+
+    .nav-tabs .nav-link {
+        white-space: nowrap;
+    }
+
+    /* Tables: smaller touch-friendly */
+    .table thead th,
+    .table tbody td {
+        padding: 0.65rem 0.75rem;
+        font-size: 0.92rem;
+    }
+
+    /* Blog card: stack vertically on mobile */
+    .blog-card {
+        flex-direction: column;
+    }
+
+    .blog-thumb {
+        width: 100%;
+        min-height: 180px;
+    }
+
+    .blog-content {
+        width: 100%;
+    }
+
+    /* Product image: reduce height */
+    .card-img-wrap {
+        height: 160px;
+    }
+
+    /* Footer spacing */
+    footer.py-5 {
+        padding-top: 2.5rem !important;
+        padding-bottom: 2.5rem !important;
+    }
+
+    /* Footer: better mobile layout */
+    footer {
+        text-align: center;
+    }
+
+    footer .row>[class^="col-"] {
+        margin-bottom: 1.25rem;
+    }
+
+    footer .row>[class^="col-"]:last-child {
+        margin-bottom: 0;
+    }
+
+    footer .list-unstyled {
+        margin-bottom: 0;
+    }
+
+    footer .input-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+
+    footer .input-group .form-control,
+    footer .input-group .btn {
+        width: 100%;
+        border-radius: 12px !important;
+    }
+
+    /* Admin pages: mobile-friendly layout */
+    .admin-wrapper {
+        padding: 20px 0 !important;
+        margin-top: 60px !important;
+    }
+
+    .admin-card {
+        padding: 16px !important;
+        border-radius: 14px !important;
+    }
+
+    .admin-nav {
+        padding: 12px !important;
+        border-radius: 14px !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .admin-nav .nav,
+    .admin-nav .navbar-nav {
+        flex-wrap: nowrap !important;
+        gap: 0.5rem;
+    }
+
+    .admin-nav .nav-link,
+    .admin-nav a {
+        white-space: nowrap;
+        padding: 8px 12px !important;
+        font-size: 0.9rem !important;
+        margin: 0 4px 0 0 !important;
+    }
+
+    .admin-card .d-flex.justify-content-between {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 10px;
+    }
+
+    .admin-card .btn,
+    .admin-card .btn-group .btn,
+    .admin-card .btn-group a.btn {
+        width: 100%;
+    }
+
+    .admin-card .btn-group {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .admin-card .btn-group .btn,
+    .admin-card .btn-group a.btn {
+        margin: 0 !important;
+        padding: 0.6rem 0.75rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    .admin-card .table,
+    .admin-card .custom-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .admin-card .custom-table thead th,
+    .admin-card .custom-table tbody td,
+    .admin-card .table thead th,
+    .admin-card .table tbody td {
+        padding: 10px 12px !important;
+        font-size: 0.88rem !important;
+    }
+
+    .admin-card .product-image-small {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    /* Admin chat: fix input/scroll on mobile */
+    .chat-admin-container {
+        padding: 0 10px !important;
+    }
+
+    .chat-admin-card {
+        height: calc(100vh - 140px) !important;
+        flex-direction: column !important;
+    }
+
+    .users-sidebar {
+        width: 100% !important;
+        height: 180px !important;
+        border-right: none !important;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .chat-main {
+        min-height: 0 !important;
+        flex: 1 1 auto;
+    }
+
+    .chat-messages {
+        flex: 1 1 auto;
+        min-height: 0 !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        max-height: calc(100vh - 320px);
+    }
+
+    .chat-input-area {
+        position: sticky;
+        bottom: 0;
+        padding: 10px 10px 12px !important;
+        background: #fff;
+        border-top: 1px solid #e9ecef;
+        box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.06);
+        z-index: 2;
+    }
+
+    .chat-input-area .input-group {
+        flex-wrap: nowrap !important;
+        gap: 8px;
+    }
+
+    .chat-input-area .form-control {
+        height: 42px;
+        font-size: 0.95rem;
+        border-radius: 12px !important;
+    }
+
+    .chat-input-area .btn {
+        height: 42px;
+        padding: 0 14px;
+        border-radius: 12px !important;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 575.98px) {
+
+    /* Containers: slightly tighter on very small screens */
+    .container.py-5 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    /* Modals: reduce outer margins */
+    .modal-dialog {
+        margin: 0.75rem;
+    }
+
+    /* Ensure input groups don't cause overflow */
+    .input-group {
+        flex-wrap: nowrap;
+    }
+
+    /* Footer: slightly tighter text */
+    footer h4 {
+        font-size: 1.25rem;
+    }
+
+    footer h5 {
+        font-size: 1.05rem;
+    }
+
+    /* Buttons: slightly tighter on very small screens */
+    .btn,
+    .btn-lg {
+        font-size: 0.98rem;
+        padding-left: 0.9rem;
+        padding-right: 0.9rem;
+    }
+
+    /* Cart: prevent qty controls from overflowing into other columns */
+    .cart-item {
+        padding: 16px !important;
+    }
+
+    .cart-item .qty-control {
+        gap: 6px !important;
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
+
+    .cart-item .btn-qty {
+        width: 30px;
+        height: 30px;
+        border-radius: 10px;
+    }
+
+    .cart-item .quantity-input {
+        width: 52px;
+        padding: 0.25rem 0.35rem;
+        font-size: 0.95rem;
+    }
+
+    .cart-item .fs-5 {
+        font-size: 1.05rem !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+
+    /* Cart summary: avoid sticky on small screens */
+    .cart-summary {
+        position: static !important;
+        top: auto !important;
+        margin-top: 1rem;
+    }
+
+    /* Admin nav: allow horizontal scroll instead of squishing */
+    .admin-nav .nav,
+    .admin-nav .navbar-nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 0.5rem;
+    }
+
+    .admin-nav .nav-link {
+        white-space: nowrap;
+    }
+}
+
+/* --- Responsive CSS cho Tiktok Deals --- */
+@media (max-width: 767.98px) {
+
+    /* Tăng kích thước card trên mobile để dễ nhìn hơn */
+    .tiktok-deal-card .tiktok-img-wrap {
+        height: 180px;
+    }
+
+    /* Giảm kích thước font cho title */
+    .tiktok-deal-card h6 {
+        font-size: 0.88rem;
+    }
+
+    /* Giảm padding để tiết kiệm không gian */
+    .tiktok-deal-card .p-3 {
+        padding: 0.75rem !important;
+    }
+
+    /* Giảm kích thước badge giảm giá */
+    .deal-badge {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        top: 8px;
+        right: 8px;
+    }
+
+    /* Nút mua ngay responsive */
+    .tiktok-deal-card .btn-danger {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+
+    /* Trên mobile nhỏ, hiển thị 2 cột */
+    .row-cols-2>* {
+        width: 50% !important;
+    }
+
+    /* Giảm khoảng cách giữa các card */
+    .g-4 {
+        --bs-gutter-x: 0.75rem;
+        --bs-gutter-y: 0.75rem;
+    }
+
+    /* Giảm chiều cao ảnh trên mobile nhỏ */
+    .tiktok-deal-card .tiktok-img-wrap {
+        height: 150px;
+    }
+}

@@ -1,0 +1,2624 @@
+@extends('layouts.app')
+
+@section('title', __('Dùng Thử | AI | Blog | Khám Phá'))
+
+@section('seo_h1')
+    <h1 style="display:none;">{{ __('Dùng Thử | AI | Blog | Khám Phá') }}</h1>
+@endsection
+
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <style>
+        /* =========================================================
+        MARQUEE ANNOUNCEMENT & HERO BANNER
+        ========================================================= */
+        
+        /* 1. Marquee Alert Bar styles */
+        .marquee-alert-bar {
+            background: linear-gradient(135deg, #ff4e00 0%, #ec9f05 100%);
+            color: #ffffff;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            font-size: 13.5px;
+            font-weight: 600;
+            padding: 10px 0;
+            box-shadow: 0 4px 15px rgba(255, 78, 0, 0.15);
+            position: relative;
+            z-index: 10;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee-loop 60s linear infinite;
+        }
+        
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+        
+        .marquee-item {
+            padding: 0 3rem;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .marquee-icon-warning {
+            color: #ffe600;
+            font-size: 16px;
+            animation: pulse-icon 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse-icon {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.9); }
+        }
+
+        @keyframes marquee-loop {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* 2. Hero Banner styles */
+        .hero-banner-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 10px 12px;
+        }
+
+        /* 2. Minimalist Centered Hero Banner styles */
+        .hero-banner-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 10px 12px;
+        }
+
+        .hero-banner-card-centered {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px 28px 16px 28px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-center-badges {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .hero-ai-badge-clean {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #eef2ff;
+            border: 1px solid #c7d2fe;
+            color: #4f46e5;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-online-badge-clean {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .hero-online-badge-clean .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ef4444;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            animation: heroLivePulse 1.6s infinite ease-in-out;
+        }
+
+        @keyframes heroLivePulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+            70% {
+                transform: scale(1.15);
+                box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+
+        .hero-center-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #111827;
+            line-height: 1.3;
+            margin: 0 auto 8px auto;
+            max-width: 1150px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-center-desc {
+            font-size: 0.88rem;
+            color: #4b5563;
+            line-height: 1.5;
+            margin: 0 auto 12px auto;
+            max-width: 950px;
+        }
+
+        .hero-center-features {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-chip-clean {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            color: #374151;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 0.76rem;
+            font-weight: 600;
+        }
+
+        .hero-center-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn-main {
+            background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%);
+            color: #ffffff !important;
+            font-weight: 700;
+            font-size: 0.84rem;
+            padding: 8px 22px;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 3px 12px rgba(255, 94, 0, 0.25);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .hero-btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 94, 0, 0.45);
+        }
+
+        .hero-btn-sub {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            color: #374151 !important;
+            font-weight: 700;
+            font-size: 0.84rem;
+            padding: 8px 20px;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .hero-btn-sub:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+            transform: translateY(-2px);
+        }
+
+        /* 4 Horizontal mini product cards centered below */
+        .hero-center-showcase-row {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            width: 100%;
+            border-top: 1px solid #f3f4f6;
+            padding-top: 12px;
+        }
+
+        .hero-mini-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            text-align: left;
+            transition: all 0.2s ease-in-out;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        .hero-mini-card:hover {
+            background: #ffffff;
+            border-color: #6366f1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+        }
+
+        .hero-mini-card .mini-img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid #e2e8f0;
+            flex-shrink: 0;
+        }
+
+        .hero-mini-card .mini-content {
+            flex-grow: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        .hero-mini-card .mini-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #1e293b;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 2px;
+            word-break: break-all;
+        }
+
+        .hero-mini-card .mini-price {
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: #e53935;
+        }
+
+        .floating-ai-card:hover {
+            transform: scale(1.08) translateY(-10px) rotateY(-8deg) rotateX(10deg) !important;
+            border-color: var(--hover-border);
+            box-shadow: 0 20px 35px var(--hover-shadow);
+            z-index: 10 !important;
+        }
+
+        .floating-ai-card .card-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .floating-ai-card .card-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: #fff;
+        }
+
+        .floating-ai-card .card-status {
+            font-size: 0.6rem;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .floating-ai-card .card-name {
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: #111827;
+            margin-top: 10px;
+            margin-bottom: 0;
+            white-space: nowrap;
+        }
+
+        .floating-ai-card .website-logo {
+            width: 56px;
+            height: 56px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+            object-fit: contain;
+            background: #fff;
+        }
+
+        .floating-ai-card .card-desc {
+            display: none;
+        }
+
+        .floating-ai-card .card-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.68rem;
+            font-weight: 700;
+        }
+
+        .floating-ai-card .card-price {
+            color: #0ea5e9;
+        }
+
+        /* Float Positions & Animations */
+        .card-chatgpt {
+            left: 16%;
+            top: 0;
+            z-index: 4;
+            --hover-border: rgba(16, 185, 129, 0.4);
+            --hover-shadow: rgba(16, 185, 129, 0.2);
+            animation: float-slow 6s ease-in-out infinite alternate;
+        }
+        .card-chatgpt .card-icon { background: #10b981; }
+        .card-chatgpt .card-status { background: rgba(16, 185, 129, 0.15); color: #059669; }
+        .card-chatgpt .card-price { color: #059669; }
+
+        .card-claude {
+            right: 16%;
+            top: 0;
+            z-index: 3;
+            --hover-border: rgba(249, 115, 22, 0.4);
+            --hover-shadow: rgba(249, 115, 22, 0.2);
+            animation: float-medium 5s ease-in-out infinite alternate-reverse;
+        }
+        .card-claude .card-icon { background: #f97316; }
+        .card-claude .card-status { background: rgba(249, 115, 22, 0.15); color: #d97706; }
+        .card-claude .card-price { color: #d97706; }
+
+        .card-vpn {
+            left: 16%;
+            bottom: 0;
+            z-index: 5;
+            --hover-border: rgba(139, 92, 246, 0.4);
+            --hover-shadow: rgba(139, 92, 246, 0.2);
+            animation: float-fast 4s ease-in-out infinite alternate;
+        }
+        .card-vpn .card-icon { background: #8b5cf6; }
+        .card-vpn .card-status { background: rgba(139, 92, 246, 0.15); color: #7c3aed; }
+        .card-vpn .card-price { color: #7c3aed; }
+
+        .card-cursor {
+            right: 16%;
+            bottom: 0;
+            z-index: 4;
+            --hover-border: rgba(56, 189, 248, 0.4);
+            --hover-shadow: rgba(56, 189, 248, 0.2);
+            animation: float-slow 7s ease-in-out infinite alternate-reverse;
+        }
+        .card-cursor .card-icon { background: #0ea5e9; }
+        .card-cursor .card-status { background: rgba(56, 189, 248, 0.15); color: #0284c7; }
+        .card-cursor .card-price { color: #0284c7; }
+
+        @keyframes float-slow {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-16px); }
+        }
+
+        @keyframes float-medium {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-12px); }
+        }
+
+        @keyframes float-fast {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+
+        @keyframes heroTechPulse {
+            0%, 100% {
+                border-color: rgba(255, 255, 255, 0.08);
+                box-shadow: 0 20px 40px rgba(15, 23, 42, 0.35), inset 0 0 0 1px rgba(56, 189, 248, 0.04);
+            }
+            50% {
+                border-color: rgba(56, 189, 248, 0.22);
+                box-shadow: 0 22px 46px rgba(15, 23, 42, 0.42), inset 0 0 28px rgba(56, 189, 248, 0.08);
+            }
+        }
+
+        @keyframes aiGridDrift {
+            0% { background-position: 0 0, 0 0, 0 0, 40px 20px, 80px 40px; }
+            100% { background-position: 88px 44px, 44px 88px, 180px 130px, 250px 180px, 320px 220px; }
+        }
+
+        @keyframes aiScanLine {
+            0%, 18% { background-position: 160% 0, 0 66%; opacity: 0; }
+            42%, 58% { opacity: 0.7; }
+            82%, 100% { background-position: -90% 0, 0 66%; opacity: 0; }
+        }
+
+        @keyframes neuralOrbit {
+            0% { transform: rotate(0deg) scale(0.98); opacity: 0.32; }
+            50% { opacity: 0.62; }
+            100% { transform: rotate(360deg) scale(0.98); opacity: 0.32; }
+        }
+
+        /* Responsive Hero Banner */
+        @media (max-width: 991px) {
+            .hero-banner-card {
+                padding: 32px;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-right-showcase {
+                margin-top: 30px;
+                height: 280px;
+            }
+            .floating-ai-card {
+                width: 140px;
+                padding: 10px;
+            }
+            .floating-ai-card .card-desc {
+                display: none;
+            }
+            .card-chatgpt { left: 0%; top: 5%; }
+            .card-claude { right: 0%; top: 0%; }
+            .card-vpn { left: 15%; bottom: 0%; }
+            .card-cursor { right: 15%; bottom: 5%; }
+        }
+
+        @media (max-width: 575px) {
+            .hero-banner-card {
+                padding: 24px 20px;
+                border-radius: 16px;
+            }
+            .hero-title {
+                font-size: 1.6rem;
+            }
+            .hero-desc {
+                font-size: 0.88rem;
+            }
+            .hero-actions {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .hero-btn-primary, .hero-btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            .hero-right-showcase {
+                display: none; /* Hide floating cards on small mobiles to save space */
+            }
+        }
+
+        /* =========================================================
+        TECHFEED HOME — matching test.html prototype exactly
+        ========================================================= */
+        
+        /* ---- Body override for this page ---- */
+
+        /* ---- Body override for this page ---- */
+        body {
+            background-color: #dae0e6;
+            overflow-y: scroll;
+        }
+
+        /* ---- NAVBAR override ---- */
+        .navbar-techfeed {
+            background-color: #fff !important;
+            border-bottom: 1px solid #ccc !important;
+            height: 56px;
+        }
+
+        /* ---- 3-column grid ---- */
+        .tf-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 12px;
+        }
+
+        @media(min-width:1024px) {
+            .tf-layout {
+                /* grid-template-columns: 1fr 300px; */
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(min-width:1280px) {
+            .tf-layout {
+                /* grid-template-columns: 1fr 320px; */
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ---- LEFT SIDEBAR ---- */
+        .tf-sidebar-left {
+            display: none;
+        }
+
+        @media(min-width:1024px) {
+            .tf-sidebar-left {
+                display: block;
+            }
+        }
+
+        .tf-sticky {
+            position: sticky;
+            top: 66px;
+
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+
+        .tf-sticky::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tf-sec-label {
+            font-size: .7rem;
+            font-weight: 700;
+            color: #787c7e;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+            padding: 0 14px;
+            margin: 14px 0 4px;
+        }
+
+        .tf-sec-label:first-child {
+            margin-top: 0;
+        }
+
+        .tf-side-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            color: #1c1c1c;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: .9rem;
+            margin-bottom: 2px;
+            transition: background .15s;
+        }
+
+        .tf-side-link i {
+            width: 22px;
+            font-size: 1.05rem;
+            text-align: center;
+        }
+
+        .tf-side-link:hover,
+        .tf-side-link.active {
+            background: #f6f7f8;
+            color: #1c1c1c;
+        }
+
+        .tf-side-link.active {
+            font-weight: 700;
+        }
+
+        /* ---- MAIN FEED ---- */
+        /* Sort bar */
+        .tf-sort-bar {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 6px;
+        }
+
+        .tf-sort-btn {
+            background: none;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-weight: 700;
+            font-size: .84rem;
+            color: #787c7e;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background .15s;
+        }
+
+        .tf-sort-btn:hover {
+            background: #f6f7f8;
+        }
+
+        .tf-sort-btn.active {
+            background: #f0f2f5;
+            color: #1c1c1c;
+        }
+
+        /* Feed card */
+        .tf-card {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            overflow: hidden;
+            transition: border-color .15s;
+        }
+
+        .tf-card:hover {
+            border-color: #898989;
+        }
+
+        /* Vote column - REMOVED; kept empty rule for compat */
+        .tf-vote {
+            display: none !important;
+        }
+
+        .tf-vote-shop {
+            display: none !important;
+        }
+
+        /* Post body */
+        .tf-body {
+            padding: 12px 14px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .tf-meta {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .78rem;
+            color: #787c7e;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tf-meta img {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .tf-meta .cat {
+            font-weight: 700;
+            color: #1c1c1c;
+            text-decoration: none;
+        }
+
+        .tf-meta .cat:hover {
+            text-decoration: underline;
+        }
+
+        .tf-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1c1c1c;
+            text-decoration: none;
+            display: block;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .tf-title:hover {
+            color: #ff4500;
+        }
+
+        .tf-excerpt {
+            font-size: .87rem;
+            color: #3c3c3c;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .tf-media {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #eee;
+            margin-bottom: 10px;
+        }
+
+        .tf-media img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .tf-actions {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .tf-action {
+            background: none;
+            border: none;
+            color: #787c7e;
+            font-weight: 700;
+            font-size: .78rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .15s;
+        }
+
+        .tf-action:hover {
+            background: #f6f7f8;
+            color: #1c1c1c;
+        }
+
+        /* ---- SHOP CARD variant ---- */
+        .tf-card-shop {
+            border: 1px solid #b2ebf2;
+        }
+
+        .tf-shop-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #e0f7fa;
+            color: #00838f;
+            padding: 2px 9px;
+            border-radius: 20px;
+            font-size: .72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .tf-shop-badge.flash {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .tf-shop-badge.hot {
+            background: #fce4ec;
+            color: #c62828;
+        }
+
+        .tf-price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #e53935;
+        }
+
+        .tf-price-old {
+            font-size: .88rem;
+            color: #787c7e;
+            text-decoration: line-through;
+        }
+
+        .tf-buy-btn {
+            background: #e53935;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            padding: 9px 0;
+            width: 100%;
+            font-weight: 700;
+            font-size: .86rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: background .15s;
+        }
+
+        .tf-buy-btn:hover {
+            background: #c62828;
+        }
+
+        .tf-buy-btn.green {
+            background: #2e7d32;
+        }
+
+        .tf-buy-btn.green:hover {
+            background: #1b5e20;
+        }
+
+        /* ---- AD SLOT ---- */
+        .tf-ad {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* ---- RIGHT SIDEBAR ---- */
+        .tf-sidebar-right {
+            display: none;
+        }
+
+        @media(min-width:1024px) {
+            .tf-sidebar-right {
+                display: block;
+            }
+        }
+
+        .tf-widget {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+
+        .tf-widget-title {
+            font-size: .78rem;
+            font-weight: 800;
+            color: #787c7e;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            margin-bottom: 12px;
+        }
+
+        /* Top sell list */
+        .tf-top-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+            text-decoration: none;
+            color: #1c1c1c;
+            transition: opacity .15s;
+        }
+
+        .tf-top-item:last-child {
+            border-bottom: none;
+        }
+
+        .tf-top-item:hover {
+            opacity: .78;
+        }
+
+        .tf-top-item img {
+            width: 44px;
+            height: 44px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .tf-top-item .name {
+            font-size: .83rem;
+            font-weight: 700;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .tf-top-item .price {
+            font-size: .8rem;
+            font-weight: 700;
+            color: #e53935;
+            margin-top: 2px;
+        }
+
+        /* Blog list sidebar */
+        .tf-blog-item {
+            display: flex;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+            text-decoration: none;
+            color: #1c1c1c;
+            transition: opacity .15s;
+        }
+
+        .tf-blog-item:last-child {
+            border-bottom: none;
+        }
+
+        .tf-blog-item:hover {
+            opacity: .78;
+        }
+
+        .tf-blog-item img {
+            width: 60px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .tf-blog-item .title {
+            font-size: .82rem;
+            font-weight: 600;
+            line-height: 1.35;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .tf-blog-item .time {
+            font-size: .7rem;
+            color: #787c7e;
+            margin-top: 3px;
+        }
+
+        /* Community widget stats */
+        .tf-stat {
+            text-align: center;
+        }
+
+        .tf-stat .num {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #1c1c1c;
+        }
+
+        .tf-stat .lbl {
+            font-size: .74rem;
+            color: #787c7e;
+        }
+
+        .tf-join-btn {
+            background: #1c1c1c;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            width: 100%;
+            padding: 9px;
+            font-weight: 700;
+            font-size: .9rem;
+            cursor: pointer;
+            transition: background .2s;
+            margin-top: 12px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .tf-join-btn:hover {
+            background: #333;
+            color: #fff;
+        }
+
+        /* Flash sale widget */
+        .tf-flash-item {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            padding: 8px;
+            background: #fff5f2;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            color: #1c1c1c;
+            border: 1px solid rgba(255, 69, 0, .1);
+            transition: border-color .15s;
+        }
+
+        .tf-flash-item:hover {
+            border-color: #ff4500;
+        }
+
+        .tf-flash-item img {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 7px;
+            flex-shrink: 0;
+        }
+
+        .tf-flash-item .fn {
+            font-size: .82rem;
+            font-weight: 700;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .tf-flash-item .fp {
+            font-size: .86rem;
+            font-weight: 800;
+            color: #e53935;
+        }
+
+        .tf-flash-item .fo {
+            font-size: .72rem;
+            color: #787c7e;
+            text-decoration: line-through;
+        }
+
+        /* Recent purchase toast */
+        .rpt-toast {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            width: 340px;
+            max-width: calc(100vw - 40px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12), 0 5px 15px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 5px solid #10b981;
+            padding: 14px 16px;
+            z-index: 99999;
+            opacity: 0;
+            transform: translateX(-30px) scale(0.95);
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .rpt-toast.show {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .rpt-toast .inner {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .rpt-toast .ava {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #fff;
+            font-weight: 800;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+        }
+
+        .rpt-toast .rn {
+            font-weight: 800;
+            font-size: 0.86rem;
+            color: #1f2937;
+        }
+
+        .rpt-toast .rs {
+            font-size: 0.76rem;
+            color: #4b5563;
+            margin-top: 1px;
+        }
+
+        .rpt-toast .rp {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #ef4444;
+            display: block;
+            margin-top: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 220px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .rpt-toast .rp:hover {
+            color: #dc2626;
+            text-decoration: underline;
+        }
+
+        .rpt-toast .rc {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #9ca3af;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            transition: color 0.2s;
+        }
+
+        .rpt-toast .rc:hover {
+            color: #4b5563;
+        }
+
+        @media (max-width: 991px) {
+            .rpt-toast {
+                bottom: 76px; /* Positioned above the mobile bottom nav bar */
+                left: 12px;
+                width: 290px;
+                max-width: calc(100vw - 24px);
+                padding: 10px 12px;
+            }
+            .rpt-toast .ava {
+                width: 38px;
+                height: 38px;
+                font-size: 14px;
+            }
+            .rpt-toast .rp {
+                max-width: 190px;
+                font-size: 0.76rem;
+            }
+        }
+
+        /* Mobile adjusts */
+        @media(max-width:1023px) {
+            .tf-vote {
+                display: none;
+            }
+
+            .tf-body {
+                padding: 10px 12px;
+            }
+
+            .tf-title {
+                font-size: 1rem;
+            }
+        }
+
+        /* Top Buyers Podium */
+        .podium-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        
+        .avatar-wrap {
+            position: relative;
+            margin-bottom: 5px;
+        }
+        
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 2px solid white;
+        }
+        
+        .rank-badge {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 900;
+            color: white;
+            border: 1.5px solid white;
+            z-index: 2;
+        }
+        
+        .badge-gold { background: #ffca28; color: #fff; }
+        .badge-silver { background: #bdbdbd; color: #fff; }
+        .badge-bronze { background: #ff8a65; color: #fff; }
+        
+        .podium-bar {
+            width: 100%;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.05);
+        }
+        
+        .rank-1 .podium-bar { height: 75px; background: #ffca28; border-radius: 8px 8px 0 0; z-index: 3; position: relative; }
+        .rank-2 .podium-bar { height: 55px; background: #e0e0e0; border-radius: 8px 0 0 0; }
+        .rank-3 .podium-bar { height: 40px; background: #ffab91; border-radius: 0 8px 0 0; }
+
+        /* ====== COMBO AI TAB STYLES ====== */
+        .combo-ai-wrapper {
+            display: none; /* hidden by default, shown when tab-ai active */
+        }
+        .combo-ai-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 24px;
+            padding: 24px 32px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .combo-ai-header .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 12px;
+        }
+
+        .combo-ai-header h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 0 6px;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .combo-ai-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .combo-ai-header .ai-stats {
+            display: flex;
+            gap: 30px;
+            flex-shrink: 0;
+        }
+
+        .combo-ai-header .stat-item {
+            text-align: center;
+            color: #fff;
+            min-width: 80px;
+        }
+
+        .combo-ai-header .stat-num {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #818cf8;
+            display: block;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .combo-ai-header .stat-label {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Category filter pills */
+        .combo-cat-filter {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            padding: 12px 16px;
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .combo-cat-pill {
+            background: #f6f7f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: .8rem;
+            font-weight: 700;
+            color: #555;
+            cursor: pointer;
+            transition: all .2s;
+            white-space: nowrap;
+        }
+
+        .combo-cat-pill:hover {
+            background: #e8eaff;
+            border-color: #6366f1;
+            color: #6366f1;
+        }
+
+        .combo-cat-pill.active {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(99,102,241,.35);
+        }
+
+        /* Category section */
+        .combo-cat-section {
+            margin-bottom: 18px;
+        }
+
+        .combo-cat-section.hidden {
+            display: none;
+        }
+
+        .combo-cat-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            color: #4b5563;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .combo-cat-title .cat-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .combo-cat-title .cat-count {
+            background: #f3f4f6;
+            color: #6b7280;
+            font-size: .68rem;
+            padding: 1px 7px;
+            border-radius: 10px;
+            margin-left: auto;
+        }
+
+        /* Product grid */
+        .combo-product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        @media(min-width: 640px) {
+            .combo-product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media(min-width: 900px) {
+            .combo-product-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media(min-width: 1200px) {
+            .combo-product-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        /* Product card */
+        .combo-prod-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            text-decoration: none;
+            color: #1c1c1c;
+            transition: transform .2s, box-shadow .2s, border-color .2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .combo-prod-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(99,102,241,.15);
+            border-color: #6366f1;
+            text-decoration: none;
+            color: #1c1c1c;
+        }
+
+        .combo-prod-card .img-wrap {
+            position: relative;
+            overflow: hidden;
+            background: #f8f9fa;
+            aspect-ratio: 4/3;
+        }
+
+        .combo-prod-card .img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .3s;
+            display: block;
+        }
+
+        .combo-prod-card:hover .img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .combo-prod-card .ai-label {
+            position: absolute;
+            top: 7px;
+            left: 7px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff;
+            font-size: .62rem;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: .3px;
+        }
+
+        .combo-prod-card .discount-badge {
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            background: #ef4444;
+            color: #fff;
+            font-size: .62rem;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 6px;
+        }
+
+        .combo-prod-card .card-body {
+            padding: 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .combo-prod-card .prod-name {
+            font-size: .82rem;
+            font-weight: 700;
+            line-height: 1.35;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 6px;
+            flex: 1;
+        }
+
+        .combo-prod-card .prod-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .combo-prod-card .prod-price {
+            font-size: 1.02rem;
+            font-weight: 800;
+            color: #e53935;
+        }
+
+        .combo-prod-card .prod-price-old {
+            font-size: .7rem;
+            color: #9ca3af;
+            text-decoration: line-through;
+            font-weight: 500;
+        }
+
+        .combo-prod-card .add-cart-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 7px 10px;
+            font-size: .78rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: opacity .2s, transform .1s;
+            text-decoration: none;
+        }
+
+        .combo-prod-card .add-cart-btn:hover {
+            opacity: .9;
+            transform: scale(1.02);
+        }
+
+        /* View all link */
+        .combo-view-all {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        .combo-view-all a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            border: 1.5px solid #6366f1;
+            color: #6366f1;
+            border-radius: 24px;
+            padding: 9px 28px;
+            font-weight: 700;
+            font-size: .85rem;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .combo-view-all a:hover {
+            background: #6366f1;
+            color: #fff;
+        }
+        .combo-prod-card.out-of-stock {
+            opacity: 0.85;
+        }
+
+        .combo-prod-card.out-of-stock .img-wrap::after {
+            content: '{{ __('HẾT HÀNG') }}';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            background: rgba(229, 57, 53, 0.9);
+            color: #fff;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            border-radius: 4px;
+            z-index: 5;
+            letter-spacing: 1px;
+            pointer-events: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .combo-prod-card.out-of-stock .add-cart-btn {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none !important;
+            opacity: 0.7;
+        }
+
+        /* Official Fanpages Section */
+        .official-fanpages-container {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .official-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #f3f4f6;
+            padding-bottom: 14px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .official-header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .official-header-title h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .official-badge-verify {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .official-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 16px;
+        }
+
+        @media (min-width: 640px) {
+            .official-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .official-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .official-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .official-card:hover {
+            transform: translateY(-4px);
+            background: #ffffff;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Brand themes for hover glow */
+        .official-card.platform-facebook:hover {
+            border-color: #1877f2;
+            box-shadow: 0 8px 24px rgba(24, 119, 242, 0.12);
+        }
+        .official-card.platform-zalo:hover {
+            border-color: #0068ff;
+            box-shadow: 0 8px 24px rgba(0, 104, 255, 0.12);
+        }
+        .official-card.platform-telegram:hover {
+            border-color: #0088cc;
+            box-shadow: 0 8px 24px rgba(0, 136, 204, 0.12);
+        }
+        .official-card.platform-youtube:hover {
+            border-color: #ff0000;
+            box-shadow: 0 8px 24px rgba(255, 0, 0, 0.12);
+        }
+        .official-card.platform-tiktok:hover {
+            border-color: #010101;
+            box-shadow: 0 8px 24px rgba(1, 1, 1, 0.12);
+        }
+        .official-card.platform-globe:hover {
+            border-color: #10b981;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.12);
+        }
+
+        .platform-icon-wrap {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .bg-facebook { background: #1877f2; }
+        .bg-zalo { background: #0068ff; }
+        .bg-telegram { background: #0088cc; }
+        .bg-youtube { background: #ff0000; }
+        .bg-tiktok { background: #010101; }
+        .bg-globe { background: #10b981; }
+
+        .official-card-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .official-card-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #111827;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .official-card-desc {
+            font-size: 0.78rem;
+            color: #6b7280;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+
+        .official-card-badge-verified {
+            color: #10b981;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .official-action-link {
+            font-size: 0.76rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s;
+        }
+
+        .platform-facebook .official-action-link { color: #1877f2; }
+        .platform-zalo .official-action-link { color: #0068ff; }
+        .platform-telegram .official-action-link { color: #0088cc; }
+        .platform-youtube .official-action-link { color: #ff0000; }
+        .platform-tiktok .official-action-link { color: #010101; }
+        .platform-globe .official-action-link { color: #10b981; }
+
+        .official-card:hover .official-action-link {
+            text-decoration: underline;
+        }
+    </style>
+@endpush
+
+@section('content')
+    <!-- 1. Marquee Alert Bar (Looping announcement) -->
+    <div class="marquee-alert-bar">
+        <div class="marquee-track">
+            <!-- Part 1 -->
+            <div class="marquee-item">
+                <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>•</span>
+                <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
+                <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
+            </div>
+            <div class="marquee-item">
+                <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>•</span>
+                <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
+                <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
+            </div>
+            <!-- Part 2 (Duplicate for seamless loop) -->
+            <div class="marquee-item">
+                <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>•</span>
+                <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
+                <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
+            </div>
+            <div class="marquee-item">
+                <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>•</span>
+                <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
+                <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div style="background:#dae0e6;">
+        <!-- 2. Minimalist Centered Hero Banner Section -->
+        <div class="hero-banner-container d-none d-lg-block">
+            <div class="hero-banner-card-centered">
+                <!-- Top Badges -->
+                <div class="hero-center-badges">
+                    <div class="hero-ai-badge-clean">
+                        <i class="fa-solid fa-bolt"></i> DungThu.com AI Hub
+                    </div>
+                    <div class="hero-online-badge-clean" title="{{ __('Khách hàng đang online / xem sản phẩm thực tế') }}">
+                        <span class="live-dot"></span>
+                        <i class="fa-solid fa-users"></i>
+                        <span id="heroOnlineCountText" class="heroOnlineCountText">-- đang xem</span>
+                    </div>
+                </div>
+
+                <!-- Main Title -->
+                <h1 class="hero-center-title">
+                    {{ __('Khám Phá Sức Mạnh AI — Tối Ưu Hiệu Suất Công Việc') }}
+                </h1>
+
+                <!-- Subtitle Description -->
+                <p class="hero-center-desc">
+                    {{ __('Cung cấp tài khoản premium giá rẻ, phần mềm chuyên dụng và giải pháp tự động hóa giúp bạn bứt phá năng suất làm việc mỗi ngày. Nhanh chóng — Uy tín — Bảo hành trọn đời.') }}
+                </p>
+
+                <!-- Feature Chips & Metrics (Centered) -->
+                <div class="hero-center-features">
+                    <div class="hero-chip-clean">
+                        <i class="fa-solid fa-chart-line text-danger"></i> {{ __('Truy cập hôm nay:') }} <strong class="text-dark">{{ number_format($todayVisitors ?? 1250) }}</strong> {{ __('lượt') }}
+                    </div>
+                    <div class="hero-chip-clean">
+                        <i class="fa-solid fa-user-check text-primary"></i> {{ __('Khách hàng:') }} <strong class="text-dark">{{ number_format($totalUserCount ?? 1440) }}</strong> {{ __('thành viên') }}
+                    </div>
+                    <div class="hero-chip-clean">
+                        <i class="fa-solid fa-shield-halved text-success"></i> {{ __('Uy tín & Bảo hành 24/7') }}
+                    </div>
+                </div>
+
+                <!-- CTA Buttons (Centered) -->
+                <div class="hero-center-actions">
+                    <a href="{{ route('shop') }}" class="hero-btn-main">
+                        <i class="fa-solid fa-store"></i> {{ __('Mua Tài Khoản AI') }}
+                    </a>
+                    <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" 
+                       target="_blank" class="hero-btn-sub">
+                        <i class="fa-solid fa-users"></i> {{ __('Nhóm Zalo Hỗ Trợ') }}
+                    </a>
+                </div>
+
+                <!-- Horizontal Clean Showcase Cards Row Below -->
+                @if(isset($bannerProducts) && $bannerProducts->count() > 0)
+                <div class="hero-center-showcase-row">
+                    @foreach($bannerProducts->take(4) as $bProduct)
+                        @php
+                            $bImg = $bProduct->image ? (str_starts_with($bProduct->image, 'http') ? $bProduct->image : asset('storage/' . $bProduct->image)) : asset('images/default-product.png');
+                            $bPrice = $bProduct->sale_price ?: $bProduct->price;
+                        @endphp
+                        <a class="hero-mini-card" href="{{ route('product.show', $bProduct->slug) }}" title="{{ $bProduct->name }}">
+                            <img class="mini-img" src="{{ $bImg }}" alt="{{ $bProduct->name }}">
+                            <div class="mini-content">
+                                <div class="mini-title">{{ $bProduct->name }}</div>
+                                <div class="mini-price">{{ number_format($bPrice, 0, ',', '.') }}đ</div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+                @endif
+            </div>
+        </div>
+
+        <div class="tf-layout">
+
+
+            @php
+                $sb_cardexchange = \App\Models\SiteSetting::getValue('menu_card_exchange', '1') === '1';
+            @endphp
+
+            {{-- ====== MAIN FEED ====== --}}
+            <main>
+
+                {{-- 0. Official Fanpages Verification Section --}}
+                @php
+                    $fanpagesJson = \App\Models\SiteSetting::getValue('official_fanpages', '[]');
+                    $officialFanpages = array_values(array_filter(
+                        json_decode($fanpagesJson, true) ?: [],
+                        fn ($channel) => ($channel['platform'] ?? '') !== 'facebook'
+                    ));
+                @endphp
+
+                @if(count($officialFanpages) > 0)
+                    <div class="official-fanpages-container mb-4 d-none d-lg-block">
+                        <div class="official-header">
+                            <div class="official-header-title">
+                                <i class="fa-solid fa-shield-halved text-success fs-5"></i>
+                                <h3>{{ __('Kênh liên hệ chính thức') }}</h3>
+                            </div>
+                            <div class="official-badge-verify">
+                                <i class="fa-solid fa-circle-check"></i> {{ __('Đã xác minh') }}
+                            </div>
+                        </div>
+                        <div class="official-grid">
+                            @foreach($officialFanpages as $fp)
+                                @php
+                                    $platform = strtolower($fp['platform'] ?? 'facebook');
+                                    $iconClass = 'fa-solid fa-globe';
+                                    $brandClass = 'bg-globe';
+                                    if ($platform === 'facebook') {
+                                        $iconClass = 'fa-brands fa-facebook-f';
+                                        $brandClass = 'bg-facebook';
+                                    } elseif ($platform === 'zalo') {
+                                        $iconClass = '';
+                                        $brandClass = 'bg-zalo';
+                                    } elseif ($platform === 'telegram') {
+                                        $iconClass = 'fa-brands fa-telegram';
+                                        $brandClass = 'bg-telegram';
+                                    } elseif ($platform === 'youtube') {
+                                        $iconClass = 'fa-brands fa-youtube';
+                                        $brandClass = 'bg-youtube';
+                                    } elseif ($platform === 'tiktok') {
+                                        $iconClass = 'fa-brands fa-tiktok';
+                                        $brandClass = 'bg-tiktok';
+                                    }
+                                @endphp
+                                <a href="{{ $fp['url'] }}" target="_blank" class="official-card platform-{{ $platform }}">
+                                    <div class="platform-icon-wrap {{ $brandClass }}">
+                                        @if($platform === 'zalo')
+                                            <span style="font-weight: 900; font-style: italic; font-size: 1.4rem;">Z</span>
+                                        @else
+                                            <i class="{{ $iconClass }}"></i>
+                                        @endif
+                                    </div>
+                                    <div class="official-card-info">
+                                        <div class="official-card-title">
+                                            {{ $fp['name'] }}
+                                            <span class="official-card-badge-verified" title="{{ __('Đã xác minh') }}">
+                                                <i class="fa-solid fa-circle-check"></i>
+                                            </span>
+                                        </div>
+                                        @if(!empty($fp['desc']))
+                                            <div class="official-card-desc">{{ $fp['desc'] }}</div>
+                                        @else
+                                            <div class="official-card-desc">{{ __('Kênh hỗ trợ và thông báo chính thức của công ty.') }}</div>
+                                        @endif
+                                        <div class="official-action-link">
+                                            {{ __('Truy cập ngay') }} <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
+                {{-- Sort bar --}}
+
+
+                {{-- 1. Flash Sale (Ưu tiên) --}}
+                {{-- 1. Flash Sale (Ưu tiên) --}}
+                @if(\App\Models\SiteSetting::getValue('home_show_flash_sale', '1') === '1' && isset($saleProducts) && $saleProducts->count() > 0)
+                    <div class="tf-widget mb-4" id="flash-sale"
+                        data-countdown-end="{{ $saleEndsAt?->getTimestamp() * 1000 }}"
+                        data-is-expired="{{ $isExpired ? '1' : '0' }}">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                            <div>
+                                <span class="text-danger fw-bold"
+                                    style="font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;">⚡ Flash Sale</span>
+                                <div class="fw-bold" id="flash-sale-title" style="font-size:1.1rem;">
+                                    {{ $isExpired ? __('Sản phẩm gợi ý cho bạn') : __('Giảm giá sốc hôm nay') }}
+                                </div>
+                            </div>
+                            <div id="flash-sale-timer-container"
+                                style="background:#fff;border-radius:20px;padding:6px 12px;box-shadow:0 2px 8px rgba(0,0,0,.08);display:flex;align-items:center;gap:8px;font-size:.8rem; {{ $isExpired ? 'opacity: 0.6;' : '' }}">
+                                <span style="font-weight:800;">
+                                    <span data-unit="hours">00</span>:<span data-unit="minutes">00</span>:<span
+                                        data-unit="seconds">00</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row row-cols-2 row-cols-md-4 row-cols-xl-6 g-3" id="flash-sale-products-row">
+                            @foreach($saleProducts->take(6) as $sp)
+                                <div class="col">
+                                    <div
+                                        style="background:#fff;border:1px solid #edeff1;border-radius:10px;overflow:hidden;position:relative; {{ $sp->stock <= 0 ? 'opacity: 0.7;' : '' }}">
+                                        @if($sp->stock <= 0)
+                                            <div style="position: absolute; top: 10px; right: 10px; background: #e53935; color: #fff; font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 4px; z-index: 10;">{{ __('HẾT HÀNG') }}</div>
+                                        @endif
+                                        <img src="{{ $sp->image ?? 'https://via.placeholder.com/300' }}" alt="{{ $sp->name }}" loading="lazy" decoding="async"
+                                            style="width:100%;height:120px;object-fit:cover;">
+                                        <div style="padding:8px;">
+                                            <div style="font-size:.8rem;font-weight:700;height:40px;overflow:hidden;">
+                                                {{ $sp->name }}</div>
+                                            <div class="d-flex justify-content-between align-items-center" style="font-size: 0.72rem; color: #6b7280; font-weight: 600; margin-bottom: 2px;">
+                                                <span>{{ __('Còn:') }} <span class="{{ $sp->stock <= 0 ? 'text-danger' : 'text-success' }}">{{ $sp->stock }}</span></span>
+                                                <span>{{ __('Đã Bán:') }} <span class="text-secondary">{{ number_format($sp->sold_count) }}</span></span>
+                                            </div>
+                                            <div style="color:#e53935;font-weight:800;">{{ $sp->formatted_price }}</div>
+                                        </div>
+                                        <a href="{{ route('product.show', $sp->slug) }}" class="stretched-link"></a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
+                <div class="combo-ai-wrapper">
+                    {{-- 2. Sản Phẩm Nổi Bật (Hàng đầu tiên) --}}
+                    @if(\App\Models\SiteSetting::getValue('home_show_featured', '1') === '1' && isset($featuredProducts) && $featuredProducts->count() > 0)
+                    <div class="combo-cat-section">
+                        <div class="combo-cat-title" style="border-bottom:none; margin-bottom: 15px; font-size: 1.1rem; padding-bottom: 0;">
+                            <i class="fa-solid fa-star" style="color:#ffca28;"></i> {{ __('Sản Phẩm Nổi Bật') }}
+                        </div>
+                        <div class="combo-product-grid">
+                            @foreach($featuredProducts->take(6) as $fp)
+                            <a href="{{ route('product.show', $fp->slug) }}" class="combo-prod-card {{ $fp->stock <= 0 ? 'out-of-stock' : '' }}">
+                                <div class="img-wrap">
+                                    <img src="{{ $fp->image ?? 'https://via.placeholder.com/300x225?text=Product' }}" loading="lazy" decoding="async"
+                                         alt="{{ $fp->name }}" loading="lazy">
+                                    @if($fp->is_on_sale)
+                                        <span class="discount-badge">-{{ $fp->discount_percent }}%</span>
+                                    @endif
+                                    <span class="ai-label" style="background: linear-gradient(135deg, #ff416c, #ff4b2b);">Hot</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="prod-name">{{ $fp->name }}</div>
+                                    <div class="d-flex justify-content-between align-items-center" style="font-size: 0.72rem; color: #6b7280; font-weight: 600; margin-bottom: 4px;">
+                                        <span>{{ __('Còn:') }} <span class="{{ $fp->stock <= 0 ? 'text-danger' : 'text-success' }}">{{ $fp->stock }}</span></span>
+                                        <span>{{ __('Đã Bán:') }} <span class="text-secondary">{{ number_format($fp->sold_count) }}</span></span>
+                                    </div>
+                                    <div class="prod-price-row">
+                                        <span class="prod-price">{{ $fp->formatted_price }}</span>
+                                        @if($fp->is_on_sale)
+                                            <span class="prod-price-old"><small style="text-decoration:none; color:#9ca3af;">Gốc:</small> {{ $fp->formatted_original_price }}</span>
+                                        @endif
+                                    </div>
+                                    @if($fp->stock > 0)
+                                    <form action="{{ route('cart.add', $fp->id) }}" method="POST"
+                                          onclick="event.preventDefault(); this.submit();">
+                                        @csrf
+                                        <button type="submit" class="add-cart-btn" style="background: linear-gradient(135deg, #ff416c, #ff4b2b);">
+                                            <i class="fa-solid fa-cart-plus"></i> {{ __('Thêm vào giỏ') }}
+                                        </button>
+                                    </form>
+                                    @else
+                                    <button type="button" class="add-cart-btn text-muted" style="cursor: not-allowed; opacity: 0.6; background: #e5e7eb; pointer-events: none;" disabled>
+                                        <i class="fa-solid fa-ban"></i> {{ __('Hết hàng') }}
+                                    </button>
+                                    @endif
+                                </div>
+                            </a>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+
+                    {{-- 3. Sản Phẩm Độc Quyền (Hàng thứ 2) --}}
+                    @if(\App\Models\SiteSetting::getValue('home_show_exclusive', '1') === '1' && isset($highlightProducts) && $highlightProducts->count() > 0)
+                    <div class="combo-cat-section mt-4">
+                        <div class="combo-cat-title" style="border-bottom:none; margin-bottom: 15px; font-size: 1.1rem; padding-bottom: 0;">
+                            <i class="fa-solid fa-gem" style="color:#8b5cf6;"></i> {{ __('Sản Phẩm Độc Quyền') }}
+                        </div>
+                        <div class="combo-product-grid">
+                            @foreach($highlightProducts->take(6) as $hp)
+                            <a href="{{ route('product.show', $hp->slug) }}" class="combo-prod-card {{ $hp->stock <= 0 ? 'out-of-stock' : '' }}">
+                                <div class="img-wrap">
+                                    <img src="{{ $hp->image ?? 'https://via.placeholder.com/300x225?text=Product' }}" loading="lazy" decoding="async"
+                                         alt="{{ $hp->name }}" loading="lazy">
+                                    @if($hp->is_on_sale)
+                                        <span class="discount-badge">-{{ $hp->discount_percent }}%</span>
+                                    @endif
+                                    <span class="ai-label" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">Vip</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="prod-name">{{ $hp->name }}</div>
+                                    <div class="d-flex justify-content-between align-items-center" style="font-size: 0.72rem; color: #6b7280; font-weight: 600; margin-bottom: 4px;">
+                                        <span>{{ __('Còn:') }} <span class="{{ $hp->stock <= 0 ? 'text-danger' : 'text-success' }}">{{ $hp->stock }}</span></span>
+                                        <span>{{ __('Đã Bán:') }} <span class="text-secondary">{{ number_format($hp->sold_count) }}</span></span>
+                                    </div>
+                                    <div class="prod-price-row">
+                                        <span class="prod-price">{{ $hp->formatted_price }}</span>
+                                        @if($hp->is_on_sale)
+                                            <span class="prod-price-old"><small style="text-decoration:none; color:#9ca3af;">Gốc:</small> {{ $hp->formatted_original_price }}</span>
+                                        @endif
+                                    </div>
+                                    @if($hp->stock > 0)
+                                    <form action="{{ route('cart.add', $hp->id) }}" method="POST"
+                                          onclick="event.preventDefault(); this.submit();">
+                                        @csrf
+                                        <button type="submit" class="add-cart-btn" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">
+                                            <i class="fa-solid fa-cart-plus"></i> {{ __('Thêm vào giỏ') }}
+                                        </button>
+                                    </form>
+                                    @else
+                                    <button type="button" class="add-cart-btn text-muted" style="cursor: not-allowed; opacity: 0.6; background: #e5e7eb; pointer-events: none;" disabled>
+                                        <i class="fa-solid fa-ban"></i> {{ __('Hết hàng') }}
+                                    </button>
+                                    @endif
+                                </div>
+                            </a>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+
+                    {{-- 4. Combo AI Giá Rẻ --}}
+                    @if(\App\Models\SiteSetting::getValue('home_show_combo_ai', '1') === '1' && isset($latestProducts) && $latestProducts->count() > 0)
+                    <div class="combo-cat-section mt-4">
+                        <div class="combo-cat-title" style="border-bottom:none; margin-bottom: 15px; font-size: 1.1rem; padding-bottom: 0;">
+                            <i class="fa-solid fa-box-open" style="color:#6366f1;"></i> {{ __('Combo AI Giá Rẻ') }}
+                        </div>
+                        <div class="combo-product-grid">
+                            @foreach($latestProducts->take(12) as $cp)
+                            <a href="{{ route('product.show', $cp->slug) }}" class="combo-prod-card {{ $cp->stock <= 0 ? 'out-of-stock' : '' }}">
+                                <div class="img-wrap">
+                                    <img src="{{ $cp->image ?? 'https://via.placeholder.com/300x225?text=Product' }}" loading="lazy" decoding="async"
+                                         alt="{{ $cp->name }}" loading="lazy">
+                                    @if($cp->is_on_sale)
+                                        <span class="discount-badge">-{{ $cp->discount_percent }}%</span>
+                                    @endif
+                                </div>
+                                <div class="card-body">
+                                    <div class="prod-name">{{ $cp->name }}</div>
+                                    <div class="d-flex justify-content-between align-items-center" style="font-size: 0.72rem; color: #6b7280; font-weight: 600; margin-bottom: 4px;">
+                                        <span>{{ __('Còn:') }} <span class="{{ $cp->stock <= 0 ? 'text-danger' : 'text-success' }}">{{ $cp->stock }}</span></span>
+                                        <span>{{ __('Đã Bán:') }} <span class="text-secondary">{{ number_format($cp->sold_count) }}</span></span>
+                                    </div>
+                                    <div class="prod-price-row">
+                                        <span class="prod-price">{{ $cp->formatted_price }}</span>
+                                        @if($cp->is_on_sale)
+                                            <span class="prod-price-old"><small style="text-decoration:none; color:#9ca3af;">Gốc:</small> {{ $cp->formatted_original_price }}</span>
+                                        @endif
+                                    </div>
+                                    @if($cp->stock > 0)
+                                    <form action="{{ route('cart.add', $cp->id) }}" method="POST"
+                                          onclick="event.preventDefault(); this.submit();">
+                                        @csrf
+                                        <button type="submit" class="add-cart-btn">
+                                            <i class="fa-solid fa-cart-plus"></i> {{ __('Thêm vào giỏ') }}
+                                        </button>
+                                    </form>
+                                    @else
+                                    <button type="button" class="add-cart-btn text-muted" style="cursor: not-allowed; opacity: 0.6; background: #e5e7eb; pointer-events: none;" disabled>
+                                        <i class="fa-solid fa-ban"></i> {{ __('Hết hàng') }}
+                                    </button>
+                                    @endif
+                                </div>
+                            </a>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+                    
+                    {{-- View all --}}
+                    <div class="combo-view-all mt-4">
+                        <a href="{{ route('shop') }}">
+                            <i class="fa-solid fa-store"></i> {{ __('Xem tất cả sản phẩm') }}
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+
+            </main>
+
+            @if(false) {{-- ====== RIGHT SIDEBAR ====== --}}
+            <aside class="tf-sidebar-right">
+                <div class="tf-sticky">
+
+                    {{-- Top Buyers Widget --}}
+                    <div class="tf-widget top-buyers-widget text-center">
+                        <div class="d-flex align-items-center gap-2 mb-3 justify-content-center">
+                            <i class="fa-solid fa-crown text-warning fs-5"></i>
+                            <h2 class="h6 fw-bold mb-0 text-uppercase" style="letter-spacing: 0.5px;">{{ __('Top Mua Hàng') }}</h2>
+                        </div>
+                        
+                        @php
+                            $topBuyers = \App\Models\User::withCount('orders')
+                                ->orderByDesc('orders_count')
+                                ->take(3)
+                                ->get();
+                            
+                            $rank1 = $topBuyers->get(0);
+                            $rank2 = $topBuyers->get(1);
+                            $rank3 = $topBuyers->get(2);
+                        @endphp
+                        
+                        <div class="podium-container d-flex justify-content-center align-items-end mb-3 mt-2">
+                            <!-- Rank 2 -->
+                            @if($rank2)
+                            <div class="podium-item rank-2 text-center" style="flex: 1;">
+                                <div class="avatar-wrap mx-auto">
+                                    <div class="rank-badge badge-silver">2</div>
+                                    <div class="avatar bg-secondary text-white mx-auto">{{ strtoupper(substr($rank2->name, 0, 1)) }}</div>
+                                </div>
+                                <div class="name mt-2 fw-bold text-truncate mx-auto" style="max-width: 60px; font-size: 0.75rem;">{{ explode(' ', trim($rank2->name))[count(explode(' ', trim($rank2->name)))-1] }}</div>
+                                <div class="orders text-muted" style="font-size: 0.65rem;">{{ $rank2->orders_count + (int)\App\Models\SiteSetting::getValue('fake_orders_top2', 19) }} {{ __('đơn') }}</div>
+                                <div class="podium-bar bar-silver"></div>
+                            </div>
+                            @endif
+                            
+                            <!-- Rank 1 -->
+                            @if($rank1)
+                            <div class="podium-item rank-1 text-center" style="flex: 1.2; z-index: 5;">
+                                <div class="avatar-wrap mx-auto">
+                                    <div class="rank-badge badge-gold"><i class="fa-solid fa-crown" style="font-size: 0.55rem; margin-top: -1px;"></i></div>
+                                    <div class="avatar bg-warning text-white mx-auto" style="width: 55px; height: 55px; font-size: 1.5rem;">{{ strtoupper(substr($rank1->name, 0, 1)) }}</div>
+                                </div>
+                                <div class="name mt-2 fw-bold text-truncate text-danger mx-auto" style="max-width: 70px; font-size: 0.85rem;">{{ explode(' ', trim($rank1->name))[count(explode(' ', trim($rank1->name)))-1] }}</div>
+                                <div class="orders text-muted" style="font-size: 0.7rem;">{{ $rank1->orders_count + (int)\App\Models\SiteSetting::getValue('fake_orders_top1', 30) }} {{ __('đơn') }}</div>
+                                <div class="podium-bar bar-gold"></div>
+                            </div>
+                            @endif
+                            
+                            <!-- Rank 3 -->
+                            @if($rank3)
+                            <div class="podium-item rank-3 text-center" style="flex: 1;">
+                                <div class="avatar-wrap mx-auto">
+                                    <div class="rank-badge badge-bronze">3</div>
+                                    <div class="avatar bg-info text-white mx-auto">{{ strtoupper(substr($rank3->name, 0, 1)) }}</div>
+                                </div>
+                                <div class="name mt-2 fw-bold text-truncate mx-auto" style="max-width: 60px; font-size: 0.75rem;">{{ explode(' ', trim($rank3->name))[count(explode(' ', trim($rank3->name)))-1] }}</div>
+                                <div class="orders text-muted" style="font-size: 0.65rem;">{{ $rank3->orders_count + (int)\App\Models\SiteSetting::getValue('fake_orders_top3', 10) }} {{ __('đơn') }}</div>
+                                <div class="podium-bar bar-bronze"></div>
+                            </div>
+                            @endif
+                        </div>
+                        
+                        <a href="{{ route('shop') }}" class="tf-join-btn text-white mt-2 w-100 fw-bold py-2" style="background: linear-gradient(45deg, #ff416c, #ff4b2b); border: none; box-shadow: 0 4px 10px rgba(255, 75, 43, 0.3); border-radius: 8px;">
+                            <i class="fa-solid fa-cart-shopping me-2"></i>{{ __('Mua hàng ngay') }}
+                        </a>
+                    </div>
+
+                    {{-- Flash Sale sidebar --}}
+                    @if(isset($saleProducts) && $saleProducts->count() > 0)
+                        <div class="tf-widget">
+                            <div class="tf-widget-title" id="sidebar-flash-sale-title">
+                                ⚡ {{ $isExpired ? __('Gợi Ý Cho Bạn') : 'Flash Sale' }} &nbsp;
+                                <span id="sf-timer" style="color:#e53935;font-size:.72rem;font-weight:700;"></span>
+                            </div>
+                            <div id="sidebar-flash-sale-products">
+                                @foreach($saleProducts->take(3) as $sp)
+                                    <a href="{{ route('product.show', $sp->slug) }}" class="tf-flash-item">
+                                        <img src="{{ $sp->image ?? 'https://via.placeholder.com/100' }}" alt="{{ $sp->name }}"
+                                            loading="lazy">
+                                        <div>
+                                            <div class="fn">{{ $sp->name }}</div>
+                                            <div class="d-flex align-items-baseline gap-2 mt-1">
+                                                <span class="fp">{{ $sp->formatted_price }}</span>
+                                                <span class="fo">{{ $sp->formatted_original_price }}</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
+                    {{-- Top Selling --}}
+                    @if(isset($featuredProducts) && $featuredProducts->count() > 0)
+                        <div class="tf-widget">
+                            <div class="tf-widget-title">🔥 {{ __('Bán Chạy Tuần Này') }}</div>
+                            @foreach($featuredProducts->take(5) as $ri => $prod)
+                                <a href="{{ route('product.show', $prod->slug) }}" class="tf-top-item">
+                                    <img src="{{ $prod->image ?? 'https://via.placeholder.com/100' }}" alt="{{ $prod->name }}"
+                                        loading="lazy">
+                                    <div>
+                                        <div class="name">{{ $prod->name }}</div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="price">{{ $prod->formatted_price }}</div>
+                                            @if($prod->stock <= 0)
+                                                <span class="text-danger fw-bold" style="font-size: 0.7rem;">{{ __('Hết hàng') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                            <a href="{{ route('shop') }}"
+                                class="btn btn-outline-primary btn-sm rounded-pill w-100 mt-3 fw-bold">{{ __('Xem tất cả cửa hàng') }}</a>
+                        </div>
+                    @endif
+
+                    {{-- Blog Sidebar --}}
+                    @if(isset($latestBlogs) && $latestBlogs->count() > 0)
+                        <div class="tf-widget">
+                            <div class="tf-widget-title">📰 {{ __('Bài Viết Mới Nhất') }}</div>
+                            @foreach($latestBlogs->take(3) as $b)
+                                <a href="{{ route('blog.show', $b->slug) }}" class="tf-blog-item">
+                                    @if($b->image)
+                                        <img src="{{ $b->image }}" alt="{{ $b->title }}" loading="lazy">
+                                    @else
+                                        <div
+                                            style="width:60px;height:48px;background:#f5f5f5;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                                            <i class="fa-solid fa-newspaper text-muted"></i></div>
+                                    @endif
+                                    <div>
+                                        <div class="title">{{ $b->title }}</div>
+                                        <div class="time">{{ $b->created_at->diffForHumans() }}</div>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    {{-- Footer mini --}}
+                    <div class="d-flex flex-wrap gap-2 px-1" style="font-size:.74rem;color:#787c7e;">
+                        <a href="#" class="text-muted text-decoration-none" data-bs-toggle="modal"
+                            data-bs-target="#aboutModal">{{ __('Điều khoản') }}</a>·
+                        <a href="#" class="text-muted text-decoration-none" data-bs-toggle="modal"
+                            data-bs-target="#privacyModal">{{ __('Bảo mật') }}</a>·
+                        <a href="#" class="text-muted text-decoration-none" data-bs-toggle="modal"
+                            data-bs-target="#advertisingModal">{{ __('Quảng cáo') }}</a>·
+                        <a href="#" class="text-muted text-decoration-none" data-bs-toggle="modal"
+                            data-bs-target="#contactModal">{{ __('Liên hệ') }}</a>
+                        <div class="w-100 mt-1">DungThu.com © {{ date('Y') }}</div>
+                    </div>
+
+                </div>
+            </aside>
+            @endif
+
+        </div>{{-- tf-layout --}}
+    </div>{{-- bg wrapper --}}
+
+    {{-- Recent Purchase Toast --}}
+    @if(!empty($recentPurchases) && count($recentPurchases) > 0)
+        <script type="application/json" id="rptData">@json($recentPurchases)</script>
+        <div id="rptToast" class="rpt-toast" role="status" aria-live="polite">
+            <button class="rc" id="rptClose">&times;</button>
+            <div class="inner">
+                <div class="ava" id="rptAva">K</div>
+                <div>
+                    <div class="rn" id="rptName">{{ __('Khách hàng') }}</div>
+                    <div class="rs" id="rptSub">{{ __('vừa mua thành công') }}</div>
+                    <a href="#" class="rp" id="rptProd">{{ __('Sản phẩm') }}</a>
+                </div>
+            </div>
+        </div>
+    @endif
+
+@endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Tab switching logic removed as sort bar is hidden
+            document.querySelectorAll('.item-shop, .item-blog, .combo-ai-wrapper, .tf-widget').forEach(el => {
+                el.style.display = 'block';
+            });
+
+            // Copy share link
+            window.copyLink = function (btn) {
+                navigator.clipboard?.writeText(window.location.href).then(() => {
+                    const orig = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> ' + @json(__('Đã sao chép!'));
+                    setTimeout(() => { btn.innerHTML = orig; }, 2000);
+                });
+            }
+
+            // Flash sale countdown logic...
+            const fs = document.getElementById('flash-sale');
+            if (fs) {
+                const end = parseInt(fs.dataset.countdownEnd || '0');
+                const isExpired = fs.dataset.isExpired === '1';
+                const pad = n => String(n).padStart(2, '0');
+                
+                const updateTimers = (H, M, S) => {
+                    const timeString = `${pad(H)}:${pad(M)}:${pad(S)}`;
+                    // Main timer
+                    fs.querySelector('[data-unit="hours"]').textContent = pad(H);
+                    fs.querySelector('[data-unit="minutes"]').textContent = pad(M);
+                    fs.querySelector('[data-unit="seconds"]').textContent = pad(S);
+                    // Sidebar timer
+                    const sfTimer = document.getElementById('sf-timer');
+                    if (sfTimer) {
+                        sfTimer.textContent = timeString;
+                    }
+                };
+
+                if (isExpired) {
+                    updateTimers(0, 0, 0);
+                } else {
+                    const timerInterval = setInterval(() => {
+                        let d = end - Date.now();
+                        if (d <= 0) {
+                            clearInterval(timerInterval);
+                            updateTimers(0, 0, 0);
+                            
+                            // Trigger transition to random products
+                            const titleEl = document.getElementById('flash-sale-title');
+                            if (titleEl) {
+                                titleEl.textContent = @json(__('Sản phẩm gợi ý cho bạn'));
+                            }
+                            const sidebarTitleEl = document.getElementById('sidebar-flash-sale-title');
+                            if (sidebarTitleEl) {
+                                sidebarTitleEl.innerHTML = `⚡ ${@json(__('Gợi Ý Cho Bạn'))} &nbsp;<span id="sf-timer" style="color:#e53935;font-size:.72rem;font-weight:700;">00:00:00</span>`;
+                            }
+                            const timerContainer = document.getElementById('flash-sale-timer-container');
+                            if (timerContainer) {
+                                timerContainer.style.opacity = '0.6';
+                            }
+
+                            fetch('{{ route('products.random') }}')
+                                .then(res => res.json())
+                                .then(products => {
+                                    // Main Row
+                                    const mainRow = document.getElementById('flash-sale-products-row');
+                                    if (mainRow && products) {
+                                        mainRow.innerHTML = products.map(sp => {
+                                            const outOfStockBadge = sp.stock <= 0 ? `<div style="position: absolute; top: 10px; right: 10px; background: #e53935; color: #fff; font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 4px; z-index: 10;">${@json(__('HẾT HÀNG'))}</div>` : '';
+                                            const opacityStyle = sp.stock <= 0 ? 'opacity: 0.7;' : '';
+                                            const stockColorClass = sp.stock <= 0 ? 'text-danger' : 'text-success';
+                                            const linkTag = sp.stock > 0 ? `<a href="${sp.show_url}" class="stretched-link"></a>` : '';
+                                            
+                                            return `
+                                                <div class="col">
+                                                    <div style="background:#fff;border:1px solid #edeff1;border-radius:10px;overflow:hidden;position:relative; ${opacityStyle}">
+                                                        ${outOfStockBadge}
+                                                        <img src="${sp.image}" alt="${sp.name}" style="width:100%;height:120px;object-fit:cover;">
+                                                        <div style="padding:8px;">
+                                                            <div style="font-size:.8rem;font-weight:700;height:40px;overflow:hidden;">${sp.name}</div>
+                                                            <div class="d-flex justify-content-between align-items-center" style="font-size: 0.72rem; color: #6b7280; font-weight: 600; margin-bottom: 2px;">
+                                                                <span>${@json(__('Còn:'))} <span class="${stockColorClass}">${sp.stock}</span></span>
+                                                                <span>${@json(__('Đã Bán:'))} <span class="text-secondary">${(sp.sold_count || 0).toLocaleString()}</span></span>
+                                                            </div>
+                                                            <div style="color:#e53935;font-weight:800;">${sp.formatted_price}</div>
+                                                        </div>
+                                                        ${linkTag}
+                                                    </div>
+                                                </div>
+                                            `;
+                                        }).join('');
+                                    }
+
+                                    // Sidebar
+                                    const sidebarContainer = document.getElementById('sidebar-flash-sale-products');
+                                    if (sidebarContainer && products) {
+                                        sidebarContainer.innerHTML = products.slice(0, 3).map(sp => {
+                                            return `
+                                                <a href="${sp.show_url}" class="tf-flash-item">
+                                                    <img src="${sp.image}" alt="${sp.name}" loading="lazy">
+                                                    <div>
+                                                        <div class="fn">${sp.name}</div>
+                                                        <div class="d-flex align-items-baseline gap-2 mt-1">
+                                                            <span class="fp">${sp.formatted_price}</span>
+                                                            <span class="fo">${sp.formatted_original_price}</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            `;
+                                        }).join('');
+                                    }
+                                })
+                                .catch(err => console.error('Error fetching random products:', err));
+                        } else {
+                            const H = Math.floor(d / 3600000); d %= 3600000;
+                            const M = Math.floor(d / 60000);
+                            const S = Math.floor((d % 60000) / 1000);
+                            updateTimers(H, M, S);
+                        }
+                    }, 1000);
+                }
+            }
+        });
+
+        // Filter Combo AI by category
+        window.filterComboCat = function(btn, cat) {
+            // Update active pill
+            document.querySelectorAll('.combo-cat-pill').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Show/hide category sections
+            const sections = document.querySelectorAll('.combo-cat-section');
+            sections.forEach(sec => {
+                if (cat === 'all' || sec.dataset.catSection === cat) {
+                    sec.classList.remove('hidden');
+                } else {
+                    sec.classList.add('hidden');
+                }
+            });
+        };
+
+        // Recent Purchase Toast Notification rotation
+        (function() {
+            const rptDataEl = document.getElementById('rptData');
+            const toastEl = document.getElementById('rptToast');
+            const closeBtn = document.getElementById('rptClose');
+            if (!rptDataEl || !toastEl || !closeBtn) return;
+
+            let purchases = [];
+            try {
+                purchases = JSON.parse(rptDataEl.textContent);
+            } catch (e) {
+                console.error("Failed to parse recent purchase data", e);
+                return;
+            }
+
+            if (purchases.length === 0) return;
+
+            let currentIndex = 0;
+            let showTimeout = null;
+            let rotateInterval = null;
+
+            function showToast(item) {
+                const nameEl = document.getElementById('rptName');
+                const subEl = document.getElementById('rptSub');
+                const prodEl = document.getElementById('rptProd');
+                const avaEl = document.getElementById('rptAva');
+
+                if (nameEl) nameEl.textContent = item.customer_name;
+                if (subEl) subEl.textContent = `${item.verb} • ${item.time_ago}`;
+                
+                if (prodEl) {
+                    prodEl.textContent = item.product_name + (item.extra_items > 0 ? ` (+${item.extra_items})` : '');
+                    if (item.product_url) {
+                        prodEl.href = item.product_url;
+                        prodEl.style.pointerEvents = 'auto';
+                        prodEl.style.cursor = 'pointer';
+                    } else {
+                        prodEl.removeAttribute('href');
+                        prodEl.style.pointerEvents = 'none';
+                        prodEl.style.cursor = 'default';
+                    }
+                }
+
+                if (avaEl) {
+                    const nameParts = item.customer_name.trim().split(/\s+/);
+                    const letter = nameParts[0] ? nameParts[0].charAt(0).toUpperCase() : 'K';
+                    avaEl.textContent = letter;
+                }
+
+                toastEl.classList.add('show');
+
+                showTimeout = setTimeout(() => {
+                    toastEl.classList.remove('show');
+                }, 6000);
+            }
+
+            function rotateToast() {
+                if (toastEl.classList.contains('show')) {
+                    toastEl.classList.remove('show');
+                }
+                
+                setTimeout(() => {
+                    const item = purchases[currentIndex];
+                    showToast(item);
+                    currentIndex = (currentIndex + 1) % purchases.length;
+                }, 500);
+            }
+
+            closeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toastEl.classList.remove('show');
+                clearTimeout(showTimeout);
+                clearInterval(rotateInterval);
+            });
+
+            // Start toast rotation: initial delay 4s, repeat every 15s
+            setTimeout(() => {
+                rotateToast();
+                rotateInterval = setInterval(rotateToast, 15000);
+            }, 4000);
+        })();
+    </script>
+@endpush

@@ -1,0 +1,749 @@
+@extends('layouts.admin')
+
+@section('title', 'Quản Lý Chat')
+
+@section('page_title', 'Chat')
+
+@push('styles')
+<style>
+    .chat-admin-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        height: calc(100vh - 180px);
+        display: flex;
+        margin: 20px;
+    }
+
+    .users-sidebar {
+        width: 300px;
+        border-right: 1px solid #e9ecef;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .users-header {
+        padding: 20px;
+        border-bottom: 1px solid #e9ecef;
+        background: #f8f9fa;
+    }
+
+    .users-header h5 {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .users-subheader {
+        padding: 12px 20px;
+        border-top: 1px solid #e9ecef;
+        border-bottom: 1px solid #e9ecef;
+        background: #fbfcfe;
+        font-size: 13px;
+        font-weight: 700;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .users-list {
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .user-item {
+        padding: 15px 20px;
+        border-bottom: 1px solid #f0f0f0;
+        cursor: pointer;
+        transition: background 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .user-item:hover {
+        background: #f8f9fa;
+    }
+
+    .user-item.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .user-item.active .user-avatar {
+        background: white;
+        color: #667eea;
+    }
+
+    .user-info {
+        flex: 1;
+        overflow: hidden;
+    }
+
+    .user-name {
+        font-weight: 600;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .user-email {
+        font-size: 12px;
+        opacity: 0.8;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .chat-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background: #f4f7f6;
+    }
+
+    .chat-header-main {
+        padding: 15px 25px;
+        background: white;
+        border-bottom: 1px solid #e9ecef;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .chat-messages {
+        flex: 1;
+        padding: 25px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .chat-message {
+        max-width: 70%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-message.admin {
+        align-self: flex-end;
+    }
+
+    .chat-message.user {
+        align-self: flex-start;
+    }
+
+    .message-bubble {
+        padding: 12px 18px;
+        border-radius: 18px;
+        font-size: 14px;
+        line-height: 1.5;
+        position: relative;
+        white-space: pre-wrap;
+    }
+
+    .chat-message.admin .message-bubble {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-bottom-right-radius: 4px;
+    }
+
+    .chat-message.user .message-bubble {
+        background: white;
+        color: #333;
+        border-bottom-left-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .message-time {
+        font-size: 10px;
+        color: #999;
+        margin-top: 5px;
+    }
+
+    .chat-message.admin .message-time {
+        text-align: right;
+    }
+
+    .chat-input-area {
+        padding: 20px 25px;
+        background: white;
+        border-top: 1px solid #e9ecef;
+    }
+
+    .admin-image-upload-btn {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #667eea;
+        background: rgba(102, 126, 234, 0.08);
+        border: 1px dashed rgba(102, 126, 234, 0.4);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .admin-image-upload-btn:hover {
+        background: rgba(102, 126, 234, 0.15);
+        color: #764ba2;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(102, 126, 234, 0.2);
+        border-style: solid;
+    }
+
+    .admin-chat-input {
+        flex: 1;
+        border: 2px solid #e9ecef;
+        border-radius: 22px;
+        padding: 10px 18px;
+        font-size: 14px;
+        outline: none;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+        line-height: 20px;
+    }
+
+    .admin-chat-input:focus {
+        border-color: #667eea;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+    }
+
+    .admin-send-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50% !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+        padding: 0;
+    }
+
+    .admin-send-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Emoji Picker CSS */
+    .emoji-picker-container {
+        position: relative;
+        display: inline-block;
+    }
+    .emoji-popover {
+        position: absolute;
+        bottom: 56px;
+        left: -10px;
+        width: 310px;
+        height: 250px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0,0,0,0.08);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        border-radius: 20px;
+        display: none;
+        z-index: 1000;
+        flex-direction: column;
+        overflow: hidden;
+        animation: popEmoji 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes popEmoji {
+        from { opacity: 0; transform: translateY(10px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .emoji-popover-header {
+        padding: 10px 14px;
+        border-bottom: 1px solid #f1f5f9;
+        font-size: 13px;
+        font-weight: 700;
+        color: #64748b;
+        background: #f8fafc;
+    }
+    .emoji-list {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+        padding: 12px;
+        overflow-y: auto;
+    }
+    .emoji-item {
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all 0.15s ease;
+        user-select: none;
+        width: 36px;
+        height: 36px;
+    }
+    .emoji-item:hover {
+        background: #f1f5f9;
+        transform: scale(1.15);
+    }
+
+    .empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        color: #999;
+    }
+
+    .empty-state i {
+        font-size: 50px;
+        margin-bottom: 15px;
+        opacity: 0.3;
+    }
+
+    /* Mobile Responsive styles */
+    @media (max-width: 768px) {
+        .chat-admin-card {
+            margin: 5px;
+            height: calc(100vh - 130px);
+            border-radius: 10px;
+        }
+        .users-sidebar {
+            width: 100%;
+            display: flex;
+        }
+        .chat-main {
+            display: none !important;
+        }
+        .chat-admin-card.chat-open .users-sidebar {
+            display: none !important;
+        }
+        .chat-admin-card.chat-open .chat-main {
+            display: flex !important;
+            width: 100%;
+        }
+        .chat-messages {
+            padding: 15px;
+        }
+        .chat-message {
+            max-width: 85%;
+        }
+    }
+</style>
+@endpush
+
+@section('content')
+<div class="chat-admin-card">
+    <div class="users-sidebar">
+        <div class="users-header">
+            <h5><i class="fas fa-users"></i> Danh sách Chat</h5>
+        </div>
+        <div class="users-list">
+            <div class="users-subheader">Gần đây</div>
+            @if(isset($recentChats))
+                @forelse($recentChats as $item)
+                    <div class="user-item" data-id="{{ $item->id }}" data-type="{{ $item->type }}" 
+                         onclick="selectTarget(event, {{ $item->id }}, '{{ addslashes($item->name) }}', '{{ $item->email }}', '{{ $item->type }}')">
+                        <div class="user-avatar" style="{{ $item->type === 'affiliate' ? 'background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);' : '' }}">
+                            {{ strtoupper(substr($item->name, 0, 1)) }}
+                        </div>
+                        <div class="user-info">
+                            <div class="user-name">
+                                {{ $item->name }}
+                                @if($item->type === 'affiliate')
+                                    <span class="badge bg-info ms-1" style="font-size: 9px;">CTV</span>
+                                @endif
+                            </div>
+                            <div class="user-email">{{ $item->email }}</div>
+                        </div>
+                        @if(isset($item->unread_count) && $item->unread_count > 0)
+                            <span class="badge bg-danger rounded-pill">{{ $item->unread_count }}</span>
+                        @endif
+                    </div>
+                @empty
+                    <div class="text-center py-4 text-muted small">Chưa có tin nhắn nào</div>
+                @endforelse
+            @endif
+
+            <div class="users-subheader">Cộng tác viên mới</div>
+            @if(isset($allAffiliates))
+                @foreach($allAffiliates as $aff)
+                    @php 
+                        $exists = false;
+                        if(isset($recentChats)) {
+                            $exists = $recentChats->where('id', $aff->id)->where('type', 'affiliate')->first();
+                        }
+                    @endphp
+                    @if(!$exists)
+                    <div class="user-item" data-id="{{ $aff->id }}" data-type="affiliate" 
+                         onclick="selectTarget(event, {{ $aff->id }}, '{{ addslashes($aff->name) }}', '{{ $aff->email }}', 'affiliate')">
+                        <div class="user-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            {{ strtoupper(substr($aff->name, 0, 1)) }}
+                        </div>
+                        <div class="user-info">
+                            <div class="user-name">{{ $aff->name }} <span class="badge bg-info ms-1" style="font-size: 9px;">CTV</span></div>
+                            <div class="user-email">{{ $aff->email }}</div>
+                        </div>
+                    </div>
+                    @endif
+                @endforeach
+            @endif
+
+            <div class="users-subheader">Người dùng mới</div>
+            @if(isset($allUsers))
+                @foreach($allUsers as $u)
+                    @php 
+                        $existsUser = false;
+                        if(isset($recentChats)) {
+                            $existsUser = $recentChats->where('id', $u->id)->where('type', 'user')->first();
+                        }
+                    @endphp
+                    @if(!$existsUser)
+                    <div class="user-item" data-id="{{ $u->id }}" data-type="user" 
+                         onclick="selectTarget(event, {{ $u->id }}, '{{ addslashes($u->name) }}', '{{ $u->email }}', 'user')">
+                        <div class="user-avatar">
+                            {{ strtoupper(substr($u->name, 0, 1)) }}
+                        </div>
+                        <div class="user-info">
+                            <div class="user-name">{{ $u->name }}</div>
+                            <div class="user-email">{{ $u->email }}</div>
+                        </div>
+                    </div>
+                    @endif
+                @endforeach
+            @endif
+        </div>
+    </div>
+
+    <div class="chat-main">
+        <div class="chat-header-main" id="chatHeaderMain">
+            <h5 class="mb-0 text-muted">
+                <i class="fas fa-comments"></i> Chọn đối tượng để chat
+            </h5>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="empty-state">
+                <i class="fas fa-comments"></i>
+                <p>Chọn một tài khoản để bắt đầu trò chuyện</p>
+            </div>
+        </div>
+
+        <div class="chat-input-area" id="chatInputArea" style="display: none;">
+            <div id="adminImagePreview" class="mb-2" style="display: none;">
+                <div class="position-relative d-inline-block">
+                    <img id="imgPreview" src="" style="height: 100px; border-radius: 10px; border: 2px solid #667eea;">
+                    <button class="btn btn-sm btn-danger position-absolute top-0 end-0 rounded-circle" onclick="clearPreview()" style="width: 24px; height: 24px; padding: 0;">&times;</button>
+                </div>
+            </div>
+            <form id="adminChatForm" onsubmit="return false;">
+                @csrf
+                <div class="d-flex align-items-end gap-2">
+                    <label for="adminFile" class="admin-image-upload-btn mb-0" title="Gửi ảnh">
+                        <i class="fas fa-image"></i>
+                        <input type="file" id="adminFile" name="image" hidden accept="image/*" onchange="previewImage(this)">
+                    </label>
+                    <div class="emoji-picker-container">
+                        <button type="button" class="admin-image-upload-btn mb-0" id="adminEmojiToggleBtn" title="Chọn emoji" style="border-radius: 50%;">
+                            <i class="far fa-smile" style="font-size: 18px;"></i>
+                        </button>
+                        <div class="emoji-popover" id="adminEmojiPopover">
+                            <div class="emoji-popover-header">
+                                <span>Biểu tượng cảm xúc</span>
+                            </div>
+                            <div class="emoji-list" id="adminEmojiList"></div>
+                        </div>
+                    </div>
+                    <textarea class="admin-chat-input" id="adminChatInput" name="message" placeholder="Nhập tin nhắn..." autocomplete="off" rows="1" style="resize: none; max-height: 120px; overflow-y: hidden;"></textarea>
+                    <button class="admin-send-btn" type="button" id="adminSendBtn" onclick="sendAdminMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
+
+@push('scripts')
+<script>
+let selectedId = null;
+let selectedType = 'user';
+let lastMessageId = 0;
+let pollingInterval = null;
+
+document.addEventListener('DOMContentLoaded', function () {
+    const adminChatInput = document.getElementById('adminChatInput');
+    const adminEmojiToggleBtn = document.getElementById('adminEmojiToggleBtn');
+    const adminEmojiPopover = document.getElementById('adminEmojiPopover');
+    const adminEmojiList = document.getElementById('adminEmojiList');
+
+    const emojis = [
+        '😀','😃','😄','😁','😆','😅','😂','🤣','😊','😇','🙂','🙃','😉','😌','😍','🥰','😘','😗','😙','😚','😋','😛','😝','😜','🤪','🤨','🧐','🤓','😎','🤩','🥳','😏','😒','😞','😔','😟','😕','🙁','☹️','😣','😖','😫','😩','🥺','😢','😭','😤','😠','😡','🤬','🤯','😳','🥵','🥶','😱','😨','😰','😥','😓','🤗','🤔','🤭','🤫','🤥','😶','😐','😑','😬','🙄','😯','😦','😧','😮','😲','🥱','😴','🤤','😪','😵','🤐','🥴','🤢','🤮','🤧','😷','🤒','🤕','🤑','🤠','😈','👿','👹','👺','🤡','💩','👻','💀','☠️','👽','👾','🤖','🎃','😺','😸','😹','😻','😼','😽','🙀','😿','😾','❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💔','❣️','💕','💞','💓','💗','💖','💘','💝','💟','🌟','⭐','✨','⚡','💥','🔥','🌈','☀️','🌤️','⛅','🌥️','☁️','🌦️','🌧️','⛈️','🌩️','❄️','💨','🌪️','🌫️','🌊','🎈','🎉','🎊','🎁','🐱','🐶','🦊','🐰','🐻','🐼','🐨','🦁','🐯','🐮','🐷','🐸','🐵','🐔','🐧','🐦','🐤','🐣','🐥','🦆','🦅','🦉','🦇','🐺','🐗','🐴','🐝','🐛','🦋','🐌','🐞','🐜','🕷️','🕸️','🐢','🐍','🦎','🐙','🦑','🦐','🦞','🦀','🐡','🐠','🐟','🐬','🐳','🐋','🦈','🐊','🐆','🐅','🦍','🦧','🚀','🛸','🎮','🕹️','🧩','🔮','🧸'
+    ];
+
+    emojis.forEach(emoji => {
+        const span = document.createElement('span');
+        span.className = 'emoji-item';
+        span.innerText = emoji;
+        span.addEventListener('click', function () {
+            const startPos = adminChatInput.selectionStart;
+            const endPos = adminChatInput.selectionEnd;
+            const textVal = adminChatInput.value;
+            adminChatInput.value = textVal.substring(0, startPos) + emoji + textVal.substring(endPos, textVal.length);
+            adminChatInput.focus();
+            adminChatInput.selectionStart = startPos + emoji.length;
+            adminChatInput.selectionEnd = startPos + emoji.length;
+        });
+        adminEmojiList.appendChild(span);
+    });
+
+    adminEmojiToggleBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (adminEmojiPopover.style.display === 'flex') {
+            adminEmojiPopover.style.display = 'none';
+        } else {
+            adminEmojiPopover.style.display = 'flex';
+        }
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!adminEmojiPopover.contains(e.target) && e.target !== adminEmojiToggleBtn && !adminEmojiToggleBtn.contains(e.target)) {
+            adminEmojiPopover.style.display = 'none';
+        }
+    });
+});
+
+function selectTarget(evt, id, name, email, type) {
+    selectedId = id;
+    selectedType = type;
+    lastMessageId = 0;
+    
+    document.querySelectorAll('.user-item').forEach(item => item.classList.remove('active'));
+    evt.currentTarget.classList.add('active');
+    
+    document.getElementById('chatHeaderMain').innerHTML = `
+        <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-outline-secondary btn-sm d-md-none me-2" onclick="closeChatMobile()" style="border-radius: 8px;">
+                <i class="fas fa-arrow-left"></i> Quay lại
+            </button>
+            <h5 class="mb-0">
+                <i class="fas fa-user"></i> ${name}
+                ${type === 'affiliate' ? '<span class="badge bg-info ms-1">CTV</span>' : ''}
+                <small class="text-muted d-block" style="font-size: 11px;">${email}</small>
+            </h5>
+        </div>
+    `;
+    
+    document.getElementById('chatInputArea').style.display = 'block';
+    document.querySelector('.chat-admin-card').classList.add('chat-open');
+    loadMessages();
+    
+    if (pollingInterval) clearInterval(pollingInterval);
+    pollingInterval = setInterval(checkNewMessages, 3000);
+}
+
+function closeChatMobile() {
+    selectedId = null;
+    document.querySelector('.chat-admin-card').classList.remove('chat-open');
+    document.querySelectorAll('.user-item').forEach(item => item.classList.remove('active'));
+    if (pollingInterval) clearInterval(pollingInterval);
+}
+
+function previewImage(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('imgPreview').src = e.target.result;
+            document.getElementById('adminImagePreview').style.display = 'block';
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function clearPreview() {
+    document.getElementById('adminFile').value = '';
+    document.getElementById('adminImagePreview').style.display = 'none';
+}
+
+function loadMessages() {
+    if (!selectedId) return;
+    fetch(`/admin/chat/messages/${selectedId}?type=${selectedType}`, {
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(res => res.json())
+    .then(data => {
+        const chatBox = document.getElementById('chatMessages');
+        chatBox.innerHTML = '';
+        if (!data || data.length === 0) {
+            chatBox.innerHTML = '<div class="empty-state"><i class="fas fa-comments"></i><p>Chưa có tin nhắn</p></div>';
+            return;
+        }
+        data.forEach(msg => {
+            appendMsg(msg);
+            lastMessageId = Math.max(lastMessageId, msg.id);
+        });
+        scrollToBottom();
+    })
+    .catch(err => console.error('Load messages error:', err));
+}
+
+function sendAdminMessage() {
+    if (!selectedId) return;
+    
+    const input = document.getElementById('adminChatInput');
+    const sendBtn = document.getElementById('adminSendBtn');
+    const form = document.getElementById('adminChatForm');
+    
+    if (!input.value.trim() && !document.getElementById('adminFile').files[0]) return;
+
+    sendBtn.disabled = true;
+    sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+    const formData = new FormData(form);
+    formData.append('type', selectedType);
+
+    fetch(`/admin/chat/reply/${selectedId}`, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Accept': 'application/json'
+        },
+        body: formData
+    })
+    .then(async (res) => {
+        if (res.status === 403) {
+            const pin = window.prompt('Nhập mã xác nhận (8 số) để tiếp tục:');
+            if (pin === null) throw new Error('Bị hủy');
+            formData.set('admin_pin', pin);
+            return fetch(`/admin/chat/reply/${selectedId}`, {
+                method: 'POST',
+                headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}', 'Accept': 'application/json' },
+                body: formData
+            }).then(r => r.json());
+        }
+        if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err.error || 'Lỗi gửi tin nhắn');
+        }
+        return res.json();
+    })
+    .then(data => {
+        if (data && data.id) {
+            appendMsg(data);
+            lastMessageId = Math.max(lastMessageId, data.id);
+            input.value = '';
+            input.style.height = 'auto';
+            input.style.overflowY = 'hidden';
+            clearPreview();
+            scrollToBottom();
+        }
+    })
+    .catch(err => {
+        if (err.message !== 'Bị hủy') alert(err.message);
+    })
+    .finally(() => {
+        sendBtn.disabled = false;
+        sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i>';
+    });
+}
+
+// Auto-grow textarea height
+document.getElementById('adminChatInput').addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(120, this.scrollHeight) + 'px';
+    if (this.scrollHeight > 120) {
+        this.style.overflowY = 'auto';
+    } else {
+        this.style.overflowY = 'hidden';
+    }
+});
+
+// Handle Enter and Shift+Enter
+document.getElementById('adminChatInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendAdminMessage();
+    }
+});
+
+function appendMsg(msg) {
+    const chatBox = document.getElementById('chatMessages');
+    if (!chatBox) return;
+    const empty = chatBox.querySelector('.empty-state');
+    if (empty) empty.remove();
+    
+    const div = document.createElement('div');
+    div.className = `chat-message ${msg.is_admin ? 'admin' : 'user'}`;
+    const time = new Date(msg.created_at).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+    
+    let content = msg.message ? `<div class="message-bubble">${escapeHtml(msg.message)}</div>` : '';
+    if (msg.image) {
+        const imageUrl = msg.image.startsWith('http') ? msg.image : `{{ asset('') }}${msg.image}`;
+        content += `<img src="${imageUrl}" style="max-width: 200px; border-radius: 10px; margin-top: 5px; cursor: pointer;" onclick="window.open('${imageUrl}')">`;
+    }
+
+    div.innerHTML = `<div>${content}<div class="message-time">${time}</div></div>`;
+    chatBox.appendChild(div);
+    scrollToBottom();
+}
+
+function checkNewMessages() {
+    if (!selectedId) return;
+    fetch(`/admin/chat/messages/${selectedId}?type=${selectedType}&last_id=${lastMessageId}`, {
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data && data.length > 0) {
+            const fresh = data.filter(m => m.id > lastMessageId);
+            if (fresh.length > 0) {
+                fresh.forEach(m => {
+                    appendMsg(m);
+                    lastMessageId = Math.max(lastMessageId, m.id);
+                });
+            }
+        }
+    })
+    .catch(err => console.error('Check new messages error:', err));
+}
+
+function scrollToBottom() {
+    const box = document.getElementById('chatMessages');
+    if (box) box.scrollTop = box.scrollHeight;
+}
+
+function escapeHtml(t) {
+    if (!t) return '';
+    const m = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+    return t.replace(/[&<>"']/g, s => m[s]);
+}
+
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        if (pollingInterval) clearInterval(pollingInterval);
+    } else if (selectedId) {
+        pollingInterval = setInterval(checkNewMessages, 3000);
+    }
+});
+</script>
+@endpush
