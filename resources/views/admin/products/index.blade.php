@@ -445,12 +445,6 @@
                                             <i class="fas fa-robot me-1"></i>Combo AI
                                         </button>
                                     </form>
-                                    <form action="{{ route('admin.products.toggle-banner', $product) }}" method="POST" class="ajax-toggle-form" data-type="banner">
-                                        @csrf
-                                        <button type="submit" class="btn btn-sm w-100 {{ $product->show_on_banner ? 'btn-primary' : 'btn-outline-primary' }}" style="font-size: 10px; padding: 2px 5px;">
-                                            <i class="fas fa-image me-1"></i>Gán Home
-                                        </button>
-                                    </form>
                                 </div>
                             </td>
                             <td>
@@ -573,13 +567,6 @@
                             button.className = 'btn btn-sm w-100 btn-outline-success';
                         }
                         button.innerHTML = '<i class="fas fa-robot me-1"></i>Combo AI';
-                    } else if (type === 'banner') {
-                        if (data.value) {
-                            button.className = 'btn btn-sm w-100 btn-primary';
-                        } else {
-                            button.className = 'btn btn-sm w-100 btn-outline-primary';
-                        }
-                        button.innerHTML = '<i class="fas fa-image me-1"></i>Gán Home';
                     } else if (type === 'active') {
                         if (data.value) {
                             button.className = 'btn btn-sm btn-success';
