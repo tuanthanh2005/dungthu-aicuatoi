@@ -1859,8 +1859,8 @@
             <div class="hero-banner-card-centered">
                 <!-- Top Badges -->
                 <div class="hero-center-badges">
-                    <div class="hero-ai-badge-clean" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(192, 132, 252, 0.1)); border-color: rgba(192, 132, 252, 0.35); color: #7c3aed;">
-                        <i class="fa-solid fa-handshake" style="color: #a855f7;"></i> AICuaToi.com — Đối Tác của DungThu.com
+                    <div class="hero-ai-badge-clean">
+                        <i class="fa-solid fa-bolt"></i> DungThu.com AI Hub
                     </div>
                     <div class="hero-online-badge-clean" title="{{ __('Khách hàng đang online / xem sản phẩm thực tế') }}">
                         <span class="live-dot"></span>
@@ -2370,7 +2370,7 @@
                             data-bs-target="#advertisingModal">{{ __('Quảng cáo') }}</a>·
                         <a href="#" class="text-muted text-decoration-none" data-bs-toggle="modal"
                             data-bs-target="#contactModal">{{ __('Liên hệ') }}</a>
-                        <div class="w-100 mt-1">DungThu.com © {{ date('Y') }}</div>
+                        <div class="w-100 mt-1">© {{ date('Y') }} <strong>AICuaToi.com</strong> &mdash; {{ __('Đối Tác của') }} <a href="https://dungthu.com" target="_blank" style="color: #8b5cf6; font-weight: 700; text-decoration: none;">DungThu.com</a></div>
                     </div>
 
                 </div>

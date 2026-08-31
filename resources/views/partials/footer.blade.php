@@ -2,9 +2,12 @@
     <div class="container">
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
-                <div class="footer-brand">
+                <div class="footer-brand d-flex align-items-center gap-2 mb-2">
                     <div class="brand-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);"><i class="fa-solid fa-robot"></i></div>
-                    AICuaToi.com
+                    <span class="fw-bold fs-5">AICuaToi<span style="color: #a855f7;">.com</span></span>
+                </div>
+                <div class="d-inline-flex align-items-center gap-1 badge rounded-pill px-3 py-1 text-white mb-2 shadow-sm" style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%); font-size: 11px;">
+                    <i class="fa-solid fa-handshake"></i> {{ __('Đối Tác của DungThu.com') }}
                 </div>
                 <p class="small text-muted">{{ __('Nền tảng cung cấp tài khoản AI, giải pháp công nghệ AI và công cụ số chất lượng hàng đầu Việt Nam.') }}</p>
             </div>
@@ -40,8 +43,9 @@
                 </ul>
             </div>
         </div>
-        <div class="footer-copy">{{ date('Y') }} DungThu.com &mdash; Made with <i
-                class="fa-solid fa-heart text-danger"></i> in Vietnam</div>
+        <div class="footer-copy">
+            © {{ date('Y') }} <strong>AICuaToi.com</strong> &mdash; {{ __('Đối Tác của') }} <a href="https://dungthu.com" target="_blank" class="text-decoration-none fw-bold" style="color: #8b5cf6;">DungThu.com</a> &mdash; Made with <i class="fa-solid fa-heart text-danger"></i> in Vietnam
+        </div>
     </div>
     </div>
 
