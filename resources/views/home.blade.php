@@ -1823,14 +1823,14 @@
             <!-- Part 1 -->
             <div class="marquee-item">
                 <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
-                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin AICuaToi.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
                 <span>•</span>
                 <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
                 <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
             </div>
             <div class="marquee-item">
                 <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
-                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin AICuaToi.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
                 <span>•</span>
                 <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
                 <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
@@ -1838,14 +1838,14 @@
             <!-- Part 2 (Duplicate for seamless loop) -->
             <div class="marquee-item">
                 <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
-                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin AICuaToi.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
                 <span>•</span>
                 <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
                 <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
             </div>
             <div class="marquee-item">
                 <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
-                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin AICuaToi.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
                 <span>•</span>
                 <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
                 <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
@@ -1859,8 +1859,8 @@
             <div class="hero-banner-card-centered">
                 <!-- Top Badges -->
                 <div class="hero-center-badges">
-                    <div class="hero-ai-badge-clean">
-                        <i class="fa-solid fa-bolt"></i> DungThu.com AI Hub
+                    <div class="hero-ai-badge-clean" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(192, 132, 252, 0.12)); border: 1px solid rgba(139, 92, 246, 0.35); color: #7c3aed; font-weight: 700;">
+                        <i class="fa-solid fa-handshake" style="color: #8b5cf6;"></i> AICuaToi.com — Đối Tác của DungThu.com
                     </div>
                     <div class="hero-online-badge-clean" title="{{ __('Khách hàng đang online / xem sản phẩm thực tế') }}">
                         <span class="live-dot"></span>
@@ -2622,4 +2622,5 @@
         })();
     </script>
 @endpush
+
 
