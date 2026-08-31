@@ -283,11 +283,24 @@ class GoogleIndexingService
             throw new \RuntimeException('GOOGLE_INDEXING_KEY_FILE is empty.');
         }
 
-        // Absolute path (Linux/Mac or Windows)
-        if (str_starts_with($keyFile, DIRECTORY_SEPARATOR) || preg_match('/^[A-Za-z]:\\\\/', $keyFile) === 1) {
+        // 1. Direct/Absolute path (Linux/Mac or Windows)
+        if (file_exists($keyFile)) {
             return $keyFile;
         }
 
-        return base_path($keyFile);
+        // 2. Check via PathHelper (public_html or public)
+        $publicPath = \App\Helpers\PathHelper::publicRootPath($keyFile);
+        if (file_exists($publicPath)) {
+            return $publicPath;
+        }
+
+        // 3. Check via base_path
+        $basePath = base_path($keyFile);
+        if (file_exists($basePath)) {
+            return $basePath;
+        }
+
+        // 4. Default return base_path for consistent error reporting
+        return $basePath;
     }
 }
