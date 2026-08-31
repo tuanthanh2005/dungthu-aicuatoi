@@ -283,10 +283,6 @@
             <span class="nav-icon"><i class="fas fa-external-link-alt"></i></span>
             <span class="nav-text">Xem trang web</span>
         </a>
-        <a href="javascript:void(0)" onclick="adminLockManual()" class="sidebar-nav-item" style="color: #fc8181;">
-            <span class="nav-icon"><i class="fas fa-lock"></i></span>
-            <span class="nav-text">Khóa Admin</span>
-        </a>
     </div>
     @endif
 
@@ -323,11 +319,6 @@
         <!-- View Site -->
         <a href="{{ url('/') }}" class="topbar-icon-btn d-none d-sm-flex" target="_blank" title="Xem trang web">
             <i class="fas fa-globe"></i>
-        </a>
-
-        <!-- Lock -->
-        <a href="javascript:void(0)" onclick="adminLockManual()" class="topbar-icon-btn" title="Khóa Admin" style="border-color: #fed7d7; color: #fc8181;">
-            <i class="fas fa-lock"></i>
         </a>
 
         <!-- User -->
@@ -440,28 +431,6 @@ window.addEventListener('resize', function() {
 });
 
 // ========================
-// Admin Lock
-// ========================
-function adminLockManual() {
-    Swal.fire({
-        title: @json(__('Khóa Admin?')),
-        text: @json(__('Bạn sẽ cần nhập PIN để mở lại.')),
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#e74c3c',
-        cancelButtonColor: '#6b7280',
-        confirmButtonText: @json(__('Khóa ngay')),
-        cancelButtonText: @json(__('Hủy')),
-    }).then((result) => {
-        if (result.isConfirmed) {
-            sessionStorage.removeItem('admin_unlocked');
-            sessionStorage.removeItem('revenue_unlocked');
-            window.location.href = "{{ route('admin.lock') }}";
-        }
-    });
-}
-
-// ========================
 // Flash message auto-dismiss
 // ========================
 document.querySelectorAll('.admin-alert').forEach(function(el) {
@@ -483,66 +452,6 @@ document.querySelectorAll('.admin-alert').forEach(function(el) {
         }
     }, 5000);
 });
-
-// ========================
-// Admin PIN for POST/PUT/DELETE
-// ========================
-(function () {
-    function isAdminAction(form) {
-        try {
-            const action = form.getAttribute('action') || window.location.href;
-            const url = new URL(action, window.location.origin);
-            return url.pathname.startsWith('/admin');
-        } catch (e) { return false; }
-    }
-
-    function getIntendedMethod(form) {
-        const method = (form.getAttribute('method') || 'get').toLowerCase();
-        const override = form.querySelector('input[name="_method"]');
-        return (override ? override.value : method).toUpperCase();
-    }
-
-    document.addEventListener('submit', function (e) {
-        const form = e.target;
-        if (!(form instanceof HTMLFormElement)) return;
-        if (!isAdminAction(form)) return;
-        if (form.dataset.adminPinSkip === '1') return;
-
-        const intended = getIntendedMethod(form);
-        if (['GET', 'HEAD', 'OPTIONS'].includes(intended)) return;
-        if (form.dataset.adminPinVerified === '1') return;
-
-        e.preventDefault();
-
-        Swal.fire({
-            title: @json(__('Xác nhận thao tác')),
-            text: @json(__('Nhập mã PIN 8 số để xác nhận:')),
-            input: 'password',
-            inputAttributes: { maxlength: 8, pattern: '[0-9]{8}', inputmode: 'numeric' },
-            showCancelButton: true,
-            confirmButtonText: @json(__('Xác nhận')),
-            cancelButtonText: @json(__('Hủy')),
-            confirmButtonColor: '#667eea',
-        }).then((result) => {
-            if (!result.isConfirmed) return;
-            const pin = result.value;
-            if (!/^\d{8}$/.test(pin)) {
-                Swal.fire({ icon: 'error', title: @json(__('Lỗi')), text: @json(__('Mã PIN phải đúng 8 số.')) });
-                return;
-            }
-            let input = form.querySelector('input[name="admin_pin"]');
-            if (!input) {
-                input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'admin_pin';
-                form.appendChild(input);
-            }
-            input.value = pin;
-            form.dataset.adminPinVerified = '1';
-            form.submit();
-        });
-    }, true);
-})();
 </script>
 
 <style>
