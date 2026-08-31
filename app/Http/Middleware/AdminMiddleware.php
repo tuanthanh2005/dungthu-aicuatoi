@@ -33,22 +33,30 @@ class AdminMiddleware
             return $next($request);
         }
 
-        // 2. SieuSuperAdmin: Toàn quyền tối cao truy cập 100% tất cả các tính năng không bị giới hạn
+        // 2. SieuSuperAdmin: Toàn quyền tối cao 100% không bị bất kỳ giới hạn nào
         if ($user->role === 'sieusuperadmin' || $user->role === 'admin') {
             return $next($request);
         }
 
-        // 3. Superadmin_1 (Quản trị viên web con): Chỉ chặn các mục hạ tầng web mẹ (Menu, Buff, Proxy)
+        // 3. Superadmin_1 (Quản lý web con): Chặn các khu vực hạ tầng, bảo mật, và cấu hình nâng cao
         if ($user->role === 'superadmin_1' && $routeName) {
             $restrictedRoutePatterns = [
                 'admin.menu-settings*',
                 'admin.buff.*',
                 'admin.proxies.*',
+                'admin.card-exchanges*',
+                'admin.customer-durations*',
+                'admin.banned-ips*',
+                'admin.suspicious-ips*',
+                'admin.affiliates*',
+                'admin.seo-keywords*',
+                'admin.system-notifications*',
+                'admin.google-indexing*',
             ];
 
             foreach ($restrictedRoutePatterns as $pattern) {
                 if (\Illuminate\Support\Str::is($pattern, $routeName)) {
-                    abort(403, "Quyền hạn của bạn không đủ để truy cập khu vực hạ tầng này.");
+                    abort(403, "Quyền hạn của bạn không đủ để truy cập tính năng này.");
                 }
             }
         }

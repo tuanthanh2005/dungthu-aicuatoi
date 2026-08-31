@@ -7,7 +7,7 @@
     <title>@yield('title', 'Admin') — DungThu</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('images/aicuatoi-logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/dungthu.png') }}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -82,16 +82,6 @@
             <span class="nav-text">Dashboard</span>
         </a>
 
-        <div class="sidebar-divider"></div>
-
-        @if(auth()->user()->role === 'blog_editor')
-        <div class="sidebar-section-label">Nội dung</div>
-        <a href="{{ route('admin.blogs') }}"
-           class="sidebar-nav-item {{ request()->routeIs('admin.blogs*') ? 'active' : '' }}">
-            <span class="nav-icon"><i class="fas fa-blog"></i></span>
-            <span class="nav-text">Blog</span>
-        </a>
-        @else
         <!-- Sản phẩm -->
         <div class="sidebar-section-label">Sản phẩm</div>
         <a href="{{ route('admin.products') }}"
@@ -109,11 +99,13 @@
             <span class="nav-icon"><i class="fas fa-star"></i></span>
             <span class="nav-text">Tính năng SP</span>
         </a>
+        @if(auth()->user()->role === 'sieusuperadmin')
         <a href="{{ route('admin.products', ['flash_sale' => 1]) }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.products') && request('flash_sale') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-bolt"></i></span>
             <span class="nav-text">Flash Sale</span>
         </a>
+        @endif
 
         @if(auth()->user()->role === 'sieusuperadmin')
         <div class="sidebar-divider"></div>
@@ -158,12 +150,14 @@
             <span class="nav-text">Đơn hàng</span>
             <span class="nav-badge" id="sidebarOrderBadge" style="display: none;">0</span>
         </a>
+        @if(auth()->user()->role === 'sieusuperadmin')
         <a href="{{ route('admin.card-exchanges') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.card-exchanges*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-credit-card"></i></span>
             <span class="nav-text">Đổi thẻ cào</span>
             <span class="nav-badge" id="sidebarCardExchangeBadge" style="display: none;">0</span>
         </a>
+        @endif
         <a href="{{ route('admin.abandoned-carts') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.abandoned-carts*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-shopping-basket"></i></span>
@@ -176,11 +170,13 @@
             <span class="nav-text">Pre-orders</span>
             <span class="nav-badge" id="sidebarPreorderBadge" style="display: none;">0</span>
         </a>
+        @if(auth()->user()->role === 'sieusuperadmin')
         <a href="{{ route('admin.customer-durations') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.customer-durations*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-user-clock"></i></span>
             <span class="nav-text">Thời hạn khách</span>
         </a>
+        @endif
 
         <div class="sidebar-divider"></div>
         <!-- Người dùng -->
@@ -191,6 +187,7 @@
             <span class="nav-text">Khách đang xem</span>
             <span class="nav-badge bg-success" id="sidebarOnlineUsersBadge" style="display: none;">0</span>
         </a>
+        @if(auth()->user()->role === 'sieusuperadmin')
         <a href="{{ route('admin.banned-ips.index') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.banned-ips*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-user-slash text-danger"></i></span>
@@ -201,12 +198,14 @@
             <span class="nav-icon"><i class="fas fa-shield-virus text-warning"></i></span>
             <span class="nav-text">IP Nghi Ngờ & Bảo Mật</span>
         </a>
+        @endif
         <a href="{{ route('admin.users') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.users') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-users"></i></span>
             <span class="nav-text">Danh sách User</span>
         </a>
 
+        @if(auth()->user()->role === 'sieusuperadmin')
         <div class="sidebar-divider"></div>
         <!-- Đối tác -->
         <div class="sidebar-section-label">Cộng tác viên</div>
@@ -216,6 +215,7 @@
             <span class="nav-text">Cộng tác viên</span>
             <span class="nav-badge" id="sidebarAffiliateBadge" style="display: none;">0</span>
         </a>
+        @endif
 
         <!-- Nội dung -->
         <div class="sidebar-divider"></div>
@@ -230,11 +230,13 @@
             <span class="nav-icon"><i class="fas fa-tags"></i></span>
             <span class="nav-text">Chủ đề Blog</span>
         </a>
+        @if(auth()->user()->role === 'sieusuperadmin')
         <a href="{{ route('admin.seo-keywords') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.seo-keywords*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-search"></i></span>
             <span class="nav-text">Từ khóa SEO</span>
         </a>
+        @endif
 
         <!-- Hệ thống -->
         <div class="sidebar-divider"></div>
@@ -251,7 +253,6 @@
             <span class="nav-icon"><i class="fas fa-sliders-h"></i></span>
             <span class="nav-text">Menu Settings</span>
         </a>
-        @endif
         <a href="{{ route('admin.system-notifications') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.system-notifications*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-bullhorn"></i></span>
@@ -263,7 +264,6 @@
             <span class="nav-text">Google Indexing</span>
         </a>
         @endif
-
         @endif {{-- blog_editor --}}
 
     </nav>
