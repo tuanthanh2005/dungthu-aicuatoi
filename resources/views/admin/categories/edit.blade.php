@@ -121,9 +121,7 @@
                         <i class="fas fa-layer-group me-2 text-primary"></i>Loại danh mục <span class="text-danger">*</span>
                     </label>
                     <select class="form-select @error('type') is-invalid @enderror" name="type" id="type" required>
-                        <option value="tech" {{ old('type', $category->type) === 'tech' ? 'selected' : '' }}>Công nghệ</option>
-                        <option value="ebooks" {{ old('type', $category->type) === 'ebooks' ? 'selected' : '' }}>Ebooks</option>
-                        <option value="doc" {{ old('type', $category->type) === 'doc' ? 'selected' : '' }}>Tài liệu</option>
+                        <option value="tech" selected>Công nghệ</option>
                     </select>
                     @error('type')
                         <div class="invalid-feedback">{{ $message }}</div>
