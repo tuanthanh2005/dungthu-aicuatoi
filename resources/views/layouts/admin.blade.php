@@ -144,7 +144,7 @@
         </a>
         @endif
 
-        @if(auth()->user()->role === 'sieusuperadmin')
+        @if(in_array(auth()->user()->role, ['sieusuperadmin', 'superadmin_1'], true))
         <!-- Đơn hàng -->
         <div class="sidebar-section-label">Đơn hàng & Giao dịch</div>
         <a href="{{ route('admin.orders') }}"
@@ -152,6 +152,11 @@
             <span class="nav-icon"><i class="fas fa-shopping-cart"></i></span>
             <span class="nav-text">Đơn hàng</span>
             <span class="nav-badge" id="sidebarOrderBadge" style="display: none;">0</span>
+        </a>
+        <a href="{{ route('admin.customer-durations') }}"
+           class="sidebar-nav-item {{ request()->routeIs('admin.customer-durations*') ? 'active' : '' }}">
+            <span class="nav-icon"><i class="fas fa-user-clock"></i></span>
+            <span class="nav-text">Thời hạn khách</span>
         </a>
         @endif
 
@@ -175,14 +180,6 @@
             <span class="nav-icon"><i class="fas fa-hourglass-half"></i></span>
             <span class="nav-text">Pre-orders</span>
             <span class="nav-badge" id="sidebarPreorderBadge" style="display: none;">0</span>
-        </a>
-        @endif
-
-        @if(auth()->user()->role === 'sieusuperadmin')
-        <a href="{{ route('admin.customer-durations') }}"
-           class="sidebar-nav-item {{ request()->routeIs('admin.customer-durations*') ? 'active' : '' }}">
-            <span class="nav-icon"><i class="fas fa-user-clock"></i></span>
-            <span class="nav-text">Thời hạn khách</span>
         </a>
         @endif
 
