@@ -28,6 +28,24 @@
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
     @stack('styles')
+    
+    <!-- Tạm thời ẩn tất cả các nút/form xóa để tránh bị hack xóa dữ liệu -->
+    <style>
+        form[action*="delete"], 
+        form[action*="destroy"], 
+        .btn-danger, 
+        .btn-outline-danger, 
+        .btn-delete,
+        .ajax-delete-form,
+        button[title*="Xóa"],
+        button[title*="Delete"],
+        a[title*="Xóa"],
+        a[title*="Delete"],
+        i.fa-trash,
+        i.fa-trash-alt {
+            display: none !important;
+        }
+    </style>
 </head>
 <body class="admin-body">
 
@@ -66,11 +84,11 @@
 
         <div class="sidebar-divider"></div>
 
-        @if(in_array(auth()->user()->role, ['sieusuperadmin', 'superadmin_1'], true))
+        @if(auth()->user()->role === 'sieusuperadmin')
         <!-- Sản phẩm -->
         <div class="sidebar-section-label">Sản phẩm</div>
         <a href="{{ route('admin.products') }}"
-           class="sidebar-nav-item {{ request()->routeIs('admin.products*') && !request('flash_sale') ? 'active' : '' }}">
+           class="sidebar-nav-item {{ request()->routeIs('admin.products*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-box"></i></span>
             <span class="nav-text">Sản phẩm</span>
         </a>
@@ -91,7 +109,7 @@
         </a>
         @endif
 
-        @if(auth()->user()->role === 'sieusuperadmin')
+        @if(auth()->user()->role === 'superadmin_1')
         <div class="sidebar-divider"></div>
 
         <!-- Buff Service -->
@@ -124,7 +142,7 @@
         </a>
         @endif
 
-        @if(in_array(auth()->user()->role, ['sieusuperadmin', 'superadmin_1'], true))
+        @if(auth()->user()->role === 'sieusuperadmin')
         <!-- Đơn hàng -->
         <div class="sidebar-section-label">Đơn hàng & Giao dịch</div>
         <a href="{{ route('admin.orders') }}"
@@ -133,15 +151,10 @@
             <span class="nav-text">Đơn hàng</span>
             <span class="nav-badge" id="sidebarOrderBadge" style="display: none;">0</span>
         </a>
-        <a href="{{ route('admin.customer-durations') }}"
-           class="sidebar-nav-item {{ request()->routeIs('admin.customer-durations*') ? 'active' : '' }}">
-            <span class="nav-icon"><i class="fas fa-user-clock"></i></span>
-            <span class="nav-text">Thời hạn khách</span>
-        </a>
         @endif
 
-        @if(auth()->user()->role === 'sieusuperadmin')
-        <!-- Giao dịch & Giỏ hàng -->
+        @if(auth()->user()->role === 'superadmin_1')
+        <!-- Đơn hàng & Giao dịch (Chỉ hiển thị Card Exchange, Giỏ bỏ quên, Preorders cho Superadmin) -->
         <div class="sidebar-section-label">Giao dịch & Giỏ hàng</div>
         <a href="{{ route('admin.card-exchanges') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.card-exchanges*') ? 'active' : '' }}">
@@ -163,11 +176,18 @@
         </a>
         @endif
 
-        @if(in_array(auth()->user()->role, ['sieusuperadmin', 'superadmin_1'], true))
+        @if(auth()->user()->role === 'sieusuperadmin')
+        <a href="{{ route('admin.customer-durations') }}"
+           class="sidebar-nav-item {{ request()->routeIs('admin.customer-durations*') ? 'active' : '' }}">
+            <span class="nav-icon"><i class="fas fa-user-clock"></i></span>
+            <span class="nav-text">Thời hạn khách</span>
+        </a>
+        @endif
+
+        @if(auth()->user()->role === 'sieusuperadmin')
         <div class="sidebar-divider"></div>
         <!-- Người dùng -->
         <div class="sidebar-section-label">Người dùng</div>
-        @if(auth()->user()->role === 'sieusuperadmin')
         <a href="{{ route('admin.online-users.index') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.online-users*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-eye text-success"></i></span>
@@ -184,7 +204,6 @@
             <span class="nav-icon"><i class="fas fa-shield-virus text-warning"></i></span>
             <span class="nav-text">IP Nghi Ngờ & Bảo Mật</span>
         </a>
-        @endif
         <a href="{{ route('admin.users') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.users') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-users"></i></span>
@@ -192,7 +211,7 @@
         </a>
         @endif
 
-        @if(auth()->user()->role === 'sieusuperadmin')
+        @if(auth()->user()->role === 'superadmin_1')
         <div class="sidebar-divider"></div>
         <!-- Đối tác -->
         <div class="sidebar-section-label">Cộng tác viên</div>
@@ -204,7 +223,7 @@
         </a>
         @endif
 
-        @if(in_array(auth()->user()->role, ['sieusuperadmin', 'superadmin_1'], true))
+        @if(auth()->user()->role === 'sieusuperadmin')
         <!-- Nội dung -->
         <div class="sidebar-section-label">Nội dung</div>
         <a href="{{ route('admin.blogs') }}"
@@ -217,16 +236,16 @@
             <span class="nav-icon"><i class="fas fa-tags"></i></span>
             <span class="nav-text">Chủ đề Blog</span>
         </a>
-        @if(auth()->user()->role === 'sieusuperadmin')
+        @endif
+        @if(auth()->user()->role === 'superadmin_1')
         <a href="{{ route('admin.seo-keywords') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.seo-keywords*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-search"></i></span>
             <span class="nav-text">Từ khóa SEO</span>
         </a>
         @endif
-        @endif
 
-        @if(in_array(auth()->user()->role, ['sieusuperadmin', 'superadmin_1'], true))
+        @if(auth()->user()->role === 'sieusuperadmin')
         <!-- Hệ thống -->
         <div class="sidebar-section-label">Hệ thống</div>
         <a href="{{ route('admin.chat.index') }}"
@@ -235,23 +254,19 @@
             <span class="nav-text">Chat</span>
             <span class="nav-badge" id="sidebarChatBadge" style="display: none;">0</span>
         </a>
-        @if(auth()->user()->role === 'sieusuperadmin')
         <a href="{{ route('admin.menu-settings') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.menu-settings*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-sliders-h"></i></span>
             <span class="nav-text">Menu Settings</span>
         </a>
+        @endif
+
+        @if(auth()->user()->role === 'superadmin_1')
         <a href="{{ route('admin.system-notifications') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.system-notifications*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-bullhorn"></i></span>
             <span class="nav-text">Thông báo HT</span>
         </a>
-        <a href="{{ route('admin.google-indexing.index') }}"
-           class="sidebar-nav-item {{ request()->routeIs('admin.google-indexing*') ? 'active' : '' }}">
-            <span class="nav-icon"><i class="fab fa-google"></i></span>
-            <span class="nav-text">Google Indexing</span>
-        </a>
-        @endif
         @endif
 
         @endif {{-- blog_editor --}}
@@ -264,6 +279,10 @@
         <a href="{{ url('/') }}" class="sidebar-nav-item" target="_blank">
             <span class="nav-icon"><i class="fas fa-external-link-alt"></i></span>
             <span class="nav-text">Xem trang web</span>
+        </a>
+        <a href="javascript:void(0)" onclick="adminLockManual()" class="sidebar-nav-item" style="color: #fc8181;">
+            <span class="nav-icon"><i class="fas fa-lock"></i></span>
+            <span class="nav-text">Khóa Admin</span>
         </a>
     </div>
     @endif
@@ -301,6 +320,11 @@
         <!-- View Site -->
         <a href="{{ url('/') }}" class="topbar-icon-btn d-none d-sm-flex" target="_blank" title="Xem trang web">
             <i class="fas fa-globe"></i>
+        </a>
+
+        <!-- Lock -->
+        <a href="javascript:void(0)" onclick="adminLockManual()" class="topbar-icon-btn" title="Khóa Admin" style="border-color: #fed7d7; color: #fc8181;">
+            <i class="fas fa-lock"></i>
         </a>
 
         <!-- User -->
@@ -413,6 +437,28 @@ window.addEventListener('resize', function() {
 });
 
 // ========================
+// Admin Lock
+// ========================
+function adminLockManual() {
+    Swal.fire({
+        title: @json(__('Khóa Admin?')),
+        text: @json(__('Bạn sẽ cần nhập PIN để mở lại.')),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e74c3c',
+        cancelButtonColor: '#6b7280',
+        confirmButtonText: @json(__('Khóa ngay')),
+        cancelButtonText: @json(__('Hủy')),
+    }).then((result) => {
+        if (result.isConfirmed) {
+            sessionStorage.removeItem('admin_unlocked');
+            sessionStorage.removeItem('revenue_unlocked');
+            window.location.href = "{{ route('admin.lock') }}";
+        }
+    });
+}
+
+// ========================
 // Flash message auto-dismiss
 // ========================
 document.querySelectorAll('.admin-alert').forEach(function(el) {
@@ -434,6 +480,66 @@ document.querySelectorAll('.admin-alert').forEach(function(el) {
         }
     }, 5000);
 });
+
+// ========================
+// Admin PIN for POST/PUT/DELETE
+// ========================
+(function () {
+    function isAdminAction(form) {
+        try {
+            const action = form.getAttribute('action') || window.location.href;
+            const url = new URL(action, window.location.origin);
+            return url.pathname.startsWith('/admin');
+        } catch (e) { return false; }
+    }
+
+    function getIntendedMethod(form) {
+        const method = (form.getAttribute('method') || 'get').toLowerCase();
+        const override = form.querySelector('input[name="_method"]');
+        return (override ? override.value : method).toUpperCase();
+    }
+
+    document.addEventListener('submit', function (e) {
+        const form = e.target;
+        if (!(form instanceof HTMLFormElement)) return;
+        if (!isAdminAction(form)) return;
+        if (form.dataset.adminPinSkip === '1') return;
+
+        const intended = getIntendedMethod(form);
+        if (['GET', 'HEAD', 'OPTIONS'].includes(intended)) return;
+        if (form.dataset.adminPinVerified === '1') return;
+
+        e.preventDefault();
+
+        Swal.fire({
+            title: @json(__('Xác nhận thao tác')),
+            text: @json(__('Nhập mã PIN 8 số để xác nhận:')),
+            input: 'password',
+            inputAttributes: { maxlength: 8, pattern: '[0-9]{8}', inputmode: 'numeric' },
+            showCancelButton: true,
+            confirmButtonText: @json(__('Xác nhận')),
+            cancelButtonText: @json(__('Hủy')),
+            confirmButtonColor: '#667eea',
+        }).then((result) => {
+            if (!result.isConfirmed) return;
+            const pin = result.value;
+            if (!/^\d{8}$/.test(pin)) {
+                Swal.fire({ icon: 'error', title: @json(__('Lỗi')), text: @json(__('Mã PIN phải đúng 8 số.')) });
+                return;
+            }
+            let input = form.querySelector('input[name="admin_pin"]');
+            if (!input) {
+                input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'admin_pin';
+                form.appendChild(input);
+            }
+            input.value = pin;
+            form.dataset.adminPinVerified = '1';
+            form.submit();
+        });
+    }, true);
+})();
 </script>
 
 <style>

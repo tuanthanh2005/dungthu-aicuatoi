@@ -100,10 +100,7 @@
                     </form>
                 </div>
                 <div class="d-flex align-items-center gap-2 flex-wrap">
-                    <button type="button" class="btn btn-success rounded-pill px-4 btn-submit-all-index" data-url="{{ route('admin.google-indexing.submit-all-categories') }}">
-                        <i class="fab fa-google me-2"></i>Gửi Index Hàng Loạt
-                    </button>
-                    <a href="{{ route('admin.categories.create') }}" class="btn btn-primary rounded-pill px-4">
+                    <a href="{{ route('admin.categories.create') }}" class="btn btn-primary rounded-pill px-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
                         <i class="fas fa-plus me-2"></i>Thêm danh mục
                     </a>
                 </div>
@@ -168,9 +165,6 @@
                                 <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-sm btn-outline-primary me-1">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <button type="button" class="btn btn-sm btn-outline-success btn-submit-index me-1" data-url="{{ route('admin.google-indexing.submit-url') }}" data-target-url="{{ url('/shop?category_id=' . $category->id) }}" title="Gửi Index Google">
-                                    <i class="fab fa-google"></i>
-                                </button>
                                 <form action="{{ route('admin.categories.delete', $category) }}" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc muốn xóa danh mục này?')">
                                     @csrf
                                     @method('DELETE')
