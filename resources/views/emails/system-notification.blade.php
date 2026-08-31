@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="header">
-        <div class="logo">DungThu.com</div>
+        <div class="logo">AICuaToi.com</div>
         <h2>Xin chào {{ $user->name ?? 'bạn' }},</h2>
     </div>
 
@@ -27,8 +27,9 @@
     </div>
 
     <div class="footer">
-        <p>Cảm ơn bạn đã luôn đồng hành cùng DungThu.com!</p>
-        <p>&copy; {{ date('Y') }} DungThu.com. Tất cả các quyền được bảo lưu.</p>
+        <p>Cảm ơn bạn đã luôn đồng hành cùng AICuaToi.com!</p>
+        <p>&copy; {{ date('Y') }} AICuaToi.com. Tất cả các quyền được bảo lưu.</p>
     </div>
 </body>
 </html>
+

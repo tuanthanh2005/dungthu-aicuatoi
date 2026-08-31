@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Thanh Toán Đơn Buff') . ' - DungThu.com')
+@section('title', __('Thanh Toán Đơn Buff') . ' - AICuaToi.com')
 
 @push('styles')
 <style>
@@ -403,7 +403,7 @@
 
                     <div class="qr-info">
                         ✓ {{ __('Số tiền:') }} {{ $formatPrice($buffOrder->total_price) }}<br>
-                        ✓ {{ __('Nội dung:') }} DungThu Buff - {{ $buffOrder->order_code }}<br>
+                        ✓ {{ __('Nội dung:') }} AI Của Tôi Buff - {{ $buffOrder->order_code }}<br>
                         ✓ {{ __('Bạn sẽ nhận thông báo khi thanh toán thành công') }}
                     </div>
                 </div>
@@ -416,7 +416,7 @@
                         <p><strong>{{ __('Tên TK:') }}</strong> {{ config('services.vietqr.account_name') }}</p>
                         <p><strong>{{ __('Số TK:') }}</strong> {{ config('services.vietqr.account_number') }}</p>
                         <p><strong>{{ __('Số Tiền:') }}</strong> {{ $formatPrice($buffOrder->total_price) }}</p>
-                        <p style="margin-bottom: 0;"><strong>{{ __('Nội Dung:') }}</strong> DungThu Buff - {{ $buffOrder->order_code }}</p>
+                        <p style="margin-bottom: 0;"><strong>{{ __('Nội Dung:') }}</strong> AI Của Tôi Buff - {{ $buffOrder->order_code }}</p>
                     </div>
                 </div>
                 @endif
@@ -661,3 +661,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 @endpush
 @endsection
+

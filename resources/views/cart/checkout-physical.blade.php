@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Thanh Toán & Giao Hàng') . ' - DungThu.com')
+@section('title', __('Thanh Toán & Giao Hàng') . ' - AICuaToi.com')
 
 @php
     $formatPrice = function($amount) {
@@ -319,3 +319,4 @@
     }
 </script>
 @endpush
+

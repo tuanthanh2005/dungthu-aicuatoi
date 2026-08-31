@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Đặt Lại Mật Khẩu') . ' - DungThu.com')
+@section('title', __('Đặt Lại Mật Khẩu') . ' - AICuaToi.com')
 
 @push('styles')
     <style>
@@ -269,3 +269,4 @@
     });
 </script>
 @endsection
+

@@ -60,7 +60,7 @@
 
                 <div class="policy-section">
                     <h3>📋 {{ __('1. Thông Tin Chúng Tôi Thu Thập') }}</h3>
-                    <p>{{ __('DungThu.com thu thập những thông tin sau để phục vụ bạn tốt hơn:') }}</p>
+                    <p>{{ __('AICuaToi.com thu thập những thông tin sau để phục vụ bạn tốt hơn:') }}</p>
                     <ul>
                         <li>{{ __('Tên, email, số điện thoại khi bạn đăng ký tài khoản hoặc đặt hàng') }}</li>
                         <li>{{ __('Địa chỉ giao hàng để xử lý đơn hàng') }}</li>

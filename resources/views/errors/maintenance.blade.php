@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('Đang Bảo Trì') }} – DungThu.com</title>
+    <title>{{ __('Đang Bảo Trì') }} – AICuaToi.com</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -330,7 +330,7 @@
     {{-- Logo --}}
     <a href="{{ route('home') }}" class="logo">
         <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
-        <div class="logo-text">DungThu<span>.com</span></div>
+        <div class="logo-text">AI Của Tôi<span>.com</span></div>
     </a>
 
     {{-- Main Card --}}
@@ -369,7 +369,7 @@
         </div>
     </div>
 
-    <div class="footer-note">© {{ date('Y') }} DungThu.com  — {{ __('Hệ thống đang được cập nhật') }}</div>
+    <div class="footer-note">© {{ date('Y') }} AICuaToi.com  — {{ __('Hệ thống đang được cập nhật') }}</div>
 
     <script>
         // Generate particles
@@ -390,3 +390,4 @@
     </script>
 </body>
 </html>
+

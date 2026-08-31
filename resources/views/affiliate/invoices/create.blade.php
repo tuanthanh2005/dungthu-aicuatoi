@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Gửi hóa đơn mới') . ' | DungThu')
+@section('title', __('Gửi hóa đơn mới') . ' | AI Của Tôi')
 
 @push('styles')
 <style>
@@ -155,3 +155,4 @@
     });
 </script>
 @endpush
+

@@ -85,14 +85,14 @@
                             <!-- SEO Meta Title -->
                             <div class="col-12">
                                 <label for="title" class="form-label">Thẻ tiêu đề SEO (Meta Title) <span class="text-danger">*</span></label>
-                                <input type="text" name="title" id="title" class="form-control rounded-3" placeholder="Ví dụ: Mua tài khoản Kiro AI Pro giá rẻ - DungThu.com" value="{{ old('title', $keyword->title) }}" required>
+                                <input type="text" name="title" id="title" class="form-control rounded-3" placeholder="Ví dụ: Mua tài khoản Kiro AI Pro giá rẻ - AICuaToi.com" value="{{ old('title', $keyword->title) }}" required>
                                 <div class="form-text">Tiêu đề hiển thị trên tab trình duyệt và Google Search (Meta Title).</div>
                             </div>
 
                             <!-- SEO Meta Description -->
                             <div class="col-12">
                                 <label for="description" class="form-label">Mô tả SEO (Meta Description) <span class="text-danger">*</span></label>
-                                <textarea name="description" id="description" rows="3" class="form-control rounded-3" placeholder="Ví dụ: Danh sách tài khoản Kiro AI Pro và các gói Kiro đang bán tại DungThu.com, giá tốt, bảo hành uy tín..." required>{{ old('description', $keyword->description) }}</textarea>
+                                <textarea name="description" id="description" rows="3" class="form-control rounded-3" placeholder="Ví dụ: Danh sách tài khoản Kiro AI Pro và các gói Kiro đang bán tại AICuaToi.com, giá tốt, bảo hành uy tín..." required>{{ old('description', $keyword->description) }}</textarea>
                                 <div class="form-text">Đoạn mô tả ngắn hiển thị trên kết quả tìm kiếm của Google (Meta Description).</div>
                             </div>
 
@@ -147,3 +147,4 @@
     });
 </script>
 @endpush
+

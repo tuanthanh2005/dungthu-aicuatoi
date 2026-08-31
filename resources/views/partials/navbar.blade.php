@@ -16,10 +16,10 @@
     <div class="container-fluid px-3">
         {{-- Logo --}}
         <a class="navbar-brand d-flex align-items-center gap-2 me-0 me-sm-2" href="{{ route('home') }}">
-            <div class="brand-icon">
-                <i class="fa-solid fa-bolt"></i>
+            <div class="brand-icon" style="background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%); box-shadow: 0 2px 10px rgba(6, 182, 212, 0.35);">
+                <i class="fa-solid fa-robot"></i>
             </div>
-            <span>DungThu<span class="brand-dot">.com</span></span>
+            <span>AICuaToi<span class="brand-dot" style="color: #06b6d4; font-weight: 700;">.com</span></span>
         </a>
 
         {{-- Mobile Floating Live Online Badge (Click để mở rộng 3s rồi tự thu gọn lại) --}}

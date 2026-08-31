@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin bàn giao đơn hàng – DungThu.com</title>
+    <title>Thông tin bàn giao đơn hàng – AICuaToi.com</title>
     <style>
         * {
             margin: 0;
@@ -291,7 +291,7 @@
 
     <!-- HEADER -->
     <div class="header">
-        <div class="brand">✨ dungthu.com</div>
+        <div class="brand">✨ AICuaToi.com</div>
         <span class="check-icon">🔑</span>
         <h1>Thông tin bàn giao đơn hàng</h1>
         <p class="subtitle">Đơn #{{ $order->id }} – {{ $order->created_at->format('d/m/Y') }}</p>
@@ -303,7 +303,7 @@
         <!-- Greeting -->
         <p class="greeting">
             Xin chào <strong>{{ $order->customer_name ?? 'bạn' }}</strong>,<br>
-            Cảm ơn bạn đã mua sắm tại <strong>DungThu.com</strong>! Dưới đây là thông tin chi tiết về tài khoản / KEY kích hoạt của bạn.
+            Cảm ơn bạn đã mua sắm tại <strong>AICuaToi.com</strong>! Dưới đây là thông tin chi tiết về tài khoản / KEY kích hoạt của bạn.
         </p>
 
         <!-- DELIVERY CREDENTIALS CARD -->
@@ -380,7 +380,7 @@
 
         <!-- CTA -->
         <div class="cta-wrapper">
-            <a href="https://dungthu.com/user/orders" class="cta-btn">
+            <a href="https://AICuaToi.com/user/orders" class="cta-btn">
                 Xem Đơn Hàng Của Bạn
             </a>
         </div>
@@ -397,11 +397,12 @@
 
     <!-- FOOTER -->
     <div class="footer">
-        <div class="logo">🛍 DungThu.com</div>
+        <div class="logo">🛍 AICuaToi.com</div>
         <p>Email tự động – vui lòng không reply thư này.</p>
-        <p>© {{ date('Y') }} DungThu.com – Mua sắm thông minh, tiết kiệm tối đa.</p>
+        <p>© {{ date('Y') }} AICuaToi.com – Mua sắm thông minh, tiết kiệm tối đa.</p>
     </div>
 
 </div>
 </body>
 </html>
+

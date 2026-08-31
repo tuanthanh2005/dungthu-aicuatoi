@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', $seoTitle ?? __('Cửa Hàng - DungThu.com'))
-@section('meta_description', $seoDescription ?? __('Khám phá các sản phẩm số, tài khoản AI, tài liệu và dịch vụ đang bán tại DungThu.com.'))
+@section('title', $seoTitle ?? __('Cửa Hàng - AICuaToi.com'))
+@section('meta_description', $seoDescription ?? __('Khám phá các sản phẩm số, tài khoản AI, tài liệu và dịch vụ đang bán tại AICuaToi.com.'))
 @section('canonical', $canonical ?? route('shop'))
 
 @push('styles')
@@ -953,3 +953,4 @@
         });
     </script>
 @endpush
+

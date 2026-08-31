@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Cộng Đồng') . ' - DungThu.com')
+@section('title', __('Cộng Đồng') . ' - AICuaToi.com')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -201,3 +201,4 @@
         AOS.init({ duration: 800, once: true });
     </script>
 @endpush
+

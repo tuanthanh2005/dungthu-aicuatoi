@@ -1823,14 +1823,14 @@
             <!-- Part 1 -->
             <div class="marquee-item">
                 <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
-                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin AICuaToi.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
                 <span>•</span>
                 <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
                 <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
             </div>
             <div class="marquee-item">
                 <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
-                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin AICuaToi.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
                 <span>•</span>
                 <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
                 <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
@@ -1838,14 +1838,14 @@
             <!-- Part 2 (Duplicate for seamless loop) -->
             <div class="marquee-item">
                 <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
-                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin AICuaToi.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
                 <span>•</span>
                 <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
                 <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
             </div>
             <div class="marquee-item">
                 <i class="fa-solid fa-triangle-exclamation marquee-icon-warning"></i>
-                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin DungThu.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
+                <span>{{ __('CẢNH BÁO: Đang có đối tượng giả danh Fanpage / Admin AICuaToi.com. Chỉ giao dịch qua website hoặc trang liên hệ chính chủ!') }}</span>
                 <span>•</span>
                 <i class="fa-solid fa-clock" style="color: #38bdf8;"></i>
                 <span>{{ __('Giờ làm việc hỗ trợ khách hàng: 08:00 - 23:00 hàng ngày.') }}</span>
@@ -1859,8 +1859,8 @@
             <div class="hero-banner-card-centered">
                 <!-- Top Badges -->
                 <div class="hero-center-badges">
-                    <div class="hero-ai-badge-clean">
-                        <i class="fa-solid fa-bolt"></i> DungThu.com AI Hub
+                    <div class="hero-ai-badge-clean" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.1)); border-color: rgba(6, 182, 212, 0.3); color: #4f46e5;">
+                        <i class="fa-solid fa-robot" style="color: #06b6d4;"></i> AICuaToi.com AI Hub
                     </div>
                     <div class="hero-online-badge-clean" title="{{ __('Khách hàng đang online / xem sản phẩm thực tế') }}">
                         <span class="live-dot"></span>
@@ -2370,7 +2370,7 @@
                             data-bs-target="#advertisingModal">{{ __('Quảng cáo') }}</a>·
                         <a href="#" class="text-muted text-decoration-none" data-bs-toggle="modal"
                             data-bs-target="#contactModal">{{ __('Liên hệ') }}</a>
-                        <div class="w-100 mt-1">DungThu.com © {{ date('Y') }}</div>
+                        <div class="w-100 mt-1">AICuaToi.com © {{ date('Y') }}</div>
                     </div>
 
                 </div>

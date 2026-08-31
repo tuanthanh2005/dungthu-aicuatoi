@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'AI Chatbot Support - DungThu')
+@section('title', 'AI Chatbot Support - AI Của Tôi')
 
 @section('content')
     <div class="container-fluid py-5">
@@ -17,7 +17,7 @@
                             style="height: 500px; overflow-y: auto; border: 1px solid #ddd; padding: 15px; background-color: #f9f9f9; border-radius: 8px; margin-bottom: 20px;">
                             <!-- Chat messages will be loaded here -->
                             <div class="text-center text-muted my-5">
-                                <p>{{ __('👋 Chào bạn! Mình là AI tư vấn viên của DungThu.') }}</p>
+                                <p>{{ __('👋 Chào bạn! Mình là AI tư vấn viên của AI Của Tôi.') }}</p>
                                 <p>{{ __('Bạn có thể hỏi tôi về:') }}</p>
                                 <ul class="list-unstyled">
                                     <li>💻 Digital Products</li>

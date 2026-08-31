@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Đổi Thẻ Cào') . ' - DungThu.com')
+@section('title', __('Đổi Thẻ Cào') . ' - AICuaToi.com')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -308,7 +308,7 @@
                             <i class="fas fa-clipboard-check text-primary me-2"></i>{{ __('Chính sách đổi thẻ') }}
                         </h6>
                         <ul class="text-muted mb-2 ps-3" style="font-size: 0.85rem;">
-                            <li>{{ __('DungThu.com là website đổi thẻ cào uy tín. Bạn có thể đổi thẻ điện thoại, thẻ game thành tiền về ngân hàng.') }}</li>
+                            <li>{{ __('AICuaToi.com là website đổi thẻ cào uy tín. Bạn có thể đổi thẻ điện thoại, thẻ game thành tiền về ngân hàng.') }}</li>
                             <li>{{ __('Không nhận các thẻ mua từ nguồn không hợp lệ. Vi phạm sẽ bị khóa tài khoản.') }}</li>
                         </ul>
                         <div class="small">
@@ -766,3 +766,4 @@
         })();
     </script>
 @endpush
+

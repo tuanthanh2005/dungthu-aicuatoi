@@ -79,7 +79,7 @@
                             <!-- SEO Meta Title -->
                             <div class="col-12">
                                 <label for="title" class="form-label">Thẻ tiêu đề SEO (Meta Title) <span class="text-danger">*</span></label>
-                                <input type="text" name="title" id="title" class="form-control rounded-3" placeholder="Ví dụ: Hướng dẫn học và lập trình AI hiệu quả - DungThu.com" value="{{ old('title') }}" required>
+                                <input type="text" name="title" id="title" class="form-control rounded-3" placeholder="Ví dụ: Hướng dẫn học và lập trình AI hiệu quả - AICuaToi.com" value="{{ old('title') }}" required>
                                 <div class="form-text">Tiêu đề hiển thị trên tab trình duyệt và Google Search.</div>
                             </div>
 
@@ -152,12 +152,13 @@
                 headingInput.value = `Bài viết chia sẻ kinh nghiệm về ${label}`;
             }
             if (titleInput.value.trim() === '') {
-                titleInput.value = `Blog ${label} - Tổng hợp bài viết hay nhất - DungThu.com`;
+                titleInput.value = `Blog ${label} - Tổng hợp bài viết hay nhất - AICuaToi.com`;
             }
             if (descriptionInput.value.trim() === '') {
-                descriptionInput.value = `Tổng hợp các bài viết chia sẻ kinh nghiệm, thủ thuật, hướng dẫn sử dụng và cập nhật thông tin mới nhất về chủ đề ${label} tại DungThu.com.`;
+                descriptionInput.value = `Tổng hợp các bài viết chia sẻ kinh nghiệm, thủ thuật, hướng dẫn sử dụng và cập nhật thông tin mới nhất về chủ đề ${label} tại AICuaToi.com.`;
             }
         }
     });
 </script>
 @endpush
+

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Đăng Ký') . ' - DungThu.com')
+@section('title', __('Đăng Ký') . ' - AICuaToi.com')
 
 @push('styles')
     <style>
@@ -258,7 +258,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body p-4 small text-muted">
-                <p>{{ __('Chào mừng bạn đến với DungThu.com. Khi đăng ký tài khoản, bạn đồng ý tuân thủ các điều khoản sau:') }}</p>
+                <p>{{ __('Chào mừng bạn đến với AICuaToi.com. Khi đăng ký tài khoản, bạn đồng ý tuân thủ các điều khoản sau:') }}</p>
                 <ul class="ps-3">
                     <li>{{ __('Sử dụng dịch vụ đúng mục đích, không vi phạm pháp luật.') }}</li>
                     <li>{{ __('Bảo mật thông tin tài khoản cá nhân.') }}</li>

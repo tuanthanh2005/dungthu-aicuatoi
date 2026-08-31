@@ -79,14 +79,14 @@
                             <!-- SEO Meta Title -->
                             <div class="col-12">
                                 <label for="title" class="form-label">Thẻ tiêu đề SEO (Meta Title) <span class="text-danger">*</span></label>
-                                <input type="text" name="title" id="title" class="form-control rounded-3" placeholder="Ví dụ: Mua tài khoản Kiro AI Pro giá rẻ - DungThu.com" value="{{ old('title') }}" required>
+                                <input type="text" name="title" id="title" class="form-control rounded-3" placeholder="Ví dụ: Mua tài khoản Kiro AI Pro giá rẻ - AICuaToi.com" value="{{ old('title') }}" required>
                                 <div class="form-text">Tiêu đề hiển thị trên tab trình duyệt và Google Search (Meta Title).</div>
                             </div>
 
                             <!-- SEO Meta Description -->
                             <div class="col-12">
                                 <label for="description" class="form-label">Mô tả SEO (Meta Description) <span class="text-danger">*</span></label>
-                                <textarea name="description" id="description" rows="3" class="form-control rounded-3" placeholder="Ví dụ: Danh sách tài khoản Kiro AI Pro và các gói Kiro đang bán tại DungThu.com, giá tốt, bảo hành uy tín..." required>{{ old('description') }}</textarea>
+                                <textarea name="description" id="description" rows="3" class="form-control rounded-3" placeholder="Ví dụ: Danh sách tài khoản Kiro AI Pro và các gói Kiro đang bán tại AICuaToi.com, giá tốt, bảo hành uy tín..." required>{{ old('description') }}</textarea>
                                 <div class="form-text">Đoạn mô tả ngắn hiển thị trên kết quả tìm kiếm của Google (Meta Description).</div>
                             </div>
 
@@ -152,12 +152,13 @@
                 headingInput.value = `Mua tài khoản ${label} giá rẻ`;
             }
             if (titleInput.value.trim() === '') {
-                titleInput.value = `Mua tài khoản ${label} giá rẻ - DungThu.com`;
+                titleInput.value = `Mua tài khoản ${label} giá rẻ - AICuaToi.com`;
             }
             if (descriptionInput.value.trim() === '') {
-                descriptionInput.value = `Danh sách tài khoản ${label} giá rẻ và các gói ${label} đang bán tại DungThu.com, giá tốt, giao nhanh, hỗ trợ đầy đủ.`;
+                descriptionInput.value = `Danh sách tài khoản ${label} giá rẻ và các gói ${label} đang bán tại AICuaToi.com, giá tốt, giao nhanh, hỗ trợ đầy đủ.`;
             }
         }
     });
 </script>
 @endpush
+

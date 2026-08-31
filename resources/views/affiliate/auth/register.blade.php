@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', __('Đăng ký Cộng tác viên') . ' | DungThu')
-@section('meta_description', __('Đăng ký trở thành cộng tác viên DungThu và kiếm thu nhập hấp dẫn.'))
+@section('title', __('Đăng ký Cộng tác viên') . ' | AI Của Tôi')
+@section('meta_description', __('Đăng ký trở thành cộng tác viên AI Của Tôi và kiếm thu nhập hấp dẫn.'))
 
 @push('styles')
 <style>
@@ -415,3 +415,4 @@ document.getElementById('submitBtn').addEventListener('click', function() {
 });
 </script>
 @endpush
+

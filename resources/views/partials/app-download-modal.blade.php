@@ -7,7 +7,7 @@
             <div class="modal-header text-white p-3 p-sm-4 border-0 position-relative" style="background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%);">
                 <div class="d-flex align-items-center gap-3">
                     <div class="bg-white p-2 rounded-3 shadow-sm d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
-                        <img src="{{ asset('images/dungthu.png') }}" alt="Dùng Thử App Logo" 
+                        <img src="{{ asset('images/AI Của Tôi.png') }}" alt="Dùng Thử App Logo" 
                              onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';" 
                              style="width: 34px; height: 34px; object-fit: contain;">
                         <div class="align-items-center justify-content-center text-warning" style="display: none; width: 34px; height: 34px; font-size: 22px;">
@@ -320,3 +320,4 @@
         });
     });
 </script>
+

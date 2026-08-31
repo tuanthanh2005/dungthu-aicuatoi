@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đơn hàng đã được duyệt – DungThu.com</title>
+    <title>Đơn hàng đã được duyệt – AICuaToi.com</title>
     <style>
         * {
             margin: 0;
@@ -249,7 +249,7 @@
 
     <!-- HEADER -->
     <div class="header">
-        <div class="brand">✨ dungthu.com</div>
+        <div class="brand">✨ AICuaToi.com</div>
         <span class="check-icon">🎉</span>
         <h1>Đơn hàng đã được duyệt!</h1>
         <p class="subtitle">Đơn #{{ $order->id }} – {{ $order->created_at->format('d/m/Y') }}</p>
@@ -260,7 +260,7 @@
 
         <!-- Thank-you banner -->
         <div class="thank-you-banner">
-            <div class="site-name">🛍 DUNGTHU.COM</div>
+            <div class="site-name">🛍 AICuaToi.com</div>
             <div class="message">Cảm ơn bạn đã đặt hàng bên mình nhé !!!</div>
             <div class="emoji-row">💜 🙏 💜</div>
         </div>
@@ -269,7 +269,7 @@
         <p class="greeting">
             Xin chào <strong>{{ $order->customer_name ?? 'bạn' }}</strong>,<br>
             Đơn hàng của bạn đã được admin <strong>xác nhận &amp; duyệt thành công</strong>.
-            Cảm ơn bạn đã tin tưởng và ủng hộ <strong>DungThu.com</strong> 💜
+            Cảm ơn bạn đã tin tưởng và ủng hộ <strong>AICuaToi.com</strong> 💜
         </p>
 
         <!-- Order info -->
@@ -319,7 +319,7 @@
 
         <!-- CTA -->
         <div class="cta-wrapper">
-            <a href="https://dungthu.com/user/orders" class="cta-btn">
+            <a href="https://AICuaToi.com/user/orders" class="cta-btn">
                 Xem Chi Tiết
             </a>
         </div>
@@ -335,11 +335,12 @@
 
     <!-- FOOTER -->
     <div class="footer">
-        <div class="logo">🛍 DungThu.com</div>
+        <div class="logo">🛍 AICuaToi.com</div>
         <p>Email tự động – vui lòng không reply.</p>
-        <p>© {{ date('Y') }} DungThu.com – Mua sắm thông minh, tiết kiệm tối đa.</p>
+        <p>© {{ date('Y') }} AICuaToi.com – Mua sắm thông minh, tiết kiệm tối đa.</p>
     </div>
 
 </div>
 </body>
 </html>
+

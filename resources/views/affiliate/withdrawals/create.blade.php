@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Tạo yêu cầu rút tiền') . ' | DungThu')
+@section('title', __('Tạo yêu cầu rút tiền') . ' | AI Của Tôi')
 
 @push('styles')
     <style>

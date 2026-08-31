@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Quên Mật Khẩu') . ' - DungThu.com')
+@section('title', __('Quên Mật Khẩu') . ' - AICuaToi.com')
 
 @push('styles')
     <style>
@@ -225,3 +225,4 @@
     </div>
 </div>
 @endsection
+

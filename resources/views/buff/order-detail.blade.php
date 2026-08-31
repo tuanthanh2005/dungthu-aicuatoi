@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Chi Tiết Đơn Buff - DungThu.com')
+@section('title', 'Chi Tiết Đơn Buff - AICuaToi.com')
 
 @push('styles')
 <style>
@@ -589,3 +589,4 @@
     </div>
 </main>
 @endsection
+

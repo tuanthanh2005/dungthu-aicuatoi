@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', __('Đăng nhập Cộng tác viên') . ' | DungThu')
-@section('meta_description', __('Đăng nhập vào trang quản lý cộng tác viên DungThu.com'))
+@section('title', __('Đăng nhập Cộng tác viên') . ' | AI Của Tôi')
+@section('meta_description', __('Đăng nhập vào trang quản lý cộng tác viên AICuaToi.com'))
 
 @push('styles')
 <style>
@@ -303,3 +303,4 @@
     </div>
 </div>
 @endsection
+

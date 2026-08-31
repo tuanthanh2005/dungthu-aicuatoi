@@ -211,9 +211,10 @@
 
         <!-- Footer -->
         <div class="footer">
-            <p style="font-size: 14px;"><strong>DungThu.com</strong></p>
+            <p style="font-size: 14px;"><strong>AICuaToi.com</strong></p>
             <p style="font-size: 12px;">Email tự động – vui lòng không reply.</p>
         </div>
     </div>
 </body>
 </html>
+

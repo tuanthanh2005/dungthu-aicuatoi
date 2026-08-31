@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $product->name . ' - DungThu.com')
+@section('title', $product->name . ' - AICuaToi.com')
 @section('meta_description', Str::limit(strip_tags($product->description), 160))
 @section('og_image', asset($product->image))
 @section('canonical', route('product.show', $product->slug))
@@ -16,7 +16,7 @@
             'url' => route('product.show', $product->slug),
             'brand' => [
                 '@type' => 'Brand',
-                'name' => 'DungThu.com',
+                'name' => 'AICuaToi.com',
             ],
             'offers' => [
                 '@type' => 'Offer',
@@ -568,3 +568,4 @@
         AOS.init({ duration: 800, once: true });
     </script>
 @endpush
+

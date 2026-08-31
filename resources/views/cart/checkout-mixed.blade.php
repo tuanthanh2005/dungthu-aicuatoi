@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Thanh Toán') . ' - DungThu.com')
+@section('title', __('Thanh Toán') . ' - AICuaToi.com')
 
 @php
     $formatPrice = function($amount) {
@@ -956,3 +956,4 @@
     updateSubmitButtonState();
 </script>
 @endpush
+

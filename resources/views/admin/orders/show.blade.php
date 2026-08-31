@@ -306,7 +306,7 @@
             
             <!-- Digital Product Manual Delivery Form -->
             @php
-                $defaultNote = "Chào " . ($order->customer_name ?? 'bạn') . ",\n\nCảm ơn bạn đã ủng hộ DungThu.com. Dưới đây là thông tin bàn giao cho đơn hàng của bạn:\n";
+                $defaultNote = "Chào " . ($order->customer_name ?? 'bạn') . ",\n\nCảm ơn bạn đã ủng hộ AICuaToi.com. Dưới đây là thông tin bàn giao cho đơn hàng của bạn:\n";
                 foreach($order->orderItems as $item) {
                     $defaultNote .= "• " . ($item->product->name ?? 'Sản phẩm') . " (SL: " . $item->quantity . ")\n";
                 }
@@ -416,3 +416,4 @@
     AOS.init({ duration: 800, once: true });
 </script>
 @endpush
+

@@ -3,7 +3,7 @@
 
 Xin chào!
 
-Bạn vừa yêu cầu đặt lại mật khẩu cho tài khoản của bạn trên **DungThu.com**.
+Bạn vừa yêu cầu đặt lại mật khẩu cho tài khoản của bạn trên **AICuaToi.com**.
 
 @component('mail::button', ['url' => $resetUrl])
 Đặt Lại Mật Khẩu
@@ -22,9 +22,10 @@ Nếu nút trên không hoạt động, hãy copy và paste URL này vào trình
 **Cần trợ giúp?** Liên hệ chúng tôi tại [tranthanhtuanfix@gmail.com](mailto:tranthanhtuanfix@gmail.com)
 
 Trân trọng,
-**Đội ngũ DungThu.com**
+**Đội ngũ AICuaToi.com**
 
 @component('mail::subcopy')
 Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.
 @endcomponent
 @endcomponent
+

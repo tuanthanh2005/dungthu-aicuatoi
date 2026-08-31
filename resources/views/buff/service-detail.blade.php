@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $buffService->name . ' - DungThu.com')
+@section('title', $buffService->name . ' - AICuaToi.com')
 
 @push('styles')
     <style>

@@ -67,7 +67,7 @@
                     <i class="fas fa-rocket me-2"></i>{{ __('Sứ Mệnh') }}
                 </h3>
                 <p style="font-size: 16px; line-height: 1.8; margin-bottom: 30px;">
-                    {{ __('DungThu.com là nền tảng cung cấp giải pháp công nghệ, thời trang và công cụ Marketing miễn phí cho cộng') }}
+                    {{ __('AICuaToi.com là nền tảng cung cấp giải pháp công nghệ, thời trang và công cụ Marketing miễn phí cho cộng') }}
                     {{ __('đồng Việt Nam.') }}
                     {{ __('Chúng tôi cam kết mang đến những sản phẩm chất lượng với giá cạnh tranh nhất.') }}
                 </p>
@@ -107,7 +107,7 @@
                 </div>
 
                 <h3 class="section-title mt-5">
-                    <i class="fas fa-handshake me-2"></i>{{ __('Tại Sao Tin Tưởng DungThu?') }}
+                    <i class="fas fa-handshake me-2"></i>{{ __('Tại Sao Tin Tưởng AI Của Tôi?') }}
                 </h3>
                 <ul style="font-size: 16px; line-height: 2; margin-bottom: 30px;">
                     <li><i class="fas fa-check text-success me-2"></i><strong>{{ __('Kinh Nghiệm') }}:</strong> {{ __('Nhiều năm phục vụ khách') }}

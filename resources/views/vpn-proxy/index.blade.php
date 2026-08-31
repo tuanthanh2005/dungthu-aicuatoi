@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('VPN Chuyên Nghiệp - DungThu.com'))
+@section('title', __('VPN Chuyên Nghiệp - AICuaToi.com'))
 @section('meta_description', __('Dịch vụ VPN tốc độ cao, ổn định, bảo mật. Đa dạng quốc gia, IP sạch, phù hợp cho cá nhân và doanh nghiệp.'))
 
 @push('styles')
@@ -112,3 +112,4 @@
     @endif
 </div>
 @endsection
+

@@ -126,8 +126,8 @@
                 </h1>
 
                 <div class="ad-section">
-                    <h3>📢 {{ __('Cơ Hội Quảng Cáo Với DungThu') }}</h3>
-                    <p>{{ __('DungThu.com là một nền tảng bán hàng trực tuyến với hàng ngàn khách hàng tiềm năng hàng tháng. Chúng tôi cung cấp các giải pháp quảng cáo linh hoạt giúp thương hiệu của bạn tiếp cận khán giả chính xác.') }}</p>
+                    <h3>📢 {{ __('Cơ Hội Quảng Cáo Với AI Của Tôi') }}</h3>
+                    <p>{{ __('AICuaToi.com là một nền tảng bán hàng trực tuyến với hàng ngàn khách hàng tiềm năng hàng tháng. Chúng tôi cung cấp các giải pháp quảng cáo linh hoạt giúp thương hiệu của bạn tiếp cận khán giả chính xác.') }}</p>
                 </div>
 
                 <div class="ad-section">
@@ -167,7 +167,7 @@
                 </div>
 
                 <div class="ad-section">
-                    <h3>✨ {{ __('Tại Sao Chọn DungThu?') }}</h3>
+                    <h3>✨ {{ __('Tại Sao Chọn AI Của Tôi?') }}</h3>
                     <ul>
                         <li><strong>{{ __('Khán giả chất lượng') }}:</strong> {{ __('Hàng ngàn người dùng hoạt động hàng tuần') }}</li>
                         <li><strong>{{ __('Vị trí quảng cáo chiến lược') }}:</strong> {{ __('Hiển thị ở các vị trí có tỷ lệ click cao') }}</li>
@@ -178,7 +178,7 @@
                 </div>
 
                 <div class="ad-section">
-                    <h3>📊 {{ __('Thống Kê DungThu') }}</h3>
+                    <h3>📊 {{ __('Thống Kê AI Của Tôi') }}</h3>
                     <ul>
                         <li>👥 <strong>+5.000</strong> {{ __('người dùng hoạt động hàng tháng') }}</li>
                         <li>📱 <strong>+10.000</strong> {{ __('lượt truy cập hàng tháng') }}</li>

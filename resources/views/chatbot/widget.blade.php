@@ -15,7 +15,7 @@ Usage: @include('chatbot.widget')
     <!-- Chat Window -->
     <div id="chatbot-window" class="chatbot-window hidden">
         <div class="chatbot-header">
-            <h5>💬 DungThu AI Support</h5>
+            <h5>💬 AI Của Tôi AI Support</h5>
             <button id="chatbot-close" class="chatbot-close">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -468,3 +468,4 @@ Usage: @include('chatbot.widget')
         initSession();
     });
 </script>
+

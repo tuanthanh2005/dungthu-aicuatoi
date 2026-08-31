@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Thanh Toán - DungThu.com'))
+@section('title', __('Thanh Toán - AICuaToi.com'))
 
 @section('content')
 @php
@@ -86,3 +86,4 @@
     </div>
 </div>
 @endsection
+

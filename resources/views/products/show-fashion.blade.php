@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $product->name . ' - DungThu.com')
+@section('title', $product->name . ' - AICuaToi.com')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -406,3 +406,4 @@
         });
     </script>
 @endpush
+

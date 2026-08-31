@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('Hồ sơ bị từ chối') . ' | CTV DungThu')
+@section('title', __('Hồ sơ bị từ chối') . ' | CTV AI Của Tôi')
 @section('content')
 <div style="min-height:100vh;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);display:flex;align-items:center;justify-content:center;padding:100px 20px 60px;">
     <div style="background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:56px 40px;max-width:520px;width:100%;text-align:center;box-shadow:0 25px 50px rgba(0,0,0,0.4);" data-aos="fade-up">
@@ -41,3 +41,4 @@
     </div>
 </div>
 @endsection
+

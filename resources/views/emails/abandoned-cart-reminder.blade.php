@@ -18,7 +18,7 @@
 </head>
 <body>
     <div class="header">
-        <div class="logo">DungThu.com</div>
+        <div class="logo">AICuaToi.com</div>
         <h2>Xin chào {{ $cart->user->name ?? 'bạn' }},</h2>
     </div>
 
@@ -49,7 +49,8 @@
 
     <div class="footer">
         <p>Nếu bạn cần hỗ trợ, vui lòng liên hệ với chúng tôi qua thông tin trên website.</p>
-        <p>&copy; {{ date('Y') }} DungThu.com. Tất cả các quyền được bảo lưu.</p>
+        <p>&copy; {{ date('Y') }} AICuaToi.com. Tất cả các quyền được bảo lưu.</p>
     </div>
 </body>
 </html>
+

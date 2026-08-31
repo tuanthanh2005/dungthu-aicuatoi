@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $blog->title . ' - DungThu.com')
+@section('title', $blog->title . ' - AICuaToi.com')
 @section('meta_description', $blog->excerpt)
 @section('og_image', $blog->image)
 @section('canonical', route('blog.show', $blog->slug))
@@ -18,14 +18,14 @@
             'dateModified' => $blog->updated_at->toIso8601String(),
             'author' => [
                 '@type' => 'Organization',
-                'name' => 'DungThu.com',
+                'name' => 'AICuaToi.com',
             ],
             'publisher' => [
                 '@type' => 'Organization',
-                'name' => 'DungThu.com',
+                'name' => 'AICuaToi.com',
                 'logo' => [
                     '@type' => 'ImageObject',
-                    'url' => asset('images/dungthu-seo.png'),
+                    'url' => asset('images/AI Của Tôi-seo.png'),
                 ],
             ],
         ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
@@ -484,7 +484,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div>
-                        <div class="fw-bold mb-1" style="font-size: 18px;">DungThu.com</div>
+                        <div class="fw-bold mb-1" style="font-size: 18px;">AICuaToi.com</div>
                         <p class="text-muted mb-0">{{ __('Chia sẻ kiến thức công nghệ và các công cụ hữu ích cho cộng đồng') }}</p>
                     </div>
                 </div>
@@ -614,3 +614,4 @@
         .custom-lang-selector:hover { border-color: #667eea !important; box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2) !important; }
     </style>
 @endpush
+

@@ -85,7 +85,7 @@
                             <!-- SEO Meta Title -->
                             <div class="col-12">
                                 <label for="title" class="form-label">Thẻ tiêu đề SEO (Meta Title) <span class="text-danger">*</span></label>
-                                <input type="text" name="title" id="title" class="form-control rounded-3" placeholder="Ví dụ: Hướng dẫn học và lập trình AI hiệu quả - DungThu.com" value="{{ old('title', $topic->title) }}" required>
+                                <input type="text" name="title" id="title" class="form-control rounded-3" placeholder="Ví dụ: Hướng dẫn học và lập trình AI hiệu quả - AICuaToi.com" value="{{ old('title', $topic->title) }}" required>
                                 <div class="form-text">Tiêu đề hiển thị trên tab trình duyệt và Google Search.</div>
                             </div>
 
@@ -147,3 +147,4 @@
     });
 </script>
 @endpush
+

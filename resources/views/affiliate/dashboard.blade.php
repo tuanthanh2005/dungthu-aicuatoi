@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Dashboard {{ __('Cộng tác viên') }}') . ' | DungThu')
+@section('title', __('Dashboard {{ __('Cộng tác viên') }}') . ' | AI Của Tôi')
 
 @push('styles')
 <style>
@@ -327,3 +327,4 @@
     </div>
 </div>
 @endsection
+

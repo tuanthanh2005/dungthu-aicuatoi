@@ -172,7 +172,7 @@
     <div class="email-container">
         <!-- Header -->
         <div class="header">
-            <h1>DungThu.com</h1>
+            <h1>AICuaToi.com</h1>
             <p>Hàng đã về - Nhận ngay ưu đãi!</p>
         </div>
 
@@ -211,10 +211,11 @@
 
         <!-- Footer -->
         <div class="footer">
-            <p>Cảm ơn bạn đã tin tưởng và đồng hành cùng DungThu.com!</p>
+            <p>Cảm ơn bạn đã tin tưởng và đồng hành cùng AICuaToi.com!</p>
             <p>Nếu có bất kỳ thắc mắc nào, vui lòng phản hồi email này hoặc liên hệ hotline chăm sóc khách hàng.</p>
-            <p>&copy; {{ date('Y') }} DungThu.com. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} AICuaToi.com. All rights reserved.</p>
         </div>
     </div>
 </body>
 </html>
+

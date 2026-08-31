@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', $seoTitle ?? 'Blog - DungThu.com')
-@section('meta_description', $seoDescription ?? __('Cập nhật xu hướng công nghệ, AI, tài khoản số, mẹo dùng tool và hướng dẫn sử dụng sản phẩm tại DungThu.com.'))
+@section('title', $seoTitle ?? 'Blog - AICuaToi.com')
+@section('meta_description', $seoDescription ?? __('Cập nhật xu hướng công nghệ, AI, tài khoản số, mẹo dùng tool và hướng dẫn sử dụng sản phẩm tại AICuaToi.com.'))
 @section('canonical', $canonical ?? route('blog.index'))
 
 @push('styles')
@@ -180,3 +180,4 @@
         });
     </script>
 @endpush
+

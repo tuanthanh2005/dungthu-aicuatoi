@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Chat với Admin') . ' - DungThu.com')
+@section('title', __('Chat với Admin') . ' - AICuaToi.com')
 
 @push('styles')
 <style>
@@ -620,7 +620,7 @@
                         <span class="online-indicator"></span>
                     </div>
                     <div class="admin-status">
-                        <h5>DungThu Support</h5>
+                        <h5>AI Của Tôi Support</h5>
                         <div class="status-text">
                             <i class="fas fa-circle" style="font-size: 7px;"></i>
                             <span>Online - {{ __('Sẵn sàng hỗ trợ') }}</span>
@@ -957,3 +957,4 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 @endpush
+

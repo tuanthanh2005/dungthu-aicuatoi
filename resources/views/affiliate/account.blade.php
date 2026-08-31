@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Cài đặt tài khoản') . ' | DungThu')
+@section('title', __('Cài đặt tài khoản') . ' | AI Của Tôi')
 
 @push('styles')
 <style>
@@ -166,3 +166,4 @@
     </div>
 </div>
 @endsection
+

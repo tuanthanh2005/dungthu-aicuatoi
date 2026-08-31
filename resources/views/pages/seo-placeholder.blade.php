@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', __('Mua tài khoản :title giá rẻ | Bản quyền chính hãng - DungThu.com', ['title' => $keywordTitle]))
-@section('meta_description', __('Dịch vụ cấp tài khoản :title Pro giá rẻ, uy tín, bảo hành đầy đủ tại DungThu.com. Đăng ký nhận thông báo pre-order ngay hôm nay.', ['title' => $keywordTitle]))
+@section('title', __('Mua tài khoản :title giá rẻ | Bản quyền chính hãng - AICuaToi.com', ['title' => $keywordTitle]))
+@section('meta_description', __('Dịch vụ cấp tài khoản :title Pro giá rẻ, uy tín, bảo hành đầy đủ tại AICuaToi.com. Đăng ký nhận thông báo pre-order ngay hôm nay.', ['title' => $keywordTitle]))
 @section('meta_keywords', 'mua tai khoan ' . strtolower($keywordTitle) . ', cap tai khoan ' . strtolower($keywordTitle) . ', ' . strtolower($keywordTitle) . ' gia re, ' . strtolower($keywordTitle) . ' pro')
 
 @push('styles')
@@ -200,7 +200,7 @@
         </h1>
         
         <p class="lead mx-auto mb-5 text-slate-300" style="max-width: 700px; color: #cbd5e1; font-size: 1.1rem; line-height: 1.6;">
-            DungThu.com đang tiến hành thử nghiệm, liên hệ nhà phát hành và chuẩn bị nguồn hàng bản quyền chất lượng cao nhất cho sản phẩm <strong>{{ $keywordTitle }}</strong>. {{ __('Đăng ký thông tin của bạn bên dưới để nằm trong danh sách nhận thông báo sớm nhất và nhận mã giảm giá 10% khi có hàng!') }}
+            AICuaToi.com đang tiến hành thử nghiệm, liên hệ nhà phát hành và chuẩn bị nguồn hàng bản quyền chất lượng cao nhất cho sản phẩm <strong>{{ $keywordTitle }}</strong>. {{ __('Đăng ký thông tin của bạn bên dưới để nằm trong danh sách nhận thông báo sớm nhất và nhận mã giảm giá 10% khi có hàng!') }}
         </p>
 
         <!-- Subscription Form -->
@@ -232,7 +232,7 @@
             <div class="col">
                 <div class="ai-card-custom">
                     <div class="ai-card-img-wrap">
-                        <img src="{{ $p->image ?? 'https://via.placeholder.com/300x225?text=DungThu+AI' }}" alt="{{ $p->name }}" loading="lazy">
+                        <img src="{{ $p->image ?? 'https://via.placeholder.com/300x225?text=AI Của Tôi+AI' }}" alt="{{ $p->name }}" loading="lazy">
                     </div>
                     <div class="ai-card-body">
                         <h3 class="ai-card-title">{{ $p->name }}</h3>
@@ -329,3 +329,4 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 @endpush
+
