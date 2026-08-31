@@ -302,7 +302,7 @@ class TelegramHelper
         }
         
         if ($message->image) {
-            $text .= "🖼 <b>Có đính kèm hình ảnh:</b> " . url($message->image) . "\n\n";
+            $text .= "🖼 <b>Hình ảnh:</b> <i>[Đính kèm 1 hình ảnh 🖼️]</i>\n\n";
         }
 
         $text .= "💡 <i>Bấm <b>Reply (Trả lời)</b> tin nhắn này trên Telegram để phản hồi lại khách hàng!</i>\n\n";
