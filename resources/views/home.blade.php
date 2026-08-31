@@ -203,14 +203,14 @@
         }
 
         .hero-btn-main {
-            background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+            background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%);
             color: #ffffff !important;
             font-weight: 700;
             font-size: 0.84rem;
             padding: 8px 22px;
             border-radius: 10px;
             border: none;
-            box-shadow: 0 3px 12px rgba(79, 70, 229, 0.3);
+            box-shadow: 0 3px 12px rgba(255, 94, 0, 0.25);
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
@@ -220,7 +220,7 @@
 
         .hero-btn-main:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(6, 182, 212, 0.45);
+            box-shadow: 0 8px 24px rgba(255, 94, 0, 0.45);
         }
 
         .hero-btn-sub {
@@ -1859,8 +1859,8 @@
             <div class="hero-banner-card-centered">
                 <!-- Top Badges -->
                 <div class="hero-center-badges">
-                    <div class="hero-ai-badge-clean">
-                        <i class="fa-solid fa-bolt"></i> DungThu.com AI Hub
+                    <div class="hero-ai-badge-clean" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.1)); border-color: rgba(6, 182, 212, 0.3); color: #4f46e5;">
+                        <i class="fa-solid fa-handshake" style="color: #06b6d4;"></i> AICuaToi.com — Đối Tác của DungThu.com
                     </div>
                     <div class="hero-online-badge-clean" title="{{ __('Khách hàng đang online / xem sản phẩm thực tế') }}">
                         <span class="live-dot"></span>
