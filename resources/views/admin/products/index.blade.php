@@ -176,7 +176,7 @@
                     <button type="button" class="btn btn-success rounded-pill px-4 btn-submit-all-index" data-url="{{ route('admin.google-indexing.submit-all-products') }}">
                         <i class="fab fa-google me-2"></i>Gửi Index Hàng Loạt
                     </button>
-                    <a href="{{ route('admin.products.create') }}" class="btn btn-primary rounded-pill px-4">
+                    <a href="{{ route('admin.products.create', 'tech') }}" class="btn btn-primary rounded-pill px-4">
                         <i class="fas fa-plus me-2"></i>Thêm
                     </a>
                 </div>
@@ -223,8 +223,6 @@
                     <select name="category" id="categorySelect" class="form-select form-select-sm rounded-pill px-3 fw-bold shadow-sm" style="width: auto; cursor: pointer; border-color: #cbd5e1; min-width: 150px;" onchange="this.form.submit()">
                         <option value="all" {{ !request('category') || request('category') == 'all' ? 'selected' : '' }}>Tất cả danh mục</option>
                         <option value="tech" {{ request('category') == 'tech' ? 'selected' : '' }}>💻 Công nghệ</option>
-                        <option value="ebooks" {{ request('category') == 'ebooks' ? 'selected' : '' }}>📚 Ebooks</option>
-                        <option value="doc" {{ request('category') == 'doc' ? 'selected' : '' }}>📄 Tài liệu</option>
                     </select>
                 </div>
 

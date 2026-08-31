@@ -789,10 +789,10 @@ class AdminController extends Controller
         return redirect()->back()->with('success', $message);
     }
 
-    public function createProduct($category = null)
+    public function createProduct($category = 'tech')
     {
         if ($category === null) {
-            return view('admin.products.create-select');
+            $category = 'tech';
         }
 
         if ($category && !in_array($category, ['tech', 'ebooks', 'doc'])) {

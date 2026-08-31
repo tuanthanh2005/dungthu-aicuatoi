@@ -116,34 +116,14 @@
                 <p class="text-center text-muted mt-2">Chọn danh mục phù hợp để thêm sản phẩm mới</p>
             </div>
 
-            <div class="category-grid">
+            <div class="category-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 320px)); justify-content: center;">
                 <a href="{{ route('admin.products.create', 'tech') }}" class="category-card tech">
                     <i class="fas fa-laptop"></i>
                     <h4>Công nghệ</h4>
-                    <p>Laptop, điện thoại, phụ kiện</p>
+                    <p>Laptop, điện thoại, phần mềm, tài khoản AI</p>
                     <small class="d-block mt-3 text-muted">
                         <i class="fas fa-info-circle me-1"></i>
-                        Có thông số kỹ thuật
-                    </small>
-                </a>
-
-                <a href="{{ route('admin.products.create', 'ebooks') }}" class="category-card ebooks">
-                    <i class="fas fa-file-pdf"></i>
-                    <h4>Ebooks</h4>
-                    <p>Tài liệu số, sách điện tử</p>
-                    <small class="d-block mt-3 text-muted">
-                        <i class="fas fa-info-circle me-1"></i>
-                        Có file tải về
-                    </small>
-                </a>
-
-                <a href="{{ route('admin.products.create', 'doc') }}" class="category-card doc">
-                    <i class="fas fa-book"></i>
-                    <h4>Tài liệu</h4>
-                    <p>Văn phòng phẩm, tài liệu in</p>
-                    <small class="d-block mt-3 text-muted">
-                        <i class="fas fa-info-circle me-1"></i>
-                        Có thông tin bao bì
+                        Có thông số kỹ thuật & gói thời hạn
                     </small>
                 </a>
             </div>
