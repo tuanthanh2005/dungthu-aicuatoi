@@ -173,9 +173,6 @@
                             <i class="fas fa-bolt me-2"></i><span>{{ $flashSaleEnabled ? 'Tắt' : 'Bật' }} Flash Sale</span>
                         </button>
                     </form>
-                    <button type="button" class="btn btn-success rounded-pill px-4 btn-submit-all-index" data-url="{{ route('admin.google-indexing.submit-all-products') }}">
-                        <i class="fab fa-google me-2"></i>Gửi Index Hàng Loạt
-                    </button>
                     <a href="{{ route('admin.products.create', 'tech') }}" class="btn btn-primary rounded-pill px-4">
                         <i class="fas fa-plus me-2"></i>Thêm
                     </a>
@@ -353,9 +350,6 @@
                                        title="Chỉnh sửa">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <button type="button" class="btn btn-sm btn-outline-success rounded-0 btn-submit-index" data-url="{{ route('admin.google-indexing.submit-url') }}" data-target-url="{{ url('/product/' . $product->slug) }}" title="Gửi Index Google">
-                                        <i class="fab fa-google"></i>
-                                    </button>
                                     <form action="{{ route('admin.products.clone', $product) }}" 
                                           method="POST" 
                                           class="d-inline"

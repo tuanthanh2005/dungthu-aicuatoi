@@ -60,9 +60,6 @@
                     <i class="fas fa-search-plus text-primary me-2"></i>Quản lý Từ khóa SEO tìm nhanh
                 </h3>
                 <div class="d-flex gap-2">
-                    <button type="button" class="btn btn-success px-4 py-2 rounded-pill shadow-sm btn-submit-all-index" data-url="{{ route('admin.seo-keywords.submit-all') }}">
-                        <i class="fab fa-google me-2"></i>Gửi Index Hàng Loạt
-                    </button>
                     <a href="{{ route('admin.seo-keywords.create') }}" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">
                         <i class="fas fa-plus-circle me-2"></i>Thêm từ khóa mới
                     </a>
@@ -107,25 +104,22 @@
                                     </td>
                                     <td>
                                         @if(is_array($k->aliases) && count($k->aliases) > 0)
-                                            @foreach($k->aliases as $alias)
-                                                <span class="keyword-badge">{{ $alias }}</span>
-                                            @endforeach
+                                             @foreach($k->aliases as $alias)
+                                                 <span class="keyword-badge">{{ $alias }}</span>
+                                             @endforeach
                                         @else
-                                            <span class="text-muted" style="font-size: 0.85rem;">Không có</span>
+                                             <span class="text-muted" style="font-size: 0.85rem;">Không có</span>
                                         @endif
                                     </td>
                                     <td class="text-center">
                                         @if($k->is_active)
-                                            <span class="badge bg-success rounded-pill px-3 py-2">Hoạt động</span>
+                                             <span class="badge bg-success rounded-pill px-3 py-2">Hoạt động</span>
                                         @else
-                                            <span class="badge bg-secondary rounded-pill px-3 py-2">Tắt</span>
+                                             <span class="badge bg-secondary rounded-pill px-3 py-2">Tắt</span>
                                         @endif
                                     </td>
                                     <td class="text-end">
                                         <div class="d-inline-flex gap-2">
-                                            <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 btn-submit-index" data-id="{{ $k->id }}" data-url="{{ route('admin.seo-keywords.submit-index', $k->id) }}">
-                                                <i class="fab fa-google me-1"></i>Gửi Index
-                                            </button>
                                             <a href="{{ route('admin.seo-keywords.edit', $k->id) }}" class="btn btn-sm btn-outline-info rounded-pill px-3">
                                                 <i class="fas fa-edit me-1"></i>Sửa
                                             </a>
