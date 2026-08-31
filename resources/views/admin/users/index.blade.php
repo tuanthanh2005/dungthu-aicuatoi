@@ -190,54 +190,6 @@
 
 @section('content')
 <div class="container-fluid px-0">
-        <!-- Navigation -->
-        <!-- Voucher Generator Card -->
-        <div class="admin-card mb-4">
-            <h4 class="fw-bold mb-4">
-                <i class="fas fa-ticket-alt text-warning me-2"></i>Tạo mã Voucher nhanh
-            </h4>
-            
-            <div class="row align-items-end g-3">
-                <div class="col-md-4">
-                    <label class="form-label fw-bold small text-muted">Chọn mệnh giá</label>
-                    <select id="voucher-preset-select" class="form-select rounded-3" onchange="toggleCustomVoucherInput(this)">
-                        <option value="2000">2.000đ</option>
-                        <option value="5000">5.000đ</option>
-                        <option value="10000" selected>10.000đ</option>
-                        <option value="15000">15.000đ</option>
-                        <option value="25000">25.000đ</option>
-                        <option value="50000">50.000đ</option>
-                        <option value="custom">Tùy chọn khác...</option>
-                    </select>
-                </div>
-                
-                <div class="col-md-4" id="custom-voucher-value-container" style="display: none;">
-                    <label class="form-label fw-bold small text-muted">Nhập số tiền giảm (VNĐ)</label>
-                    <input type="number" id="voucher-custom-value" class="form-control rounded-3" placeholder="Ví dụ: 100000" min="1000">
-                </div>
-                
-                <div class="col-md-4">
-                    <button type="button" class="view-btn w-100 py-2 rounded-3 text-center" onclick="generateVoucher()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <i class="fas fa-magic me-2"></i>Tạo mã Voucher
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Result display -->
-            <div id="voucher-result-container" class="mt-4 p-3 bg-light rounded-3 d-none">
-                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                    <div>
-                        <span class="text-muted small d-block">Mã Voucher vừa tạo:</span>
-                        <strong class="fs-4 text-danger font-monospace" id="generated-voucher-code">ADMIN10K-XXXXXX</strong>
-                        <span class="badge bg-success ms-2" id="generated-voucher-value">10.000đ</span>
-                    </div>
-                    <button class="view-btn py-2 px-4" onclick="copyGeneratedVoucher()" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                        <i class="fas fa-copy me-1"></i> Sao chép mã
-                    </button>
-                </div>
-            </div>
-        </div>
-
         <!-- User Management Card -->
         <div class="admin-card">
             <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
@@ -281,9 +233,10 @@
                                 <th style="width: 10%">Số ĐT</th>
                                 <th style="width: 8%" class="text-center">Số đơn</th>
                                 <th style="width: 10%" class="text-center">Lượt quay</th>
-                                <th style="width: 14%" class="text-end">Tổng chi tiêu</th>
-                                <th style="width: 12%">Ngày đăng ký</th>
-                                <th style="width: 13%" class="text-center">Thao tác</th>
+                                <th style="width: 12%" class="text-end">Tổng chi tiêu</th>
+                                <th style="width: 10%">Ngày đăng ký</th>
+                                <th style="width: 8%" class="text-center">Quyền</th>
+                                <th style="width: 11%" class="text-center">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -317,6 +270,17 @@
                                         <small class="text-muted">
                                             {{ $user->created_at->format('d/m/Y H:i') }}
                                         </small>
+                                    </td>
+                                    <td class="text-center">
+                                        <select 
+                                            class="role-dropdown role-select" 
+                                            data-user-id="{{ $user->id }}"
+                                            data-current-role="{{ $user->role }}"
+                                            onchange="updateUserRole(this)">
+                                            <option value="user" {{ $user->role === 'user' ? 'selected' : '' }}>User</option>
+                                            <option value="moderator" {{ $user->role === 'moderator' ? 'selected' : '' }}>Moderator</option>
+                                            <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>Admin</option>
+                                        </select>
                                     </td>
                                     <td class="text-center">
                                         <button onclick="awardTickets({{ $user->id }}, '{{ $user->name }}', {{ $user->spin_tickets }})" class="view-btn me-1" style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); padding: 6px 12px; font-size: 0.85rem;" title="Cấp lượt quay">
