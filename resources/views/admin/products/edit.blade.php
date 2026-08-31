@@ -549,18 +549,16 @@
                             $currentSpecs = count(array_filter($currentSpecs ?? [])) > 0 ? $currentSpecs : ['' => ''];
                         @endphp
                         @foreach($currentSpecs as $specKey => $specValue)
-                            <div class="row g-2 mb-2 spec-row-input align-items-center">
-                                <div class="col-5">
+                            <div class="d-flex align-items-center gap-2 mb-2 spec-row-input">
+                                <div style="flex: 1;">
                                     <input type="text" class="form-control" name="spec_keys[]" value="{{ $specKey }}" placeholder="Tên thông số (ví dụ: RAM, CPU, Bảo hành...)">
                                 </div>
-                                <div class="col-5">
+                                <div style="flex: 1;">
                                     <input type="text" class="form-control" name="spec_values[]" value="{{ is_array($specValue) ? implode(', ', $specValue) : $specValue }}" placeholder="Giá trị (ví dụ: 16GB, M3, 12 tháng...)">
                                 </div>
-                                <div class="col-2">
-                                    <button type="button" class="btn btn-danger w-100 d-flex align-items-center justify-content-center gap-1 shadow-sm" onclick="removeSpecRow(this)" title="Xóa dòng này">
-                                        <i class="fas fa-trash-alt"></i> <span class="d-none d-sm-inline" style="font-size: 13px;">Xóa</span>
-                                    </button>
-                                </div>
+                                <button type="button" class="btn btn-danger d-flex align-items-center justify-content-center gap-1 shadow-sm" style="height: 48px; min-width: 85px; border-radius: 10px; flex-shrink: 0;" onclick="removeSpecRow(this)" title="Xóa dòng này">
+                                    <i class="fas fa-trash-alt"></i> <span>Xóa</span>
+                                </button>
                             </div>
                         @endforeach
                     </div>
@@ -589,18 +587,16 @@
                             $currentSpecsEn = count(array_filter($currentSpecsEn ?? [])) > 0 ? $currentSpecsEn : ['' => ''];
                         @endphp
                         @foreach($currentSpecsEn as $specKey => $specValue)
-                            <div class="row g-2 mb-2 spec-row-input-en align-items-center">
-                                <div class="col-5">
+                            <div class="d-flex align-items-center gap-2 mb-2 spec-row-input-en">
+                                <div style="flex: 1;">
                                     <input type="text" class="form-control" name="spec_keys_en[]" value="{{ $specKey }}" placeholder="Spec name (e.g. RAM, CPU...)">
                                 </div>
-                                <div class="col-5">
+                                <div style="flex: 1;">
                                     <input type="text" class="form-control" name="spec_values_en[]" value="{{ is_array($specValue) ? implode(', ', $specValue) : $specValue }}" placeholder="Value (e.g. 16GB, M3...)">
                                 </div>
-                                <div class="col-2">
-                                    <button type="button" class="btn btn-danger w-100 d-flex align-items-center justify-content-center gap-1 shadow-sm" onclick="removeSpecRowEn(this)" title="Xóa dòng này">
-                                        <i class="fas fa-trash-alt"></i> <span class="d-none d-sm-inline" style="font-size: 13px;">Xóa</span>
-                                    </button>
-                                </div>
+                                <button type="button" class="btn btn-danger d-flex align-items-center justify-content-center gap-1 shadow-sm" style="height: 48px; min-width: 85px; border-radius: 10px; flex-shrink: 0;" onclick="removeSpecRowEn(this)" title="Xóa dòng này">
+                                    <i class="fas fa-trash-alt"></i> <span>Xóa</span>
+                                </button>
                             </div>
                         @endforeach
                     </div>
@@ -734,19 +730,17 @@
     function addSpecRow() {
         const wrapper = document.getElementById('specRows');
         const row = document.createElement('div');
-        row.className = 'row g-2 mb-2 spec-row-input align-items-center';
+        row.className = 'd-flex align-items-center gap-2 mb-2 spec-row-input';
         row.innerHTML = `
-            <div class="col-5">
+            <div style="flex: 1;">
                 <input type="text" class="form-control" name="spec_keys[]" placeholder="Tên thông số (ví dụ: RAM, CPU, Bảo hành...)">
             </div>
-            <div class="col-5">
+            <div style="flex: 1;">
                 <input type="text" class="form-control" name="spec_values[]" placeholder="Giá trị (ví dụ: 16GB, M3, 12 tháng...)">
             </div>
-            <div class="col-2">
-                <button type="button" class="btn btn-danger w-100 d-flex align-items-center justify-content-center gap-1 shadow-sm" onclick="removeSpecRow(this)" title="Xóa dòng này">
-                    <i class="fas fa-trash-alt"></i> <span class="d-none d-sm-inline" style="font-size: 13px;">Xóa</span>
-                </button>
-            </div>
+            <button type="button" class="btn btn-danger d-flex align-items-center justify-content-center gap-1 shadow-sm" style="height: 48px; min-width: 85px; border-radius: 10px; flex-shrink: 0;" onclick="removeSpecRow(this)" title="Xóa dòng này">
+                <i class="fas fa-trash-alt"></i> <span>Xóa</span>
+            </button>
         `;
         wrapper.appendChild(row);
     }
@@ -759,19 +753,17 @@
     function addSpecRowEn() {
         const wrapper = document.getElementById('specRowsEn');
         const row = document.createElement('div');
-        row.className = 'row g-2 mb-2 spec-row-input-en align-items-center';
+        row.className = 'd-flex align-items-center gap-2 mb-2 spec-row-input-en';
         row.innerHTML = `
-            <div class="col-5">
+            <div style="flex: 1;">
                 <input type="text" class="form-control" name="spec_keys_en[]" placeholder="Spec name (e.g. RAM, CPU...)">
             </div>
-            <div class="col-5">
+            <div style="flex: 1;">
                 <input type="text" class="form-control" name="spec_values_en[]" placeholder="Value (e.g. 16GB, M3...)">
             </div>
-            <div class="col-2">
-                <button type="button" class="btn btn-danger w-100 d-flex align-items-center justify-content-center gap-1 shadow-sm" onclick="removeSpecRowEn(this)" title="Xóa dòng này">
-                    <i class="fas fa-trash-alt"></i> <span class="d-none d-sm-inline" style="font-size: 13px;">Xóa</span>
-                </button>
-            </div>
+            <button type="button" class="btn btn-danger d-flex align-items-center justify-content-center gap-1 shadow-sm" style="height: 48px; min-width: 85px; border-radius: 10px; flex-shrink: 0;" onclick="removeSpecRowEn(this)" title="Xóa dòng này">
+                <i class="fas fa-trash-alt"></i> <span>Xóa</span>
+            </button>
         `;
         wrapper.appendChild(row);
     }
