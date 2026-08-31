@@ -106,60 +106,6 @@ class AdminMiddleware
             }
         }
 
-        // 2. Bỏ qua nhập mã PIN nếu đã mở khóa Gate bảo mật
-        if (session('admin_unlocked') === true) {
-            return $next($request);
-        }
-
-        // Cho phép các thao tác bật/tắt trạng thái (toggle) sản phẩm và danh mục không cần mã PIN
-        $allowedBypassRoutes = [
-            'admin.products.toggle*',
-            'admin.categories.toggle*',
-        ];
-
-        foreach ($allowedBypassRoutes as $pattern) {
-            if ($routeName && \Illuminate\Support\Str::is($pattern, $routeName)) {
-                return $next($request);
-            }
-        }
-
-        // Cho phép các route dọn dẹp nhật ký (log cleanup) thực hiện xóa
-        $allowedCleanupRoutes = [
-            'admin.online-users.clear-history',
-            'admin.suspicious-ips.clear',
-            'admin.online-users.delete',
-            'admin.suspicious-ips.destroy',
-            'admin.online-users.kick',
-        ];
-
-        // Block DELETE requests temporarily for security except allowed cleanup routes
-        if ($method === 'DELETE' && !in_array($routeName, $allowedCleanupRoutes, true)) {
-            return $this->deny($request, 'Chức năng xóa dữ liệu tạm thời bị khóa vì lý do bảo mật!');
-        }
-
-        if (!in_array($method, ['GET', 'HEAD', 'OPTIONS'], true)) {
-            $pin = $request->input('admin_pin');
-            if (!is_string($pin) || !preg_match('/^\d{8}$/', $pin)) {
-                return $this->deny($request, 'Vui lòng nhập mã xác nhận đúng 8 số.');
-            }
-
-            $expected = (string) config('admin.action_pin', '12112004');
-            if ($pin !== $expected) {
-                return $this->deny($request, 'Sai mã xác nhận. Vui lòng thử lại.');
-            }
-        }
-        
         return $next($request);
-    }
-
-    private function deny(Request $request, string $message): Response
-    {
-        if ($request->expectsJson()) {
-            return response()->json(['message' => $message], 403);
-        }
-
-        return back()
-            ->with('error', $message)
-            ->withInput();
     }
 }
