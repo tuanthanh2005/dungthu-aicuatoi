@@ -6,26 +6,23 @@ class PathHelper
 {
     public static function publicRootPath(string $path = ''): string
     {
+        $cleanPath = ltrim($path, "/\\");
+
+        // 1. Check if public_path() has the file
+        if ($cleanPath !== '' && file_exists(public_path($cleanPath))) {
+            return public_path($cleanPath);
+        }
+
+        // 2. Check preferred / public_html
         $preferred = config('filesystems.disks.public_uploads.root') ?: base_path('../public_html');
-        $root = public_path();
-
         if (is_dir($preferred)) {
-            $host = null;
-            if (!app()->runningInConsole() && request()) {
-                $host = request()->getHost();
-            }
-
-            // Use public_html on non-localhost; keep local dev on /public to avoid broken assets.
-            if (!$host || !in_array($host, ['localhost', '127.0.0.1'], true)) {
-                $root = $preferred;
+            $candidate = rtrim($preferred, DIRECTORY_SEPARATOR) . ($cleanPath !== '' ? DIRECTORY_SEPARATOR . $cleanPath : '');
+            if ($cleanPath === '' || file_exists($candidate)) {
+                return $candidate;
             }
         }
-        $root = rtrim($root, DIRECTORY_SEPARATOR);
 
-        if ($path === '') {
-            return $root;
-        }
-
-        return $root . DIRECTORY_SEPARATOR . ltrim($path, "/\\");
+        // Default to public_path
+        return $cleanPath !== '' ? public_path($cleanPath) : public_path();
     }
 }

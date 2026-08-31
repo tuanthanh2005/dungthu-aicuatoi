@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', $seoTitle ?? __('Cửa Hàng - AICuaToi.com'))
-@section('meta_description', $seoDescription ?? __('Khám phá các sản phẩm số, tài khoản AI, tài liệu và dịch vụ đang bán tại AICuaToi.com.'))
+@section('title', $seoTitle ?? __('Cửa Hàng - DungThu.com'))
+@section('meta_description', $seoDescription ?? __('Khám phá các sản phẩm số, tài khoản AI, tài liệu và dịch vụ đang bán tại DungThu.com.'))
 @section('canonical', $canonical ?? route('shop'))
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/category-filter.css') }}?v={{ filemtime(\App\Helpers\PathHelper::publicRootPath('css/category-filter.css')) }}">
+    <link rel="stylesheet" href="{{ asset('css/category-filter.css') }}?v={{ @filemtime(\App\Helpers\PathHelper::publicRootPath('css/category-filter.css')) ?: time() }}">
     <style>
         /* Shop Hero Section */
         .shop-hero {
@@ -953,4 +953,3 @@
         });
     </script>
 @endpush
-
