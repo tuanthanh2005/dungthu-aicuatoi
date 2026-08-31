@@ -15,20 +15,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google-site-verification" content="JXAkwIu8Sp6m3NoBdys1fP9YRH7eeUiiVQ49OEGUSqw" />
-    <title>@yield('title', __('AICuaToi | Khám Phá Sức Mạnh AI — Tối Ưu Hiệu Suất'))</title>
-    <meta name="description" content="@yield('meta_description', __('AICuaToi.com - Nền tảng cung cấp tài khoản AI bản quyền, phần mềm chuyên dụng và giải pháp tự động hóa hàng đầu Việt Nam. Trải nghiệm & Mua sắm uy tín, bảo hành chu đáo.'))">
-    <meta name="keywords" content="@yield('meta_keywords', 'ai cua toi, aicuatoi, aicuatoi.com, tai khoan ai, chatgpt plus, claude pro, canva pro, midjourney, san pham so')">
+    <title>@yield('title', __('Dùng Thử | AI | Blog | Khám Phá'))</title>
+    <meta name="description" content="@yield('meta_description', __('Dùng Thử - Nền tảng khám phá AI, Blog công nghệ và sản phẩm số hàng đầu Việt Nam. Trải nghiệm & Mua sắm an toàn, chất lượng.'))">
+    <meta name="keywords" content="@yield('meta_keywords', 'dung thu, dungthu, dungthu.com, dung thu ai, blog cong nghe, mua sam truc tuyen, san pham so, kham pha ai')">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="@yield('canonical', url()->current())">
 
-    <!-- Open Graph / Facebook / Zalo -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="@yield('canonical', url()->current())">
-    <meta property="og:site_name" content="AICuaToi.com">
-    <meta property="og:title" content="@yield('title', __('AICuaToi | Khám Phá Sức Mạnh AI — Tối Ưu Hiệu Suất'))">
-    <meta property="og:description" content="@yield('meta_description', __('AICuaToi.com - Nền tảng cung cấp tài khoản AI bản quyền, phần mềm chuyên dụng và giải pháp tự động hóa hàng đầu Việt Nam. Trải nghiệm & Mua sắm uy tín, bảo hành chu đáo.'))">
-    <meta property="og:image" content="@yield('og_image', asset('images/aicuatoi-seo.png'))">
-    <meta property="og:image:secure_url" content="@yield('og_image', asset('images/aicuatoi-seo.png'))">
+    <meta property="og:title" content="@yield('title', __('Dùng Thử | AI | Blog | Khám Phá'))">
+    <meta property="og:description" content="@yield('meta_description', __('Dùng Thử - Nền tảng khám phá AI, Blog công nghệ và sản phẩm số hàng đầu Việt Nam. Trải nghiệm & Mua sắm an toàn, chất lượng.'))">
+    <meta property="og:image" content="@yield('og_image', asset('images/dungthu-seo.png'))">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -36,18 +34,18 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="@yield('canonical', url()->current())">
-    <meta property="twitter:title" content="@yield('title', __('AICuaToi | Khám Phá Sức Mạnh AI — Tối Ưu Hiệu Suất'))">
-    <meta property="twitter:description" content="@yield('meta_description', __('AICuaToi.com - Nền tảng cung cấp tài khoản AI bản quyền, phần mềm chuyên dụng và giải pháp tự động hóa hàng đầu Việt Nam. Trải nghiệm & Mua sắm uy tín, bảo hành chu đáo.'))">
-    <meta property="twitter:image" content="@yield('og_image', asset('images/aicuatoi-seo.png'))">
+    <meta property="twitter:title" content="@yield('title', __('Dùng Thử | AI | Blog | Khám Phá'))">
+    <meta property="twitter:description" content="@yield('meta_description', __('Dùng Thử - Nền tảng khám phá AI, Blog công nghệ và sản phẩm số hàng đầu Việt Nam. Trải nghiệm & Mua sắm an toàn, chất lượng.'))">
+    <meta property="twitter:image" content="@yield('og_image', asset('images/dungthu-seo.png'))">
     
     <!-- Favicon & PWA -->
-    <link rel="icon" type="image/png" href="{{ asset('images/aicuatoi-logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/dungthu.png') }}">
     <link rel="manifest" href="{{ asset('manifest.json') }}">
-    <meta name="theme-color" content="#7c3aed">
+    <meta name="theme-color" content="#ff5e00">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="AICuaToi">
-    <link rel="apple-touch-icon" href="{{ asset('images/aicuatoi-logo.png') }}">
+    <meta name="apple-mobile-web-app-title" content="Dùng Thử AI">
+    <link rel="apple-touch-icon" href="{{ asset('images/dungthu.png') }}">
     @stack('head')
     
     <!-- Bootstrap & Font Awesome -->
@@ -169,58 +167,7 @@
         });
     </script>
 
-    <!-- Admin action PIN: require 3-digit code for /admin POST/PUT/DELETE -->
-    <script>
-        (function () {
-            function isAdminAction(form) {
-                try {
-                    const action = form.getAttribute('action') || window.location.href;
-                    const url = new URL(action, window.location.origin);
-                    return url.pathname.startsWith('/admin');
-                } catch (e) {
-                    return false;
-                }
-            }
 
-            function getIntendedMethod(form) {
-                const method = (form.getAttribute('method') || 'get').toLowerCase();
-                const override = form.querySelector('input[name="_method"]');
-                return (override ? override.value : method).toUpperCase();
-            }
-
-            document.addEventListener('submit', function (e) {
-                const form = e.target;
-                if (!(form instanceof HTMLFormElement)) return;
-                if (!isAdminAction(form)) return;
-                if (form.dataset.adminPinSkip === '1') return;
-
-                const intended = getIntendedMethod(form);
-                if (['GET', 'HEAD', 'OPTIONS'].includes(intended)) return;
-                if (form.dataset.adminPinVerified === '1') return;
-
-                e.preventDefault();
-
-                const pin = window.prompt(@json(__('Nhập mã xác nhận 8 số để thực hiện thao tác')));
-                if (pin === null) return;
-                if (!/^\d{8}$/.test(pin)) {
-                    alert(@json(__('Mã xác nhận phải đúng 8 số.')));
-                    return;
-                }
-
-                let input = form.querySelector('input[name="admin_pin"]');
-                if (!input) {
-                    input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = 'admin_pin';
-                    form.appendChild(input);
-                }
-                input.value = pin;
-
-                form.dataset.adminPinVerified = '1';
-                form.submit();
-            }, true);
-        })();
-    </script>
     
     <!-- Flash Messages -->
     @if(session()->has('success'))
