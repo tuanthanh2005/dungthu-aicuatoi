@@ -55,7 +55,7 @@
                 {{-- Nút link qua web chính thống --}}
                 <div class="text-center pt-1">
                     <a href="https://dungthu.com" target="_blank" class="btn w-100 py-2 fw-bold text-white shadow-sm d-flex align-items-center justify-content-center gap-2" 
-                       style="background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%); border-radius: 12px; font-size: 13px; text-decoration: none;">
+                       style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%); border-radius: 12px; font-size: 13px; text-decoration: none;">
                         <i class="fa-solid fa-external-link-alt"></i> {{ __('Ghé thăm Website chính: DungThu.com') }}
                     </a>
                 </div>
@@ -122,3 +122,4 @@
         }
     });
 </script>
+

@@ -4,19 +4,19 @@
         <div class="modal-content border-0 shadow-lg" style="border-radius: 20px; overflow: hidden; background: #ffffff;">
             
             {{-- Header --}}
-            <div class="modal-header text-white p-3 p-sm-4 border-0 position-relative" style="background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%);">
+            <div class="modal-header text-white p-3 p-sm-4 border-0 position-relative" style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);">
                 <div class="d-flex align-items-center gap-3">
                     <div class="bg-white p-2 rounded-3 shadow-sm d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
                         <img src="{{ asset('images/AI Của Tôi.png') }}" alt="Dùng Thử App Logo" 
                              onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';" 
                              style="width: 34px; height: 34px; object-fit: contain;">
                         <div class="align-items-center justify-content-center text-warning" style="display: none; width: 34px; height: 34px; font-size: 22px;">
-                            <i class="fa-solid fa-bolt" style="color: #ff5e00;"></i>
+                            <i class="fa-solid fa-bolt" style="color: #8b5cf6;"></i>
                         </div>
                     </div>
                     <div>
                         <h5 class="modal-title fw-bold text-white mb-0" id="appDownloadModalLabel" style="font-size: 1.25rem; letter-spacing: -0.01em;">
-                            <i class="fa-solid fa-mobile-screen-button me-2"></i>{{ __('Tải App Dùng Thử') }}
+                            <i class="fa-solid fa-mobile-screen-button me-2"></i>{{ __('Tải App AI Của Tôi') }}
                         </h5>
                         <p class="mb-0 text-white-50 text-xs mt-0.5" style="font-size: 0.84rem;">
                             {{ __('Trải nghiệm mượt mà trên Điện thoại & Máy tính dạng App WebView') }}
@@ -155,7 +155,7 @@
                                 </p>
 
                                 <div class="d-flex flex-column gap-2 mb-3">
-                                    <button type="button" class="btn btn-primary btn-lg fw-bold rounded-3 d-inline-flex align-items-center justify-content-center gap-2 btn-pwa-install py-2.5 shadow-sm" id="pwaDesktopBtn" style="background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%); border: none;">
+                                    <button type="button" class="btn btn-primary btn-lg fw-bold rounded-3 d-inline-flex align-items-center justify-content-center gap-2 btn-pwa-install py-2.5 shadow-sm" id="pwaDesktopBtn" style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%); border: none;">
                                         <i class="fa-solid fa-download fs-5"></i>
                                         <span>{{ __('Cài Đặt Nhanh Vào Máy Tính (Chrome App)') }}</span>
                                     </button>
@@ -171,7 +171,7 @@
                             </div>
                             <div class="col-md-5 text-center">
                                 <div class="bg-white p-4 rounded-4 border border-slate-200 shadow-sm text-center">
-                                    <div class="mb-3" style="color: #ff5e00;">
+                                    <div class="mb-3" style="color: #8b5cf6;">
                                         <i class="fa-solid fa-laptop-code" style="font-size: 4rem;"></i>
                                     </div>
                                     <h6 class="fw-bold text-dark mb-1">{{ __('App Desktop Native') }}</h6>
@@ -212,10 +212,10 @@
         color: #0f172a !important;
     }
     #appPlatformTabs .nav-link.active {
-        background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%) !important;
+        background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%) !important;
         color: #ffffff !important;
-        border-color: #ff5e00 !important;
-        box-shadow: 0 4px 14px rgba(255, 94, 0, 0.3) !important;
+        border-color: #8b5cf6 !important;
+        box-shadow: 0 4px 14px rgba(139, 92, 246, 0.3) !important;
     }
     #appPlatformTabs .nav-link.active i {
         color: #ffffff !important;
@@ -261,7 +261,7 @@
                                 icon: 'success',
                                 title: 'Cài đặt thành công!',
                                 text: 'Ứng dụng Dùng Thử AI đã được thêm vào máy tính/điện thoại của bạn.',
-                                confirmButtonColor: '#ff5e00'
+                                confirmButtonColor: '#8b5cf6'
                             });
                         }
                     }
@@ -285,7 +285,7 @@
                             showCancelButton: true,
                             confirmButtonText: '<i class="fa-solid fa-rotate-right me-1"></i> Tải lại trang để cài lại',
                             cancelButtonText: 'Đóng',
-                            confirmButtonColor: '#ff5e00',
+                            confirmButtonColor: '#8b5cf6',
                             cancelButtonColor: '#64748b'
                         }).then((result) => {
                             if (result.isConfirmed) {
@@ -320,4 +320,5 @@
         });
     });
 </script>
+
 

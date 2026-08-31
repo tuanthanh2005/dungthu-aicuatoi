@@ -15,7 +15,7 @@
         
         /* 1. Marquee Alert Bar styles */
         .marquee-alert-bar {
-            background: linear-gradient(135deg, #ff4e00 0%, #ec9f05 100%);
+            background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 50%, #a855f7 100%);
             color: #ffffff;
             overflow: hidden;
             display: flex;
@@ -23,7 +23,7 @@
             font-size: 13.5px;
             font-weight: 600;
             padding: 10px 0;
-            box-shadow: 0 4px 15px rgba(255, 78, 0, 0.15);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15);
             position: relative;
             z-index: 10;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -203,14 +203,14 @@
         }
 
         .hero-btn-main {
-            background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%);
+            background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
             color: #ffffff !important;
             font-weight: 700;
             font-size: 0.84rem;
             padding: 8px 22px;
             border-radius: 10px;
             border: none;
-            box-shadow: 0 3px 12px rgba(255, 94, 0, 0.25);
+            box-shadow: 0 3px 12px rgba(139, 92, 246, 0.25);
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
@@ -220,7 +220,7 @@
 
         .hero-btn-main:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 94, 0, 0.45);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.45);
         }
 
         .hero-btn-sub {
@@ -734,7 +734,7 @@
         }
 
         .tf-title:hover {
-            color: #ff4500;
+            color: #8b5cf6;
         }
 
         .tf-excerpt {
@@ -1033,7 +1033,7 @@
         }
 
         .tf-flash-item:hover {
-            border-color: #ff4500;
+            border-color: #8b5cf6;
         }
 
         .tf-flash-item img {
@@ -2622,3 +2622,4 @@
         })();
     </script>
 @endpush
+

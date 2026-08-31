@@ -71,7 +71,7 @@
         <div class="modal-content border-0 shadow-lg" style="border-radius: 20px; overflow: hidden; background: #ffffff;">
             {{-- Header --}}
             <div class="modal-header border-0 text-white px-4 py-3 position-relative d-flex align-items-center justify-content-between" 
-                 style="background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%);">
+                 style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);">
                 <div>
                     <h5 class="modal-title fw-bold d-flex align-items-center gap-2 mb-1" id="recentOrdersWelcomeModalLabel" style="font-size: 17px;">
                         <i class="fa-solid fa-fire text-warning"></i>
@@ -137,7 +137,7 @@
                 <button type="button" class="btn btn-sm btn-light border text-muted px-3 close-recent-modal-btn" data-bs-dismiss="modal" style="border-radius: 20px; font-size: 12px;">
                     <i class="fa-solid fa-xmark me-1"></i>{{ __('Đóng (Tắt 1h)') }}
                 </button>
-                <a href="{{ route('shop') }}" class="btn btn-sm text-white px-4 fw-bold shadow-sm shop-now-modal-btn" style="background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%); border-radius: 20px; font-size: 12.5px;">
+                <a href="{{ route('shop') }}" class="btn btn-sm text-white px-4 fw-bold shadow-sm shop-now-modal-btn" style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%); border-radius: 20px; font-size: 12.5px;">
                     <i class="fa-solid fa-cart-shopping me-1"></i>{{ __('Mua sắm ngay') }}
                 </a>
             </div>
@@ -183,3 +183,4 @@
         });
     });
 </script>
+

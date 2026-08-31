@@ -48,7 +48,7 @@
                 <i class="fa-solid fa-network-wired me-1"></i>{{ __('VPN') }}
             </a>
             @if($menuBuff)
-            <a href="{{ route('buff.index') }}" class="nav-text-link {{ request()->routeIs('buff.*') ? 'active' : '' }}" style="color: #ff5e00; font-weight: 700;">
+            <a href="{{ route('buff.index') }}" class="nav-text-link {{ request()->routeIs('buff.*') ? 'active' : '' }}" style="color: #8b5cf6; font-weight: 700;">
                 <i class="fa-solid fa-rocket me-1"></i>{{ __('Buff MXH') }}
             </a>
             @endif
@@ -85,7 +85,7 @@
             <a href="javascript:void(0)" class="nav-text-link" data-bs-toggle="modal" data-bs-target="#quickContactModal">
                 <i class="fa-solid fa-headset me-1"></i>{{ __('Liên hệ') }}
             </a>
-            <a href="javascript:void(0)" class="btn btn-sm text-white fw-bold rounded-pill px-3 ms-2 me-2 shadow-sm d-inline-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#appDownloadModal" style="background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%); font-size: 13px; flex-shrink: 0;">
+            <a href="javascript:void(0)" class="btn btn-sm text-white fw-bold rounded-pill px-3 ms-2 me-2 shadow-sm d-inline-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#appDownloadModal" style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%); font-size: 13px; flex-shrink: 0;">
                 <i class="fa-solid fa-cloud-arrow-down"></i> {{ __('Tải App') }}
             </a>
         </div>
@@ -104,7 +104,7 @@
                 @endif
                 <li><a class="dropdown-item fw-bold" href="{{ route('vpn.index') }}" style="color: #00bcd4;"><i class="fa-solid fa-network-wired me-2"></i>{{ __('VPN') }}</a></li>
                 @if($menuBuff)
-                    <li><a class="dropdown-item fw-bold" href="{{ route('buff.index') }}" style="color: #ff5e00;"><i class="fa-solid fa-rocket me-2"></i>{{ __('Dịch Vụ MXH') }}</a></li>
+                    <li><a class="dropdown-item fw-bold" href="{{ route('buff.index') }}" style="color: #8b5cf6;"><i class="fa-solid fa-rocket me-2"></i>{{ __('Dịch Vụ MXH') }}</a></li>
                 @endif
                 @if($menuWebdesign)
                     <li><a class="dropdown-item" href="{{ route('web-design') }}"><i class="fa-solid fa-code me-2 text-primary"></i>{{ __('Thiết Kế Website') }}</a></li>
@@ -126,7 +126,7 @@
                 <li><a class="dropdown-item fw-bold" href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" target="_blank" style="color: #0068ff;"><i class="fa-solid fa-users me-2"></i>{{ __('Nhóm Zalo') }}</a></li>
                 @endif
                 <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quickContactModal"><i class="fa-solid fa-headset me-2 text-primary"></i>{{ __('Liên hệ') }}</a></li>
-                <li><a class="dropdown-item fw-bold" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appDownloadModal" style="color: #ff5e00;"><i class="fa-solid fa-cloud-arrow-down me-2"></i>{{ __('Tải App') }}</a></li>
+                <li><a class="dropdown-item fw-bold" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appDownloadModal" style="color: #8b5cf6;"><i class="fa-solid fa-cloud-arrow-down me-2"></i>{{ __('Tải App') }}</a></li>
             </ul>
         </div>
 
@@ -232,7 +232,7 @@
                                     @else
                                         <li><a class="dropdown-item py-1" href="{{ route('affiliate.login') }}" style="font-size: 0.85rem;"><i class="fas fa-handshake me-2"></i>{{ __('Đăng ký CTV') }}</a></li>
                                     @endif
-                                    <li><a class="dropdown-item py-1 fw-bold" href="{{ route('buff.index') }}" style="color: #ff5e00; font-size: 0.85rem;"><i class="fas fa-rocket me-2"></i>{{ __('Buff Mạng XH') }}</a></li>
+                                    <li><a class="dropdown-item py-1 fw-bold" href="{{ route('buff.index') }}" style="color: #8b5cf6; font-size: 0.85rem;"><i class="fas fa-rocket me-2"></i>{{ __('Buff Mạng XH') }}</a></li>
                                     <li><a class="dropdown-item py-1" href="{{ route('web-design') }}" style="font-size: 0.85rem;"><i class="fa-solid fa-code me-2 text-primary"></i>{{ __('Thiết Kế Website') }}</a></li>
                                     <li><a class="dropdown-item py-1" href="{{ route('card-exchange.index') }}" style="font-size: 0.85rem;"><i class="fas fa-exchange-alt me-2 text-warning"></i>{{ __('Đổi thẻ cào') }}</a></li>
                                     <li><a class="dropdown-item py-1" href="{{ route('community.index') }}" style="font-size: 0.85rem;"><i class="fas fa-users me-2 text-success"></i>{{ __('Cộng đồng') }}</a></li>
@@ -266,7 +266,7 @@
     {{-- Mobile Search Bar (collapsed) --}}
     <div class="collapse w-100" id="mobileSearchBar">
         <div class="px-3 pb-2">
-            <form class="search-bar-inner w-100" action="{{ route('shop') }}" method="GET" style="border: 1.5px solid #ff5e00; background-color: #fff;">
+            <form class="search-bar-inner w-100" action="{{ route('shop') }}" method="GET" style="border: 1.5px solid #8b5cf6; background-color: #fff;">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 <input type="text" name="search" class="search-input" placeholder="{{ __('Tìm kiếm...') }}" value="{{ request('search') }}">
             </form>
@@ -289,8 +289,8 @@
     </a>
     @endif
     <a href="javascript:void(0)" class="mobile-nav-item" data-bs-toggle="modal" data-bs-target="#appDownloadModal">
-        <i class="fa-solid fa-cloud-arrow-down" style="color: #ff5e00;"></i>
-        <span style="color: #ff5e00; font-weight: bold;">{{ __('Tải App') }}</span>
+        <i class="fa-solid fa-cloud-arrow-down" style="color: #8b5cf6;"></i>
+        <span style="color: #8b5cf6; font-weight: bold;">{{ __('Tải App') }}</span>
     </a>
     <a href="{{ \App\Helpers\SupportHelper::getZaloLink() }}" target="_blank" class="mobile-nav-item">
         <i class="fa-solid fa-headset"></i>
@@ -324,7 +324,7 @@
     <div class="modal-dialog modal-dialog-centered" style="max-width: 480px;">
         <div class="modal-content border-0 shadow-lg" style="border-radius: 20px; overflow: hidden; background: #ffffff;">
             {{-- Header --}}
-            <div class="modal-header border-0 text-white px-4 py-3 position-relative d-flex align-items-center justify-content-between" style="background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%);">
+            <div class="modal-header border-0 text-white px-4 py-3 position-relative d-flex align-items-center justify-content-between" style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);">
                 <div>
                     <h5 class="modal-title fw-bold d-flex align-items-center gap-2 mb-0" id="quickContactModalLabel" style="font-size: 18px;">
                         <i class="fa-solid fa-headset"></i>
@@ -402,7 +402,7 @@
     .contact-modal-item:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
-        border-color: rgba(255, 94, 0, 0.25) !important;
+        border-color: rgba(139, 92, 246, 0.25) !important;
         background-color: #fafbfc !important;
     }
     .contact-modal-item:hover .contact-modal-icon-wrap {
@@ -415,7 +415,7 @@
     <div class="modal-dialog modal-dialog-centered" style="max-width: 500px;">
         <div class="modal-content border-0 shadow-lg" style="border-radius: 20px; overflow: hidden; background: #ffffff;">
             {{-- Header --}}
-            <div class="modal-header border-0 text-white px-4 py-3 position-relative d-flex align-items-center justify-content-between" style="background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%);">
+            <div class="modal-header border-0 text-white px-4 py-3 position-relative d-flex align-items-center justify-content-between" style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);">
                 <h5 class="modal-title fw-bold d-flex align-items-center gap-2 mb-0" id="searchProductsModalLabel" style="font-size: 17px;">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     {{ __('Tìm kiếm sản phẩm') }}
@@ -426,7 +426,7 @@
             {{-- Body --}}
             <div class="modal-body p-4" style="background-color: #f8f9fa;">
                 <form action="{{ route('shop') }}" method="GET">
-                    <div class="input-group mb-3 shadow-sm" style="border-radius: 25px; overflow: hidden; border: 1.5px solid #ff5e00;">
+                    <div class="input-group mb-3 shadow-sm" style="border-radius: 25px; overflow: hidden; border: 1.5px solid #8b5cf6;">
                         <span class="input-group-text bg-white border-0 ps-3" style="color: #9ca3af;">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </span>
@@ -435,7 +435,7 @@
                                style="font-size: 14.5px; outline: none; box-shadow: none; background-color: #fff;" 
                                required 
                                id="searchModalInput">
-                        <button class="btn btn-primary border-0 px-4 fw-bold" type="submit" style="background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%);">
+                        <button class="btn btn-primary border-0 px-4 fw-bold" type="submit" style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);">
                             {{ __('Tìm kiếm') }}
                         </button>
                     </div>
@@ -560,3 +560,4 @@
         });
     });
 </script>
+

@@ -32,19 +32,19 @@
         left: -50%;
         width: 200%;
         height: 200%;
-        background: radial-gradient(circle, rgba(255, 94, 0, 0.15) 0%, transparent 60%);
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
         pointer-events: none;
     }
 
     .ticket-count {
         font-size: 4rem;
         font-weight: 900;
-        background: linear-gradient(135deg, #ff5e00 0%, #ff9e59 100%);
+        background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         line-height: 1;
         margin: 10px 0;
-        text-shadow: 0 0 20px rgba(255, 94, 0, 0.3);
+        text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
@@ -70,8 +70,8 @@
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
         border-radius: 50%;
-        background: radial-gradient(circle, transparent 65%, rgba(255, 94, 0, 0.4) 100%);
-        box-shadow: 0 0 30px rgba(255, 94, 0, 0.2), inset 0 0 30px rgba(255, 94, 0, 0.2);
+        background: radial-gradient(circle, transparent 65%, rgba(139, 92, 246, 0.4) 100%);
+        box-shadow: 0 0 30px rgba(139, 92, 246, 0.2), inset 0 0 30px rgba(139, 92, 246, 0.2);
         pointer-events: none;
         animation: pulseGlow 3s infinite alternate;
     }
@@ -99,7 +99,7 @@
         width: 0; height: 0;
         border-left: 20px solid transparent;
         border-right: 20px solid transparent;
-        border-top: 35px solid #ff5e00;
+        border-top: 35px solid #8b5cf6;
     }
 
     /* Rotating Wheel */
@@ -125,10 +125,10 @@
         width: 86px;
         height: 86px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%);
+        background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
         border: 5px solid #fff;
         z-index: 5;
-        box-shadow: 0 8px 25px rgba(255, 94, 0, 0.6), inset 0 2px 5px rgba(255, 255, 255, 0.5);
+        box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6), inset 0 2px 5px rgba(255, 255, 255, 0.5);
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -144,7 +144,7 @@
 
     .spin-center-btn:hover {
         transform: translate(-50%, -50%) scale(1.05);
-        box-shadow: 0 10px 30px rgba(255, 94, 0, 0.8);
+        box-shadow: 0 10px 30px rgba(139, 92, 246, 0.8);
     }
 
     .spin-center-btn:active {
@@ -199,9 +199,9 @@
     .coupon-code-badge {
         font-family: 'Courier New', monospace;
         font-weight: 700;
-        background: rgba(255, 94, 0, 0.15);
+        background: rgba(139, 92, 246, 0.15);
         color: #ff9e59;
-        border: 1px dashed rgba(255, 94, 0, 0.4);
+        border: 1px dashed rgba(139, 92, 246, 0.4);
         padding: 6px 12px;
         border-radius: 8px;
         cursor: pointer;
@@ -213,7 +213,7 @@
     }
 
     .coupon-code-badge:hover {
-        background: rgba(255, 94, 0, 0.25);
+        background: rgba(139, 92, 246, 0.25);
         transform: translateY(-1px);
     }
 
@@ -278,7 +278,7 @@
         
         <!-- Header -->
         <div class="text-center mb-5" data-aos="fade-down">
-            <h1 class="fw-bold mb-2" style="background: linear-gradient(135deg, #ff5e00, #ffb075); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            <h1 class="fw-bold mb-2" style="background: linear-gradient(135deg, #8b5cf6, #ffb075); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 <i class="fa-solid fa-gift me-2"></i>{{ __('Vòng Xoay May Mắn') }}
             </h1>
             <p class="opacity-75 lead" style="max-width: 600px; margin: 0 auto;">
@@ -438,7 +438,7 @@
                 icon: 'warning',
                 title: @json(__('Hết lượt quay!')),
                 text: @json(__('Bạn cần hoàn thành thêm đơn hàng để nhận thêm vé quay nhé!')),
-                confirmButtonColor: '#ff5e00',
+                confirmButtonColor: '#8b5cf6',
             });
             return;
         }
@@ -517,7 +517,7 @@
                     showCancelButton: true,
                     confirmButtonText: '<i class="fa-solid fa-copy me-1"></i> ' + @json(__('Sao chép mã')),
                     cancelButtonText: @json(__('Đóng')),
-                    confirmButtonColor: '#ff5e00',
+                    confirmButtonColor: '#8b5cf6',
                     cancelButtonColor: '#64748b'
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -610,3 +610,4 @@
     }
 </script>
 @endpush
+
