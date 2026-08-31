@@ -132,8 +132,8 @@ class AdminController extends Controller
             ->where('is_read', false)
             ->count();
 
-        // Đếm số đơn hàng đang chờ xử lý (pending)
-        $pendingOrdersCount = Order::where('status', 'pending')->count();
+        // Đếm số đơn hàng đang cần xử lý (pending, processing, shipped)
+        $pendingOrdersCount = Order::whereIn('status', ['pending', 'processing', 'shipped'])->count();
 
         // Đếm số yêu cầu đổi thẻ cào đang chờ xử lý
         $pendingCardExchangeCount = CardExchange::where('status', 'pending')->count();
@@ -2049,7 +2049,7 @@ class AdminController extends Controller
                 ->where('is_read', false)
                 ->count();
 
-            $pendingOrders = Order::where('status', 'pending')->count();
+            $pendingOrders = Order::whereIn('status', ['pending', 'processing', 'shipped'])->count();
 
             $pendingBuffOrders = \App\Models\BuffOrder::where('status', 'paid')->count();
 
