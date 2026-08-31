@@ -424,7 +424,7 @@
                     <div class="input-group">
                         <span class="input-group-text bg-white border-end-0" style="color: #0068ff;"><i class="fas fa-comments"></i></span>
                         <input type="url" class="form-control border-start-0 ps-0" name="zalo_group_link" 
-                               value="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" 
+                               value="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ifaku0ggmtg4xhxi7k0u') }}" 
                                placeholder="https://zalo.me/g/...">
                     </div>
                     <div class="form-text mt-2">
@@ -658,3 +658,4 @@
     }
 </script>
 @endpush
+

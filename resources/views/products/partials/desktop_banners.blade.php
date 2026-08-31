@@ -76,7 +76,7 @@
 <div class="desktop-banners-container d-none d-lg-block">
     <div class="row g-3">
         <div class="col-4">
-            <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" 
+            <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ifaku0ggmtg4xhxi7k0u') }}" 
                target="_blank" 
                class="desktop-banner-card zalo-group-card text-decoration-none">
                 <div class="banner-icon-circle">
@@ -111,3 +111,4 @@
         </div>
     </div>
 </div>
+

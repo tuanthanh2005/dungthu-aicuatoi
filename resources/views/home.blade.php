@@ -1897,7 +1897,7 @@
                     <a href="{{ route('shop') }}" class="hero-btn-main">
                         <i class="fa-solid fa-store"></i> {{ __('Mua Tài Khoản AI') }}
                     </a>
-                    <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" 
+                    <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ifaku0ggmtg4xhxi7k0u') }}" 
                        target="_blank" class="hero-btn-sub">
                         <i class="fa-solid fa-users"></i> {{ __('Nhóm Zalo Hỗ Trợ') }}
                     </a>
@@ -2622,5 +2622,6 @@
         })();
     </script>
 @endpush
+
 
 
