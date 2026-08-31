@@ -296,21 +296,6 @@
         <!-- Revenue Line Chart -->
         <div class="col-lg-8 mb-4">
             <div class="revenue-card-premium">
-                <!-- Locked Overlay -->
-                <div id="revenue-overlay" class="revenue-locked-overlay-new">
-                    <div class="lock-circle">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <h5 class="fw-bold text-dark mb-2">Thông tin tài chính</h5>
-                    <p class="text-muted text-center mb-4" style="max-width: 320px;">Vui lòng nhập mã bảo mật để xem báo cáo doanh thu và biểu đồ tăng trưởng.</p>
-                    <div class="input-group" style="max-width: 280px; box-shadow: 0 4px 12px rgba(102,126,234,0.15); border-radius: 30px; overflow: hidden;">
-                        <input type="password" id="revenue-pass" class="form-control border-0 px-3" placeholder="Mã bảo mật (PIN)..." style="height: 46px;">
-                        <button class="btn btn-primary border-0 px-4" onclick="checkRevenuePass()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                            <i class="fas fa-key"></i>
-                        </button>
-                    </div>
-                </div>
-
                 <!-- Unlocked Chart Header -->
                 <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
                     <div>
@@ -681,69 +666,6 @@
         });
     }
 
-    function checkRevenuePass() {
-        const pass = document.getElementById('revenue-pass').value;
-        if (pass === '113') {
-            unlockEverything();
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Lỗi bảo mật',
-                text: 'Mật khẩu PIN không chính xác!',
-                confirmButtonColor: '#e74c3c'
-            });
-            document.getElementById('revenue-pass').value = '';
-        }
-    }
-
-    function unlockEverything() {
-        document.getElementById('revenue-overlay').classList.add('unlocked');
-        sessionStorage.setItem('revenue_unlocked', 'true');
-        sessionStorage.setItem('admin_unlocked', 'true');
-        
-        // Render chart when unlocked
-        setTimeout(initChart, 200);
-    }
-
-    // Protection for other links
-    document.querySelectorAll('.protected-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const url = this.getAttribute('data-url');
-            
-            if (sessionStorage.getItem('admin_unlocked') === 'true') {
-                window.location.href = url;
-            } else {
-                Swal.fire({
-                    title: 'Xác thực tài chính',
-                    text: 'Khu vực bảo mật. Vui lòng nhập mã PIN bảo mật:',
-                    input: 'password',
-                    inputAttributes: { maxlength: 3, pattern: '[0-9]{3}' },
-                    showCancelButton: true,
-                    confirmButtonText: 'Xác thực',
-                    cancelButtonText: 'Hủy',
-                    confirmButtonColor: '#667eea',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        if (result.value === '113') {
-                            unlockEverything();
-                            window.location.href = url;
-                        } else {
-                            Swal.fire({ icon: 'error', title: 'Lỗi', text: 'PIN không chính xác.' });
-                        }
-                    }
-                });
-            }
-        });
-    });
-
-    // Enter to submit password
-    document.getElementById('revenue-pass').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            checkRevenuePass();
-        }
-    });
-
     function filterRevenue(days, btn) {
         currentDays = days;
 
@@ -763,10 +685,16 @@
         }
     }
 
-    // Check if previously unlocked
-    if (sessionStorage.getItem('revenue_unlocked') === 'true' || sessionStorage.getItem('admin_unlocked') === 'true') {
-        document.getElementById('revenue-overlay').classList.add('unlocked');
-        setTimeout(initChart, 100);
-    }
+    // Direct link click for protected-link
+    document.querySelectorAll('.protected-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = this.getAttribute('data-url');
+            window.location.href = url;
+        });
+    });
+
+    // Auto initialize chart immediately
+    setTimeout(initChart, 100);
 </script>
 @endpush
