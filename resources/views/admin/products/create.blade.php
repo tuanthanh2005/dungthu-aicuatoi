@@ -513,22 +513,22 @@
                             $oldSpecValues = old('spec_values', ['']);
                         @endphp
                         @foreach($oldSpecKeys as $index => $oldSpecKey)
-                            <div class="row g-2 mb-2 spec-row-input">
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control" name="spec_keys[]" value="{{ $oldSpecKey }}" placeholder="Tên thông số">
+                            <div class="row g-2 mb-2 spec-row-input align-items-center">
+                                <div class="col-5">
+                                    <input type="text" class="form-control" name="spec_keys[]" value="{{ $oldSpecKey }}" placeholder="Tên thông số (ví dụ: RAM, CPU, Bảo hành...)">
                                 </div>
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control" name="spec_values[]" value="{{ $oldSpecValues[$index] ?? '' }}" placeholder="Giá trị">
+                                <div class="col-5">
+                                    <input type="text" class="form-control" name="spec_values[]" value="{{ $oldSpecValues[$index] ?? '' }}" placeholder="Giá trị (ví dụ: 16GB, M3, 12 tháng...)">
                                 </div>
-                                <div class="col-md-2">
-                                    <button type="button" class="btn btn-outline-danger w-100" onclick="removeSpecRow(this)">
-                                        <i class="fas fa-trash"></i>
+                                <div class="col-2">
+                                    <button type="button" class="btn btn-danger w-100 d-flex align-items-center justify-content-center gap-1 shadow-sm" onclick="removeSpecRow(this)" title="Xóa dòng này">
+                                        <i class="fas fa-trash-alt"></i> <span class="d-none d-sm-inline" style="font-size: 13px;">Xóa</span>
                                     </button>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-                    <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="addSpecRow()">
+                    <button type="button" class="btn btn-outline-primary btn-sm mt-2 rounded-pill px-3" onclick="addSpecRow()">
                         <i class="fas fa-plus me-1"></i>Thêm thông số
                     </button>
                 </div>
@@ -544,22 +544,22 @@
                             $oldSpecValuesEn = old('spec_values_en', ['']);
                         @endphp
                         @foreach($oldSpecKeysEn as $index => $oldSpecKeyEn)
-                            <div class="row g-2 mb-2 spec-row-input-en">
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control" name="spec_keys_en[]" value="{{ $oldSpecKeyEn }}" placeholder="Spec name (EN)">
+                            <div class="row g-2 mb-2 spec-row-input-en align-items-center">
+                                <div class="col-5">
+                                    <input type="text" class="form-control" name="spec_keys_en[]" value="{{ $oldSpecKeyEn }}" placeholder="Spec name (e.g. RAM, CPU...)">
                                 </div>
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control" name="spec_values_en[]" value="{{ $oldSpecValuesEn[$index] ?? '' }}" placeholder="Value (EN)">
+                                <div class="col-5">
+                                    <input type="text" class="form-control" name="spec_values_en[]" value="{{ $oldSpecValuesEn[$index] ?? '' }}" placeholder="Value (e.g. 16GB, M3...)">
                                 </div>
-                                <div class="col-md-2">
-                                    <button type="button" class="btn btn-outline-danger w-100" onclick="removeSpecRowEn(this)">
-                                        <i class="fas fa-trash"></i>
+                                <div class="col-2">
+                                    <button type="button" class="btn btn-danger w-100 d-flex align-items-center justify-content-center gap-1 shadow-sm" onclick="removeSpecRowEn(this)" title="Xóa dòng này">
+                                        <i class="fas fa-trash-alt"></i> <span class="d-none d-sm-inline" style="font-size: 13px;">Xóa</span>
                                     </button>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-                    <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="addSpecRowEn()">
+                    <button type="button" class="btn btn-outline-primary btn-sm mt-2 rounded-pill px-3" onclick="addSpecRowEn()">
                         <i class="fas fa-plus me-1"></i>Thêm thông số (EN)
                     </button>
                 </div>
@@ -677,17 +677,17 @@
     function addSpecRow() {
         const wrapper = document.getElementById('specRows');
         const row = document.createElement('div');
-        row.className = 'row g-2 mb-2 spec-row-input';
+        row.className = 'row g-2 mb-2 spec-row-input align-items-center';
         row.innerHTML = `
-            <div class="col-md-5">
-                <input type="text" class="form-control" name="spec_keys[]" placeholder="Tên thông số">
+            <div class="col-5">
+                <input type="text" class="form-control" name="spec_keys[]" placeholder="Tên thông số (ví dụ: RAM, CPU, Bảo hành...)">
             </div>
-            <div class="col-md-5">
-                <input type="text" class="form-control" name="spec_values[]" placeholder="Giá trị">
+            <div class="col-5">
+                <input type="text" class="form-control" name="spec_values[]" placeholder="Giá trị (ví dụ: 16GB, M3, 12 tháng...)">
             </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-outline-danger w-100" onclick="removeSpecRow(this)" title="Xóa dòng này">
-                    <i class="fas fa-trash"></i>
+            <div class="col-2">
+                <button type="button" class="btn btn-danger w-100 d-flex align-items-center justify-content-center gap-1 shadow-sm" onclick="removeSpecRow(this)" title="Xóa dòng này">
+                    <i class="fas fa-trash-alt"></i> <span class="d-none d-sm-inline" style="font-size: 13px;">Xóa</span>
                 </button>
             </div>
         `;
@@ -695,23 +695,24 @@
     }
 
     function removeSpecRow(button) {
-        button.closest('.spec-row-input').remove();
+        const row = button.closest('.spec-row-input');
+        if (row) row.remove();
     }
 
     function addSpecRowEn() {
         const wrapper = document.getElementById('specRowsEn');
         const row = document.createElement('div');
-        row.className = 'row g-2 mb-2 spec-row-input-en';
+        row.className = 'row g-2 mb-2 spec-row-input-en align-items-center';
         row.innerHTML = `
-            <div class="col-md-5">
-                <input type="text" class="form-control" name="spec_keys_en[]" placeholder="Spec name (EN)">
+            <div class="col-5">
+                <input type="text" class="form-control" name="spec_keys_en[]" placeholder="Spec name (e.g. RAM, CPU...)">
             </div>
-            <div class="col-md-5">
-                <input type="text" class="form-control" name="spec_values_en[]" placeholder="Value (EN)">
+            <div class="col-5">
+                <input type="text" class="form-control" name="spec_values_en[]" placeholder="Value (e.g. 16GB, M3...)">
             </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-outline-danger w-100" onclick="removeSpecRowEn(this)" title="Xóa dòng này">
-                    <i class="fas fa-trash"></i>
+            <div class="col-2">
+                <button type="button" class="btn btn-danger w-100 d-flex align-items-center justify-content-center gap-1 shadow-sm" onclick="removeSpecRowEn(this)" title="Xóa dòng này">
+                    <i class="fas fa-trash-alt"></i> <span class="d-none d-sm-inline" style="font-size: 13px;">Xóa</span>
                 </button>
             </div>
         `;
@@ -719,7 +720,8 @@
     }
 
     function removeSpecRowEn(button) {
-        button.closest('.spec-row-input-en').remove();
+        const row = button.closest('.spec-row-input-en');
+        if (row) row.remove();
     }
 
     // Toggle discount validation & auto-switch
