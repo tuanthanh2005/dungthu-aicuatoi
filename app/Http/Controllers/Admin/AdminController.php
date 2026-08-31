@@ -851,8 +851,8 @@ class AdminController extends Controller
             'file.max' => 'Kích thước file không được vượt quá 50MB',
         ]);
 
-        $categoryRecord = ProductCategory::find($request->category_id);
-        $categoryType = 'tech';
+        $categoryRecord = ProductCategory::findOrFail($request->category_id);
+        $categoryType = $categoryRecord->type;
 
         $slug = \Str::slug($request->name) . '-' . time();
         
@@ -1031,8 +1031,8 @@ class AdminController extends Controller
             'file.max' => 'Kích thước file không được vượt quá 50MB',
         ]);
 
-        $categoryRecord = ProductCategory::find($request->category_id);
-        $categoryType = 'tech';
+        $categoryRecord = ProductCategory::findOrFail($request->category_id);
+        $categoryType = $categoryRecord->type;
 
         $slug = \Str::slug($request->name) . '-' . $product->id;
         
@@ -1284,7 +1284,7 @@ class AdminController extends Controller
             'color' => 'nullable|string|max:7',
             'description' => 'nullable|string',
             'description_en' => 'nullable|string',
-            'category' => 'required|in:tech,ebooks,doc',
+            'category' => 'nullable|string',
         ]);
 
         \App\Models\Feature::create([
@@ -1294,7 +1294,7 @@ class AdminController extends Controller
             'color' => $request->color ?? '#667eea',
             'description' => $request->description,
             'description_en' => $request->description_en,
-            'category' => $request->category,
+            'category' => 'tech',
         ]);
 
         return redirect()->route('admin.features')->with('success', 'Thêm tính năng thành công!');
@@ -1314,7 +1314,7 @@ class AdminController extends Controller
             'color' => 'nullable|string|max:7',
             'description' => 'nullable|string',
             'description_en' => 'nullable|string',
-            'category' => 'required|in:tech,ebooks,doc',
+            'category' => 'nullable|string',
         ]);
 
         $feature->update([
@@ -1324,7 +1324,7 @@ class AdminController extends Controller
             'color' => $request->color ?? '#667eea',
             'description' => $request->description,
             'description_en' => $request->description_en,
-            'category' => $request->category,
+            'category' => 'tech',
         ]);
 
         return redirect()->route('admin.features')->with('success', 'Cập nhật tính năng thành công!');
@@ -1361,7 +1361,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
-            'type' => 'nullable|string',
+            'type' => 'required|in:tech,ebooks,doc',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'nullable|string',
             'description_en' => 'nullable|string',
@@ -1393,7 +1393,7 @@ class AdminController extends Controller
             'name' => $request->name,
             'name_en' => $request->name_en,
             'slug' => $slug,
-            'type' => 'tech',
+            'type' => $request->type,
             'image' => $imagePath ? asset($imagePath) : null,
             'description' => $request->description,
             'description_en' => $request->description_en,
@@ -1426,7 +1426,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
-            'type' => 'nullable|string',
+            'type' => 'required|in:tech,ebooks,doc',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'nullable|string',
             'description_en' => 'nullable|string',
@@ -1469,7 +1469,7 @@ class AdminController extends Controller
             'name' => $request->name,
             'name_en' => $request->name_en,
             'slug' => $slug,
-            'type' => 'tech',
+            'type' => $request->type,
             'image' => $imagePath,
             'description' => $request->description,
             'description_en' => $request->description_en,

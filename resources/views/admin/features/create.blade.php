@@ -174,9 +174,7 @@
                             <label for="category" class="form-label">Danh mục <span class="text-danger">*</span></label>
                             <select class="form-select @error('category') is-invalid @enderror" 
                                     id="category" name="category" required>
-                                <option value="tech" {{ old('category') == 'tech' ? 'selected' : '' }}>Công nghệ</option>
-                                <option value="fashion" {{ old('category') == 'fashion' ? 'selected' : '' }}>Thời trang</option>
-                                <option value="doc" {{ old('category') == 'doc' ? 'selected' : '' }}>Văn phòng phẩm</option>
+                                <option value="tech" selected>Công nghệ</option>
                             </select>
                             @error('category')
                             <div class="invalid-feedback">{{ $message }}</div>
