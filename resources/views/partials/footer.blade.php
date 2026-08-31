@@ -4,7 +4,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="footer-brand d-flex align-items-center gap-2 mb-2">
                     <img src="{{ asset('images/aicuatoi-logo.png') }}" alt="AICuaToi Logo" 
-                         style="width: 36px; height: 36px; object-fit: cover; border-radius: 10px; box-shadow: 0 3px 12px rgba(139, 92, 246, 0.35); flex-shrink: 0;">
+                         style="width: 40px; height: 40px; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.4));">
                     <span class="fw-bold fs-5">AICuaToi<span style="color: #a855f7;">.com</span></span>
                 </div>
                     <span class="fw-bold fs-5">AICuaToi<span style="color: #a855f7;">.com</span></span>
@@ -251,4 +251,5 @@
             </div>
         </div>
     </div>
+
 

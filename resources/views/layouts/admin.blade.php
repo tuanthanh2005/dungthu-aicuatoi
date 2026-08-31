@@ -39,7 +39,7 @@
     <!-- Logo -->
     <a href="{{ auth()->user()->role === 'blog_editor' ? route('admin.blogs') : route('admin.dashboard') }}" class="sidebar-logo d-flex align-items-center gap-2">
         <img src="{{ asset('images/aicuatoi-logo.png') }}" alt="AICuaToi Logo" 
-             style="width: 34px; height: 34px; object-fit: cover; border-radius: 9px; box-shadow: 0 3px 10px rgba(139, 92, 246, 0.35); flex-shrink: 0;">
+             style="width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.4));">
         <span class="sidebar-logo-text">AICuaToi Admin</span>
     </a>
 
@@ -379,6 +379,7 @@ document.querySelectorAll('.admin-alert').forEach(function(el) {
 
 </body>
 </html>
+
 
 
 
