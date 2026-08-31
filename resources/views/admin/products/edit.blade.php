@@ -192,7 +192,7 @@
 
                 <!-- Price and Stock -->
                 <div class="row mb-4">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <label for="price" class="form-label">
                             <i class="fas fa-dollar-sign me-2 text-primary"></i>Giá (VNĐ) <span class="text-danger">*</span>
                         </label>
@@ -209,7 +209,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <label for="price_usd" class="form-label text-success">
                             <i class="fas fa-dollar-sign me-2"></i>Giá (USD)
                         </label>
@@ -225,7 +225,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <label for="stock" class="form-label">
                             <i class="fas fa-warehouse me-2 text-primary"></i>Tồn kho <span class="text-danger">*</span>
                         </label>
@@ -241,21 +241,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-md-3">
-                        <label for="fake_sold" class="form-label text-warning">
-                            <i class="fas fa-shopping-bag me-2"></i>Đã Bán (Ảo/Cộng thêm)
-                        </label>
-                        <input type="number" 
-                               class="form-control @error('fake_sold') is-invalid @enderror" 
-                               id="fake_sold" 
-                               name="fake_sold" 
-                               value="{{ old('fake_sold', $product->fake_sold ?? 0) }}"
-                               min="0"
-                               placeholder="0">
-                        @error('fake_sold')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    <input type="hidden" name="fake_sold" value="{{ old('fake_sold', $product->fake_sold ?? 0) }}">
                 </div>
 
                 <div class="row mb-4">
@@ -625,9 +611,14 @@
 
                 <!-- Product Features -->
                 <div class="mb-4">
-                    <label class="form-label">
-                        <i class="fas fa-star me-2 text-warning"></i>Tính Năng
-                    </label>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <label class="form-label mb-0">
+                            <i class="fas fa-star me-2 text-warning"></i>Tính Năng
+                        </label>
+                        <a href="{{ route('admin.features') }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                            <i class="fas fa-plus me-1"></i>Tạo tính năng
+                        </a>
+                    </div>
                     @if(isset($features) && $features->count() > 0)
                         @php
                             $selectedFeatures = old('features', $product->features->pluck('id')->toArray());
@@ -649,8 +640,13 @@
                             @endforeach
                         </div>
                     @else
-                        <div class="alert alert-info mb-0">
-                            <i class="fas fa-info-circle me-2"></i>Chưa có tính năng nào cho loại sản phẩm này.
+                        <div class="alert alert-info mb-0 d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-info-circle me-2"></i>Chưa có tính năng nào cho loại sản phẩm này.
+                            </div>
+                            <a href="{{ route('admin.features') }}" target="_blank" class="btn btn-sm btn-primary rounded-pill px-3 text-white">
+                                <i class="fas fa-plus me-1"></i>Tạo tính năng ngay
+                            </a>
                         </div>
                     @endif
                 </div>
@@ -747,7 +743,7 @@
                 <input type="text" class="form-control" name="spec_values[]" placeholder="Giá trị">
             </div>
             <div class="col-md-2">
-                <button type="button" class="btn btn-outline-danger w-100" onclick="removeSpecRow(this)">
+                <button type="button" class="btn btn-outline-danger w-100" onclick="removeSpecRow(this)" title="Xóa dòng này">
                     <i class="fas fa-trash"></i>
                 </button>
             </div>
@@ -756,12 +752,7 @@
     }
 
     function removeSpecRow(button) {
-        const rows = document.querySelectorAll('.spec-row-input');
-        if (rows.length > 1) {
-            button.closest('.spec-row-input').remove();
-        } else {
-            button.closest('.spec-row-input').querySelectorAll('input').forEach(input => input.value = '');
-        }
+        button.closest('.spec-row-input').remove();
     }
 
     function addSpecRowEn() {
@@ -776,7 +767,7 @@
                 <input type="text" class="form-control" name="spec_values_en[]" placeholder="Value (EN)">
             </div>
             <div class="col-md-2">
-                <button type="button" class="btn btn-outline-danger w-100" onclick="removeSpecRowEn(this)">
+                <button type="button" class="btn btn-outline-danger w-100" onclick="removeSpecRowEn(this)" title="Xóa dòng này">
                     <i class="fas fa-trash"></i>
                 </button>
             </div>
@@ -785,12 +776,66 @@
     }
 
     function removeSpecRowEn(button) {
-        const rows = document.querySelectorAll('.spec-row-input-en');
-        if (rows.length > 1) {
-            button.closest('.spec-row-input-en').remove();
-        } else {
-            button.closest('.spec-row-input-en').querySelectorAll('input').forEach(input => input.value = '');
+        button.closest('.spec-row-input-en').remove();
+    }
+
+    // Toggle discount validation & auto-switch
+    const salePriceInput = document.getElementById('sale_price');
+    const isOnSaleToggle = document.getElementById('is_on_sale');
+
+    if (salePriceInput && isOnSaleToggle) {
+        salePriceInput.addEventListener('input', function() {
+            const val = parseFloat(this.value);
+            if (val > 0) {
+                isOnSaleToggle.checked = true;
+                hideSaleError();
+            }
+        });
+
+        isOnSaleToggle.addEventListener('change', function() {
+            if (!this.checked) {
+                const val = parseFloat(salePriceInput.value);
+                if (val > 0) {
+                    showSaleError('Bạn đang nhập giá giảm, vui lòng bật công tắc "Bật giảm giá" hoặc xóa giá giảm!');
+                }
+            } else {
+                hideSaleError();
+            }
+        });
+
+        const formElem = document.querySelector('form');
+        if (formElem) {
+            formElem.addEventListener('submit', function(e) {
+                const val = parseFloat(salePriceInput.value);
+                if (val > 0 && !isOnSaleToggle.checked) {
+                    e.preventDefault();
+                    showSaleError('Bạn đã nhập giá giảm, bắt buộc phải gạt công tắc "Bật giảm giá"!');
+                    salePriceInput.focus();
+                    return false;
+                }
+            });
         }
+    }
+
+    function showSaleError(msg) {
+        let errBox = document.getElementById('sale_price_custom_error');
+        if (!errBox && salePriceInput) {
+            errBox = document.createElement('div');
+            errBox.id = 'sale_price_custom_error';
+            errBox.className = 'text-danger mt-1 fw-bold';
+            errBox.style.fontSize = '12.5px';
+            salePriceInput.parentNode.appendChild(errBox);
+        }
+        if (errBox) {
+            errBox.innerHTML = '<i class="fas fa-exclamation-triangle me-1"></i>' + msg;
+            salePriceInput.classList.add('is-invalid');
+        }
+    }
+
+    function hideSaleError() {
+        const errBox = document.getElementById('sale_price_custom_error');
+        if (errBox) errBox.remove();
+        if (salePriceInput) salePriceInput.classList.remove('is-invalid');
     }
 </script>
 @endpush
