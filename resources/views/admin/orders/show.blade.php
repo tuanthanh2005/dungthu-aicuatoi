@@ -306,7 +306,7 @@
             
             <!-- Digital Product Manual Delivery Form -->
             @php
-                $defaultNote = "Chào " . ($order->customer_name ?? 'bạn') . ",\n\nCảm ơn bạn đã ủng hộ AICuaToi.com. Dưới đây là thông tin bàn giao cho đơn hàng của bạn:\n";
+                $defaultNote = "Chào " . ($order->customer_name ?? 'bạn') . ",\n\nCảm ơn bạn đã ủng hộ DungThu.com. Dưới đây là thông tin bàn giao cho đơn hàng của bạn:\n";
                 foreach($order->orderItems as $item) {
                     $defaultNote .= "• " . ($item->product->name ?? 'Sản phẩm') . " (SL: " . $item->quantity . ")\n";
                 }
@@ -397,6 +397,7 @@
             </div>
 
             <!-- Delete Order -->
+            @if(auth()->user()->role === 'sieusuperadmin')
             <div class="mt-4 text-end">
                 <form action="{{ route('admin.orders.delete', $order) }}" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này?');">
                     @csrf
@@ -406,6 +407,7 @@
                     </button>
                 </form>
             </div>
+            @endif
         </div>
     </div>
 </div>
@@ -416,4 +418,3 @@
     AOS.init({ duration: 800, once: true });
 </script>
 @endpush
-

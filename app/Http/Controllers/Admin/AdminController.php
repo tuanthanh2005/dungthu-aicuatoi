@@ -625,6 +625,9 @@ class AdminController extends Controller
 
     public function deleteOrder(Order $order)
     {
+        if (auth()->user()->role !== 'sieusuperadmin') {
+            abort(403, 'Chỉ Sieusuperadmin mới có quyền xóa đơn hàng.');
+        }
         $order->delete();
         return redirect()->route('admin.orders')->with('success', 'Xóa đơn hàng thành công!');
     }
@@ -1180,6 +1183,13 @@ class AdminController extends Controller
 
     public function deleteProduct(Product $product)
     {
+        if (auth()->user()->role !== 'sieusuperadmin') {
+            if (request()->ajax() || request()->wantsJson()) {
+                return response()->json(['success' => false, 'message' => 'Chỉ Sieusuperadmin mới có quyền xóa sản phẩm.'], 403);
+            }
+            abort(403, 'Chỉ Sieusuperadmin mới có quyền xóa sản phẩm.');
+        }
+
         // Xóa ảnh nếu có
         if ($product->image) {
             $imagePath = parse_url($product->image, PHP_URL_PATH);
@@ -1284,7 +1294,7 @@ class AdminController extends Controller
             'color' => 'nullable|string|max:7',
             'description' => 'nullable|string',
             'description_en' => 'nullable|string',
-            'category' => 'nullable|string',
+            'category' => 'required|in:tech,ebooks,doc',
         ]);
 
         \App\Models\Feature::create([
@@ -1294,7 +1304,7 @@ class AdminController extends Controller
             'color' => $request->color ?? '#667eea',
             'description' => $request->description,
             'description_en' => $request->description_en,
-            'category' => 'tech',
+            'category' => $request->category,
         ]);
 
         return redirect()->route('admin.features')->with('success', 'Thêm tính năng thành công!');
@@ -1314,7 +1324,7 @@ class AdminController extends Controller
             'color' => 'nullable|string|max:7',
             'description' => 'nullable|string',
             'description_en' => 'nullable|string',
-            'category' => 'nullable|string',
+            'category' => 'required|in:tech,ebooks,doc',
         ]);
 
         $feature->update([
@@ -1324,7 +1334,7 @@ class AdminController extends Controller
             'color' => $request->color ?? '#667eea',
             'description' => $request->description,
             'description_en' => $request->description_en,
-            'category' => 'tech',
+            'category' => $request->category,
         ]);
 
         return redirect()->route('admin.features')->with('success', 'Cập nhật tính năng thành công!');
@@ -1673,6 +1683,10 @@ class AdminController extends Controller
 
     public function deleteBlog(Blog $blog)
     {
+        if (auth()->user()->role !== 'sieusuperadmin') {
+            abort(403, 'Chỉ Sieusuperadmin mới có quyền xóa bài viết.');
+        }
+
         $this->ensureBlogOwnership($blog);
 
         // Notify Google to remove URL before deleting

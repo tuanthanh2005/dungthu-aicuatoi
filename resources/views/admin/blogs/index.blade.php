@@ -182,6 +182,7 @@
                                                 class="btn btn-sm btn-outline-primary me-1" title="Sửa">
                                                 <i class="fas fa-edit"></i>
                                             </a>
+                                            @if(auth()->user()->role === 'sieusuperadmin')
                                             <form action="{{ route('admin.blogs.delete', $blog) }}" method="POST" class="d-inline"
                                                 onsubmit="return confirm('Bạn có chắc chắn muốn xóa Blog này?');">
                                                 @csrf
@@ -190,6 +191,7 @@
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
