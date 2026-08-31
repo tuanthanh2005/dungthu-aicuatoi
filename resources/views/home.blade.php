@@ -203,14 +203,14 @@
         }
 
         .hero-btn-main {
-            background: linear-gradient(135deg, #ff5e00 0%, #ff8e43 100%);
+            background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
             color: #ffffff !important;
             font-weight: 700;
             font-size: 0.84rem;
             padding: 8px 22px;
             border-radius: 10px;
             border: none;
-            box-shadow: 0 3px 12px rgba(255, 94, 0, 0.25);
+            box-shadow: 0 3px 12px rgba(139, 92, 246, 0.3);
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
@@ -220,7 +220,7 @@
 
         .hero-btn-main:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 94, 0, 0.45);
+            box-shadow: 0 8px 24px rgba(192, 132, 252, 0.45);
         }
 
         .hero-btn-sub {
@@ -2370,7 +2370,7 @@
                             data-bs-target="#advertisingModal">{{ __('Quảng cáo') }}</a>·
                         <a href="#" class="text-muted text-decoration-none" data-bs-toggle="modal"
                             data-bs-target="#contactModal">{{ __('Liên hệ') }}</a>
-                        <div class="w-100 mt-1">AICuaToi.com &mdash; Đối Tác của DungThu.com © {{ date('Y') }}</div>
+                        <div class="w-100 mt-1">DungThu.com © {{ date('Y') }}</div>
                     </div>
 
                 </div>

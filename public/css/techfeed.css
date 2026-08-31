@@ -8,22 +8,24 @@
 
 /* ---- CSS Custom Properties ---- */
 :root {
-    --bg-body:      #f0f4f9;
+    --bg-body:      #fbf9ff;
     --bg-card:      #ffffff;
-    --brand:        #4f46e5;
-    --brand-dark:   #3730a3;
-    --brand-gradient: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
-    --brand-cyan:   #06b6d4;
-    --primary:      #6366f1;
-    --text-main:    #0f172a;
-    --text-muted:   #64748b;
-    --border:       #e2e8f0;
-    --hover-bg:     #f1f5f9;
+    --brand:        #8b5cf6;
+    --brand-dark:   #7c3aed;
+    --brand-light:  #a78bfa;
+    --brand-soft:   #f3e8ff;
+    --brand-gradient: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
+    --brand-cyan:   #c084fc;
+    --primary:      #8b5cf6;
+    --text-main:    #1e1b4b;
+    --text-muted:   #6b7280;
+    --border:       #e9d5ff;
+    --hover-bg:     #faf5ff;
     --radius-lg:    16px;
     --radius-md:    12px;
     --radius-sm:    8px;
-    --shadow-sm:    0 1px 3px rgba(15,23,42,.06);
-    --shadow-md:    0 4px 16px rgba(15,23,42,.08);
+    --shadow-sm:    0 1px 3px rgba(139, 92, 246, .06);
+    --shadow-md:    0 4px 16px rgba(139, 92, 246, .10);
     --navbar-h:     56px;
 }
 
@@ -74,8 +76,8 @@ body {
 .brand-icon {
     width: 32px;
     height: 32px;
-    background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
-    box-shadow: 0 2px 10px rgba(6, 182, 212, 0.35);
+    background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
+    box-shadow: 0 2px 10px rgba(139, 92, 246, 0.35);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -85,7 +87,7 @@ body {
     flex-shrink: 0;
 }
 
-.brand-dot { color: var(--brand-cyan); font-weight: 700; }
+.brand-dot { color: #a855f7; font-weight: 700; }
 
 /* Search Bar */
 .search-bar-wrap {
@@ -110,7 +112,7 @@ body {
 .search-bar-inner:focus-within {
     background-color: #fff;
     border-color: var(--brand);
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
 }
 
 .search-icon { color: var(--text-muted); font-size: 0.9rem; flex-shrink: 0; }
@@ -1017,14 +1019,14 @@ ins.adsbygoogle {
 .cat-pill.active {
     border-color: var(--brand);
     color: var(--brand);
-    background: rgba(79, 70, 229, 0.08);
+    background: #f3e8ff;
 }
 
 /* ============================================
    HERO SECTION (minimal for TechFeed)
    ============================================ */
 .hero-techfeed {
-    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
     color: #fff;
     padding: 40px 0 32px;
     margin-bottom: 0;
@@ -1103,13 +1105,15 @@ ins.adsbygoogle {
 .text-primary { color: var(--brand) !important; }
 .bg-primary { background-color: var(--brand) !important; }
 .btn-primary {
-    background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+    background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
     border: none;
     color: #fff;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
 }
 .btn-primary:hover {
-    background: linear-gradient(135deg, #4338ca 0%, #0891b2 100%);
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
     color: #fff;
+    box-shadow: 0 6px 16px rgba(139, 92, 246, 0.35);
 }
 .btn-outline-primary {
     color: var(--brand);
@@ -1145,7 +1149,7 @@ ins.adsbygoogle {
 
 .loader-logo {
     font-size: 3.5rem;
-    color: #4f46e5;
+    color: #8b5cf6;
     animation: pulsate 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     margin-bottom: 20px;
     display: block;
@@ -1154,8 +1158,8 @@ ins.adsbygoogle {
 .loader-spinner {
     width: 32px;
     height: 32px;
-    border: 3px solid rgba(79, 70, 229, 0.15);
-    border-top-color: #06b6d4;
+    border: 3px solid rgba(139, 92, 246, 0.15);
+    border-top-color: #c084fc;
     border-radius: 50%;
     margin: 0 auto;
     animation: spin 0.8s linear infinite;
