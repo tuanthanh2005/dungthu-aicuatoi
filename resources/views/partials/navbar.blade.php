@@ -391,7 +391,7 @@
             
             {{-- Footer --}}
             <div class="modal-footer border-0 justify-content-center py-2" style="background-color: #f1f3f5;">
-                <span class="text-muted" style="font-size: 11px; font-weight: 500;">{{ __('DungThu.com hân hạnh hỗ trợ!') }}</span>
+                <span class="text-muted" style="font-size: 11px; font-weight: 500;">{{ __('AICuaToi.com hân hạnh hỗ trợ!') }}</span>
             </div>
         </div>
     </div>

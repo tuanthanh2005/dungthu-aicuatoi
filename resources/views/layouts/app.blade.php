@@ -39,13 +39,13 @@
     <meta property="twitter:image" content="@yield('og_image', asset('images/aicuatoi-seo.png'))">
     
     <!-- Favicon & PWA -->
-    <link rel="icon" type="image/png" href="{{ asset('images/dungthu.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/aicuatoi-logo.png') }}">
     <link rel="manifest" href="{{ asset('manifest.json') }}">
     <meta name="theme-color" content="#ff5e00">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="AICuaToi">
-    <link rel="apple-touch-icon" href="{{ asset('images/dungthu.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/aicuatoi-logo.png') }}">
     @stack('head')
     
     <!-- Bootstrap & Font Awesome -->
