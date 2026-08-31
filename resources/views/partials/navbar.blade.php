@@ -190,7 +190,7 @@
                         </li>
                         @if(in_array(Auth::user()->role, ['superadmin_1', 'sieusuperadmin', 'blog_editor'], true))
                             <li><a class="dropdown-item" href="/admin"><i class="fas fa-tachometer-alt me-2 text-primary"></i>{{ __('Dashboard Admin') }}</a></li>
-                            @if(in_array(Auth::user()->role, ['superadmin_1', 'sieusuperadmin'], true))
+                            @if(Auth::user()->role === 'sieusuperadmin')
                                 <li><a class="dropdown-item" href="{{ route('admin.menu-settings') }}"><i class="fas fa-sliders-h me-2 text-warning"></i>{{ __('Quản lý Menu') }}</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.proxies') }}"><i class="fas fa-network-wired me-2 text-info"></i>{{ __('Quản lý Proxy') }}</a></li>
                                 
@@ -212,13 +212,17 @@
                             @endif
                             <li><hr class="dropdown-divider"></li>
                         @endif
+                        @if($menuHome)
                         <li><a class="dropdown-item" href="{{ route('home') }}"><i class="fa-solid fa-house me-2 text-primary"></i>{{ __('Trang chủ') }}</a></li>
+                        @endif
+                        @if($menuShop)
                         <li><a class="dropdown-item" href="{{ route('shop') }}"><i class="fa-solid fa-store me-2 text-primary"></i>{{ __('Cửa hàng') }}</a></li>
-                        <li><a class="dropdown-item fw-bold" href="{{ route('vpn.index') }}" style="color: #00bcd4;"><i class="fa-solid fa-network-wired me-2"></i>{{ __('VPN') }}</a></li>
+                        @endif
+                        @if($menuBlog)
                         <li><a class="dropdown-item" href="{{ route('blog.index') }}"><i class="fa-solid fa-newspaper me-2 text-primary"></i>{{ __('Blog') }}</a></li>
+                        @endif
+                        @if(Auth::user()->role === 'sieusuperadmin')
                         <li><hr class="dropdown-divider"></li>
-                        
-                        {{-- Collapsible Dịch vụ & Tiện ích --}}
                         <li>
                             <a class="dropdown-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#quickLinksCollapse" role="button" aria-expanded="false" aria-controls="quickLinksCollapse" onclick="event.stopPropagation();">
                                 <span><i class="fas fa-link me-2 text-primary"></i>{{ __('Dịch vụ & Tiện ích') }}</span>
@@ -226,23 +230,17 @@
                             </a>
                             <div class="collapse px-2" id="quickLinksCollapse" onclick="event.stopPropagation();">
                                 <ul class="list-unstyled ps-3 bg-light rounded py-1 my-1">
-                                    @if(Auth::guard('affiliate')->check())
-                                        <li><a class="dropdown-item py-1 fw-bold text-primary" href="{{ route('affiliate.dashboard') }}" style="font-size: 0.85rem;"><i class="fas fa-handshake me-2"></i>{{ __('Dashboard CTV') }}</a></li>
-                                    @else
-                                        <li><a class="dropdown-item py-1" href="{{ route('affiliate.login') }}" style="font-size: 0.85rem;"><i class="fas fa-handshake me-2"></i>{{ __('Đăng ký CTV') }}</a></li>
-                                    @endif
-                                    <li><a class="dropdown-item py-1 fw-bold" href="{{ route('buff.index') }}" style="color: #8b5cf6; font-size: 0.85rem;"><i class="fas fa-rocket me-2"></i>{{ __('Buff Mạng XH') }}</a></li>
+                                    <li><a class="dropdown-item py-1" href="{{ route('buff.index') }}" style="color: #8b5cf6; font-size: 0.85rem;"><i class="fas fa-rocket me-2"></i>{{ __('Buff Mạng XH') }}</a></li>
                                     <li><a class="dropdown-item py-1" href="{{ route('web-design') }}" style="font-size: 0.85rem;"><i class="fa-solid fa-code me-2 text-primary"></i>{{ __('Thiết Kế Website') }}</a></li>
                                     <li><a class="dropdown-item py-1" href="{{ route('card-exchange.index') }}" style="font-size: 0.85rem;"><i class="fas fa-exchange-alt me-2 text-warning"></i>{{ __('Đổi thẻ cào') }}</a></li>
                                     <li><a class="dropdown-item py-1" href="{{ route('community.index') }}" style="font-size: 0.85rem;"><i class="fas fa-users me-2 text-success"></i>{{ __('Cộng đồng') }}</a></li>
-                                    <li><a class="dropdown-item py-1 fw-bold" href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ifaku0ggmtg4xhxi7k0u') }}" target="_blank" style="color: #0068ff; font-size: 0.85rem;"><i class="fas fa-users me-2"></i>{{ __('Nhóm Zalo') }}</a></li>
-                                    <li><a class="dropdown-item py-1" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quickContactModal" style="font-size: 0.85rem;"><i class="fa-solid fa-headset me-2 text-primary"></i>{{ __('Liên hệ') }}</a></li>
                                 </ul>
                             </div>
                         </li>
+                        @endif
                         <li><hr class="dropdown-divider"></li>
-                        
-                        <li><a class="dropdown-item" href="{{ route('minigame.index') }}"><i class="fas fa-gamepad me-2 text-danger"></i>{{ __('Vòng xoay may mắn') }}</a></li>
+                        @if($menuMinigame)
+                        <li><a class="dropdown-item" href="{{ route('minigame.index') }}' }}"><i class="fas fa-gamepad me-2 text-danger"></i>{{ __('Vòng xoay may mắn') }}</a></li>
                         <li><a class="dropdown-item" href="{{ route('user.account') }}"><i class="fas fa-user me-2"></i>{{ __('Tài khoản') }}</a></li>
                         <li><a class="dropdown-item" href="{{ route('user.orders') }}"><i class="fas fa-box me-2"></i>{{ __('Đơn hàng') }}</a></li>
                         <li><hr class="dropdown-divider"></li>
@@ -559,6 +557,7 @@
         });
     });
 </script>
+
 
 
 
