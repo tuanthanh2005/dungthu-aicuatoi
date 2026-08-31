@@ -39,13 +39,13 @@
     <meta property="twitter:image" content="@yield('og_image', asset('images/dungthu-seo.png'))">
     
     <!-- Favicon & PWA -->
-    <link rel="icon" type="image/png" href="{{ asset('images/dungthu.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset(\x27images/aicuatoi-logo.png\x27) }}">
     <link rel="manifest" href="{{ asset('manifest.json') }}">
-    <meta name="theme-color" content="#4f46e5">
+    <meta name="theme-color" content="#8b5cf6">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="AI Của Tôi">
-    <link rel="apple-touch-icon" href="{{ asset('images/dungthu.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset(\x27images/aicuatoi-logo.png\x27) }}">
     @stack('head')
     
     <!-- Bootstrap & Font Awesome -->
@@ -327,3 +327,4 @@
 @stack('scripts')
 </body>
 </html>
+

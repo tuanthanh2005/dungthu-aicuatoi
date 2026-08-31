@@ -16,10 +16,9 @@
     <div class="container-fluid px-3">
         {{-- Logo --}}
         <a class="navbar-brand d-flex align-items-center gap-2 me-0 me-sm-2" href="{{ route('home') }}">
-            <div class="brand-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%); box-shadow: 0 2px 10px rgba(139, 92, 246, 0.35);">
-                <i class="fa-solid fa-robot"></i>
-            </div>
-            <span>AICuaToi<span class="brand-dot" style="color: #a855f7; font-weight: 700;">.com</span></span>
+            <img src="{{ asset('images/aicuatoi-logo.png') }}" alt="AICuaToi Logo" 
+                 style="width: 36px; height: 36px; object-fit: cover; border-radius: 10px; box-shadow: 0 3px 12px rgba(139, 92, 246, 0.35); flex-shrink: 0;">
+            <span style="font-weight: 800; font-size: 1.25rem;">AICuaToi<span style="color: #a855f7; font-weight: 800;">.com</span></span>
         </a>
 
         {{-- Mobile Floating Live Online Badge (Click để mở rộng 3s rồi tự thu gọn lại) --}}
@@ -560,4 +559,5 @@
         });
     });
 </script>
+
 

@@ -3,7 +3,10 @@
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
                 <div class="footer-brand d-flex align-items-center gap-2 mb-2">
-                    <div class="brand-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);"><i class="fa-solid fa-robot"></i></div>
+                    <img src="{{ asset('images/aicuatoi-logo.png') }}" alt="AICuaToi Logo" 
+                         style="width: 36px; height: 36px; object-fit: cover; border-radius: 10px; box-shadow: 0 3px 12px rgba(139, 92, 246, 0.35); flex-shrink: 0;">
+                    <span class="fw-bold fs-5">AICuaToi<span style="color: #a855f7;">.com</span></span>
+                </div>
                     <span class="fw-bold fs-5">AICuaToi<span style="color: #a855f7;">.com</span></span>
                 </div>
                 <div class="d-inline-flex align-items-center gap-1 badge rounded-pill px-3 py-1 text-white mb-2 shadow-sm" style="background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%); font-size: 11px;">
@@ -248,3 +251,4 @@
             </div>
         </div>
     </div>
+
