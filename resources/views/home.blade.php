@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', __('Dùng Thử | AI | Blog | Khám Phá'))
+@section('title', __('AICuaToi | AI | Blog | Khám Phá'))
 
 @section('seo_h1')
-    <h1 style="display:none;">{{ __('Dùng Thử | AI | Blog | Khám Phá') }}</h1>
+    <h1 style="display:none;">{{ __('AICuaToi | AI | Blog | Khám Phá') }}</h1>
 @endsection
 
 @push('styles')
