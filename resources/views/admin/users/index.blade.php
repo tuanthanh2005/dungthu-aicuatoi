@@ -281,10 +281,9 @@
                                 <th style="width: 10%">Số ĐT</th>
                                 <th style="width: 8%" class="text-center">Số đơn</th>
                                 <th style="width: 10%" class="text-center">Lượt quay</th>
-                                <th style="width: 12%" class="text-end">Tổng chi tiêu</th>
-                                <th style="width: 10%">Ngày đăng ký</th>
-                                <th style="width: 8%" class="text-center">Quyền</th>
-                                <th style="width: 11%" class="text-center">Thao tác</th>
+                                <th style="width: 14%" class="text-end">Tổng chi tiêu</th>
+                                <th style="width: 12%">Ngày đăng ký</th>
+                                <th style="width: 13%" class="text-center">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -318,17 +317,6 @@
                                         <small class="text-muted">
                                             {{ $user->created_at->format('d/m/Y H:i') }}
                                         </small>
-                                    </td>
-                                    <td class="text-center">
-                                        <select 
-                                            class="role-dropdown role-select" 
-                                            data-user-id="{{ $user->id }}"
-                                            data-current-role="{{ $user->role }}"
-                                            onchange="updateUserRole(this)">
-                                            <option value="user" {{ $user->role === 'user' ? 'selected' : '' }}>User</option>
-                                            <option value="moderator" {{ $user->role === 'moderator' ? 'selected' : '' }}>Moderator</option>
-                                            <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>Admin</option>
-                                        </select>
                                     </td>
                                     <td class="text-center">
                                         <button onclick="awardTickets({{ $user->id }}, '{{ $user->name }}', {{ $user->spin_tickets }})" class="view-btn me-1" style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); padding: 6px 12px; font-size: 0.85rem;" title="Cấp lượt quay">
