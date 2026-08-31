@@ -183,10 +183,11 @@
         </a>
         @endif
 
-        @if(auth()->user()->role === 'sieusuperadmin')
+        @if(in_array(auth()->user()->role, ['sieusuperadmin', 'superadmin_1'], true))
         <div class="sidebar-divider"></div>
         <!-- Người dùng -->
         <div class="sidebar-section-label">Người dùng</div>
+        @if(auth()->user()->role === 'sieusuperadmin')
         <a href="{{ route('admin.online-users.index') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.online-users*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-eye text-success"></i></span>
@@ -203,6 +204,7 @@
             <span class="nav-icon"><i class="fas fa-shield-virus text-warning"></i></span>
             <span class="nav-text">IP Nghi Ngờ & Bảo Mật</span>
         </a>
+        @endif
         <a href="{{ route('admin.users') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.users') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-users"></i></span>
@@ -222,7 +224,7 @@
         </a>
         @endif
 
-        @if(auth()->user()->role === 'sieusuperadmin')
+        @if(in_array(auth()->user()->role, ['sieusuperadmin', 'superadmin_1'], true))
         <!-- Nội dung -->
         <div class="sidebar-section-label">Nội dung</div>
         <a href="{{ route('admin.blogs') }}"
@@ -235,14 +237,16 @@
             <span class="nav-icon"><i class="fas fa-tags"></i></span>
             <span class="nav-text">Chủ đề Blog</span>
         </a>
+        @if(auth()->user()->role === 'sieusuperadmin')
         <a href="{{ route('admin.seo-keywords') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.seo-keywords*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-search"></i></span>
             <span class="nav-text">Từ khóa SEO</span>
         </a>
         @endif
+        @endif
 
-        @if(auth()->user()->role === 'sieusuperadmin')
+        @if(in_array(auth()->user()->role, ['sieusuperadmin', 'superadmin_1'], true))
         <!-- Hệ thống -->
         <div class="sidebar-section-label">Hệ thống</div>
         <a href="{{ route('admin.chat.index') }}"
@@ -251,6 +255,7 @@
             <span class="nav-text">Chat</span>
             <span class="nav-badge" id="sidebarChatBadge" style="display: none;">0</span>
         </a>
+        @if(auth()->user()->role === 'sieusuperadmin')
         <a href="{{ route('admin.menu-settings') }}"
            class="sidebar-nav-item {{ request()->routeIs('admin.menu-settings*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fas fa-sliders-h"></i></span>
@@ -266,6 +271,7 @@
             <span class="nav-icon"><i class="fab fa-google"></i></span>
             <span class="nav-text">Google Indexing</span>
         </a>
+        @endif
         @endif
 
         @endif {{-- blog_editor --}}

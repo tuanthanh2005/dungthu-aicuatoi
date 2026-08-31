@@ -85,11 +85,7 @@ class AdminMiddleware
         // 2. Phân quyền chặn Superadmin thường (superadmin_1) truy cập các trang độc quyền của SieuSuperAdmin
         if ($user->role === 'superadmin_1' && $routeName) {
             $restrictedRoutePatterns = [
-                'admin.chat*',
                 'admin.features*',
-                'admin.blogs*',
-                'admin.blog-topics*',
-                'admin.users*',
                 'admin.online-users*',
                 'admin.coupons*',
                 'admin.menu-settings*',
