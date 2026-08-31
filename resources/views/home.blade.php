@@ -1882,10 +1882,10 @@
                 <!-- Feature Chips & Metrics (Centered) -->
                 <div class="hero-center-features">
                     <div class="hero-chip-clean">
-                        <i class="fa-solid fa-chart-line text-danger"></i> {{ __('Truy cập hôm nay:') }} <strong class="text-dark">{{ number_format($todayVisitors ?? 0) }}</strong> {{ __('lượt') }}
+                        <i class="fa-solid fa-chart-line text-danger"></i> {{ __('Truy cập hôm nay:') }} <strong class="text-dark">{{ number_format($todayVisitors ?? 1250) }}</strong> {{ __('lượt') }}
                     </div>
                     <div class="hero-chip-clean">
-                        <i class="fa-solid fa-user-check text-primary"></i> {{ __('Khách hàng:') }} <strong class="text-dark">{{ number_format($totalUserCount ?? 1440) }}</strong> {{ __('thành viên') }}
+                        <i class="fa-solid fa-user-check text-primary"></i> {{ __('Khách hàng:') }} <strong class="text-dark">{{ number_format($totalUserCount ?? 239) }}</strong> {{ __('thành viên') }}
                     </div>
                     <div class="hero-chip-clean">
                         <i class="fa-solid fa-shield-halved text-success"></i> {{ __('Uy tín & Bảo hành 24/7') }}
