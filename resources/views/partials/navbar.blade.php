@@ -77,7 +77,7 @@
             </a>
             @endif
             @if($menuZaloGroup)
-            <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" target="_blank" class="nav-text-link fw-bold" style="color: #0068ff;">
+            <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ifaku0ggmtg4xhxi7k0u') }}" target="_blank" class="nav-text-link fw-bold" style="color: #0068ff;">
                 <i class="fa-solid fa-comment-dots me-1"></i>{{ __('Nhóm Zalo') }}
             </a>
             @endif
@@ -122,7 +122,7 @@
                 @endif
                 <li><hr class="dropdown-divider"></li>
                 @if($menuZaloGroup)
-                <li><a class="dropdown-item fw-bold" href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" target="_blank" style="color: #0068ff;"><i class="fa-solid fa-users me-2"></i>{{ __('Nhóm Zalo') }}</a></li>
+                <li><a class="dropdown-item fw-bold" href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ifaku0ggmtg4xhxi7k0u') }}" target="_blank" style="color: #0068ff;"><i class="fa-solid fa-users me-2"></i>{{ __('Nhóm Zalo') }}</a></li>
                 @endif
                 <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quickContactModal"><i class="fa-solid fa-headset me-2 text-primary"></i>{{ __('Liên hệ') }}</a></li>
                 <li><a class="dropdown-item fw-bold" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appDownloadModal" style="color: #ff5e00;"><i class="fa-solid fa-cloud-arrow-down me-2"></i>{{ __('Tải App') }}</a></li>
@@ -311,7 +311,7 @@
     </a>
     @endif
     @endauth
-    <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" target="_blank" class="mobile-nav-item">
+    <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ifaku0ggmtg4xhxi7k0u') }}" target="_blank" class="mobile-nav-item">
         <i class="fa-solid fa-users" style="color: #0068ff;"></i>
         <span style="color: #0068ff; font-weight: bold;">{{ __('Nhóm') }}</span>
     </a>
@@ -337,7 +337,7 @@
                 <div class="d-flex flex-column gap-3">
                     
                     {{-- Item 1: Zalo Group --}}
-                    <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" 
+                    <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ifaku0ggmtg4xhxi7k0u') }}" 
                        target="_blank" 
                        class="d-flex align-items-center gap-3 p-3 text-decoration-none bg-white rounded-3 contact-modal-item"
                        style="border: 1px solid #e5e7eb; transition: all 0.2s ease;">
@@ -558,3 +558,4 @@
         });
     });
 </script>
+
