@@ -431,29 +431,8 @@
                     </div>
                 </div>
 
-                <!-- Delivery Type -->
-                <div class="mb-4">
-                    <label class="form-label">
-                        <i class="fas fa-shipping-fast me-2 text-primary"></i>Loại giao hàng <span class="text-danger">*</span>
-                    </label>
-                    <div class="d-flex gap-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="delivery_type" id="digital" value="digital" {{ old('delivery_type', $product->delivery_type) == 'digital' ? 'checked' : '' }} required>
-                            <label class="form-check-label" for="digital">
-                                <i class="fas fa-download me-1"></i>Sản phẩm số (Digital)
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="delivery_type" id="physical" value="physical" {{ old('delivery_type', $product->delivery_type) == 'physical' ? 'checked' : '' }}>
-                            <label class="form-check-label" for="physical">
-                                <i class="fas fa-box me-1"></i>Giao hàng vật lý (Physical)
-                            </label>
-                        </div>
-                    </div>
-                    @error('delivery_type')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
-                    @enderror
-                </div>
+                <!-- Delivery Type (Default: Digital) -->
+                <input type="hidden" name="delivery_type" value="digital">
 
                 <!-- Thời hạn sản phẩm -->
                 <div class="mb-4">
