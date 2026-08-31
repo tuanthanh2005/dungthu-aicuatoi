@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\AdminBuffController;
 use App\Http\Controllers\Admin\GoogleIndexingController;
 use App\Http\Controllers\Admin\AdminAffiliateController;
 use App\Http\Controllers\Admin\CustomerDurationController;
+use App\Http\Controllers\Admin\AdminCommissionController;
 use App\Http\Controllers\Affiliate\AffiliateAuthController;
 use App\Http\Controllers\Affiliate\AffiliateDashboardController;
 use App\Http\Controllers\WebhookController;
@@ -283,6 +284,11 @@ Route::middleware(['auth', 'admin', 'admin.pin', 'admin.lock'])->prefix('admin')
     Route::post('/products/{product}/combo-ai', [AdminController::class, 'toggleProductComboAi'])->name('admin.products.toggle-combo-ai');
     Route::post('/products/{product}/active', [AdminController::class, 'toggleProductActive'])->name('admin.products.toggle-active');
     Route::post('/flash-sale/toggle', [AdminController::class, 'toggleFlashSaleGlobal'])->name('admin.flash-sale.toggle');
+
+    // Commission Management (Bảng Hoa Hồng)
+    Route::get('/commissions', [AdminCommissionController::class, 'index'])->name('admin.commissions');
+    Route::post('/commissions/update', [AdminCommissionController::class, 'update'])->name('admin.commissions.update');
+    Route::get('/commissions/export', [AdminCommissionController::class, 'exportExcel'])->name('admin.commissions.export');
 
     // Proxies Management
     Route::get('/proxies', [\App\Http\Controllers\Admin\ProxyController::class, 'index'])->name('admin.proxies');

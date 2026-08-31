@@ -111,6 +111,11 @@
             <span class="nav-icon"><i class="fas fa-bolt"></i></span>
             <span class="nav-text">Flash Sale</span>
         </a>
+        <a href="{{ route('admin.commissions') }}"
+           class="sidebar-nav-item {{ request()->routeIs('admin.commissions*') ? 'active' : '' }}">
+            <span class="nav-icon"><i class="fas fa-percentage text-warning"></i></span>
+            <span class="nav-text">Bảng Hoa Hồng</span>
+        </a>
 
         @if($isSieuSuperAdmin)
         <!-- Buff Service -->

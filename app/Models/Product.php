@@ -39,6 +39,8 @@ class Product extends Model
         'is_active',
         'duration_value',
         'duration_type',
+        'commission_percent',
+        'commission_amount',
     ];
 
     protected $casts = [
@@ -46,6 +48,8 @@ class Product extends Model
         'price_usd' => 'decimal:2',
         'sale_price' => 'decimal:2',
         'sale_price_usd' => 'decimal:2',
+        'commission_percent' => 'decimal:2',
+        'commission_amount' => 'decimal:2',
         'stock' => 'integer',
         'fake_sold' => 'integer',
         'specs' => 'array',
@@ -58,6 +62,47 @@ class Product extends Model
         'is_active' => 'boolean',
         'duration_value' => 'integer',
     ];
+
+    public function getCalculatedCommissionAmountAttribute()
+    {
+        $price = (float) ($this->effective_price ?? $this->price ?? 0);
+        $amount = (float) ($this->attributes['commission_amount'] ?? 0);
+        $percent = (float) ($this->attributes['commission_percent'] ?? 0);
+
+        if ($amount > 0) {
+            return $amount;
+        }
+
+        if ($percent > 0 && $price > 0) {
+            return ($price * $percent) / 100;
+        }
+
+        return 0;
+    }
+
+    public function getCalculatedCommissionPercentAttribute()
+    {
+        $price = (float) ($this->effective_price ?? $this->price ?? 0);
+        $percent = (float) ($this->attributes['commission_percent'] ?? 0);
+        $amount = (float) ($this->attributes['commission_amount'] ?? 0);
+
+        if ($percent > 0) {
+            return $percent;
+        }
+
+        if ($amount > 0 && $price > 0) {
+            return round(($amount / $price) * 100, 2);
+        }
+
+        return 0;
+    }
+
+    public function getCalculatedSystemAmountAttribute()
+    {
+        $price = (float) ($this->effective_price ?? $this->price ?? 0);
+        $commission = (float) $this->calculated_commission_amount;
+        return max(0, $price - $commission);
+    }
 
     public function scopeActive($query)
     {

@@ -56,7 +56,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <!-- TechFeed Theme -->
-    <link rel="stylesheet" href="{{ asset('css/techfeed.css') }}?v={{ filemtime(\App\Helpers\PathHelper::publicRootPath('css/techfeed.css')) }}">
+    <link rel="stylesheet" href="{{ asset('css/techfeed.css') }}?v={{ \App\Helpers\PathHelper::assetVersion('css/techfeed.css') }}">
 
     <!-- Page-specific CSS -->
     @stack('styles')

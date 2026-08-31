@@ -6,7 +6,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/category-filter.css') }}?v={{ @filemtime(\App\Helpers\PathHelper::publicRootPath('css/category-filter.css')) ?: time() }}">
+    <link rel="stylesheet" href="{{ asset('css/category-filter.css') }}?v={{ \App\Helpers\PathHelper::assetVersion('css/category-filter.css') }}">
     <style>
         /* Shop Hero Section */
         .shop-hero {

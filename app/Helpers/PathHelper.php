@@ -12,7 +12,7 @@ class PathHelper
     {
         $root = config('filesystems.disks.public_uploads.root');
 
-        if (!$root || (!is_dir($root) && !is_dir(dirname($root)))) {
+        if (!$root || !is_dir($root)) {
             $root = public_path();
         }
 
@@ -22,6 +22,25 @@ class PathHelper
             return $root;
         }
 
-        return $root . DIRECTORY_SEPARATOR . ltrim($path, "/\\");
+        $fullPath = $root . DIRECTORY_SEPARATOR . ltrim($path, "/\\");
+
+        if (!file_exists($fullPath) && file_exists(public_path($path))) {
+            return public_path($path);
+        }
+
+        return $fullPath;
+    }
+
+    /**
+     * Get modification timestamp safely for asset cache busting.
+     * Prevents stat failed 500 errors if file is missing.
+     */
+    public static function assetVersion(string $path): string
+    {
+        $fullPath = static::publicRootPath($path);
+        if (file_exists($fullPath)) {
+            return (string) filemtime($fullPath);
+        }
+        return '1.0';
     }
 }

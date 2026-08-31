@@ -52,6 +52,7 @@ class AdminMiddleware
                 'admin.seo-keywords*',
                 'admin.system-notifications*',
                 'admin.google-indexing*',
+                'admin.commissions.update*',
             ];
 
             foreach ($restrictedRoutePatterns as $pattern) {
