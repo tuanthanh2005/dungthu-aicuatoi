@@ -19,7 +19,7 @@ Nếu nút trên không hoạt động, hãy copy và paste URL này vào trình
 
 ---
 
-**Cần trợ giúp?** Liên hệ chúng tôi tại [tranthanhtuanfix@gmail.com](mailto:tranthanhtuanfix@gmail.com)
+**Cần trợ giúp?** Liên hệ chúng tôi tại [tvu81568890@gmail.com](mailto:tvu81568890@gmail.com)
 
 Trân trọng,
 **Đội ngũ AICuaToi.com**
@@ -28,4 +28,5 @@ Trân trọng,
 Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.
 @endcomponent
 @endcomponent
+
 

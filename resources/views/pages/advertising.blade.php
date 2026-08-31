@@ -211,7 +211,7 @@
                     <div class="contact-method">
                         <i class="fas fa-envelope"></i>
                         <h5>{{ __('Email') }}</h5>
-                        <a href="mailto:tranthanhtuanfix@gmail.com">tranthanhtuanfix@gmail.com</a>
+                        <a href="mailto:tvu81568890@gmail.com">tvu81568890@gmail.com</a>
                         <p style="font-size: 13px; margin-top: 10px; color: #718096;">{{ __('Phản hồi trong 24 giờ') }}</p>
                     </div>
                     <div class="contact-method">
@@ -223,7 +223,7 @@
                     <div class="contact-method">
                         <i class="fas fa-comments"></i>
                         <h5>{{ __('Zalo') }}</h5>
-                        <a href="https://zalo.me/0708910952" target="_blank">0708910952</a>
+                        <a href="https://zalo.me/0337438209" target="_blank">0337438209</a>
                         <p style="font-size: 13px; margin-top: 10px; color: #718096;">{{ __('Liên hệ qua Zalo') }}</p>
                     </div>
                 </div>
@@ -231,3 +231,4 @@
         </div>
     </div>
 @endsection
+

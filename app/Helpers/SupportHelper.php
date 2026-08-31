@@ -32,7 +32,7 @@ class SupportHelper
      */
     public static function getZaloLink()
     {
-        return SiteSetting::getValue('support_zalo_link', 'https://zalo.me/0772698113');
+        return SiteSetting::getValue('support_zalo_link', 'https://zalo.me/0337438209');
     }
 
     /**
@@ -40,7 +40,7 @@ class SupportHelper
      */
     public static function getZaloNumber()
     {
-        return SiteSetting::getValue('support_zalo_number', '0772698113');
+        return SiteSetting::getValue('support_zalo_number', '0337438209');
     }
 
     /**
@@ -64,7 +64,7 @@ class SupportHelper
      */
     public static function getEmail()
     {
-        return SiteSetting::getValue('support_email', 'tranthanhtuanfix@gmail.com');
+        return SiteSetting::getValue('support_email', 'tvu81568890@gmail.com');
     }
 
     /**
@@ -72,7 +72,7 @@ class SupportHelper
      */
     public static function getPhone()
     {
-        return SiteSetting::getValue('support_phone', '0772698113');
+        return SiteSetting::getValue('support_phone', '0337438209');
     }
 
     /**
@@ -83,4 +83,5 @@ class SupportHelper
         return SiteSetting::getValue('support_live_chat_url', '#');
     }
 }
+
 

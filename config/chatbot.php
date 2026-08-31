@@ -12,8 +12,9 @@ return [
 
     // Support info for fallback
     'support' => [
-        'email' => env('SUPPORT_EMAIL', 'tranthanhtuanfix@gmail.com'),
-        'phone' => env('SUPPORT_PHONE', '0772698113'),
-        'zalo' => env('SUPPORT_ZALO', '0708910952'),
+        'email' => env('SUPPORT_EMAIL', 'tvu81568890@gmail.com'),
+        'phone' => env('SUPPORT_PHONE', '0337438209'),
+        'zalo' => env('SUPPORT_ZALO', '0337438209'),
     ],
 ];
+

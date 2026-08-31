@@ -327,8 +327,8 @@
         <!-- Support -->
         <div class="support-box">
             Cần hỗ trợ? Liên hệ:
-            <a href="mailto:{{ env('SUPPORT_EMAIL', 'tranthanhtuanfix@gmail.com') }}">{{ env('SUPPORT_EMAIL', 'tranthanhtuanfix@gmail.com') }}</a>
-            hoặc Zalo: <a href="https://zalo.me/{{ env('SUPPORT_ZALO', '0708910952') }}">{{ env('SUPPORT_ZALO', '0708910952') }}</a>
+            <a href="mailto:{{ env('SUPPORT_EMAIL', 'tvu81568890@gmail.com') }}">{{ env('SUPPORT_EMAIL', 'tvu81568890@gmail.com') }}</a>
+            hoặc Zalo: <a href="https://zalo.me/{{ env('SUPPORT_ZALO', '0337438209') }}">{{ env('SUPPORT_ZALO', '0337438209') }}</a>
         </div>
 
     </div>
@@ -343,4 +343,5 @@
 </div>
 </body>
 </html>
+
 

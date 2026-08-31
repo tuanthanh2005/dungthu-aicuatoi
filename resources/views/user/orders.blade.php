@@ -415,14 +415,14 @@
                 <p class="text-center mb-3 fw-medium">{{ __('Chọn phương thức liên hệ:') }}</p>
                 
                 <div class="d-flex flex-column gap-2">
-                    <a href="mailto:tranthanhtuanfix@gmail.com" class="contact-option email m-0">
+                    <a href="mailto:tvu81568890@gmail.com" class="contact-option email m-0">
                         <div class="d-flex align-items-center">
                             <div class="bg-white rounded-circle p-2 me-3 shadow-sm" style="color: #f5576c;">
                                 <i class="fas fa-envelope fa-fw fs-5 m-0"></i>
                             </div>
                             <div>
                                 <h6 class="fw-bold mb-0">{{ __('Email hỗ trợ') }}</h6>
-                                <small class="text-muted">tranthanhtuanfix@gmail.com</small>
+                                <small class="text-muted">tvu81568890@gmail.com</small>
                             </div>
                         </div>
                     </a>
@@ -439,7 +439,7 @@
                         </div>
                     </a>
 
-                    <a href="https://zalo.me/0708910952" target="_blank" class="contact-option zalo m-0">
+                    <a href="https://zalo.me/0337438209" target="_blank" class="contact-option zalo m-0">
                         <div class="d-flex align-items-center">
                             <div class="bg-white rounded-circle p-2 me-3 shadow-sm" style="color: #0068ff;">
                                 <i class="fas fa-comments fa-fw fs-5 m-0"></i>
@@ -467,3 +467,4 @@
     });
 </script>
 @endpush
+

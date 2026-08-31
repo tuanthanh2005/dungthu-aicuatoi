@@ -41,7 +41,7 @@
 
                         <small class="text-muted d-block mt-3">
                             {{ __('⚠️ Chatbot có thể không chính xác 100%. Vui lòng liên hệ support nếu cần hỗ trợ:') }}
-                            <br>📧 tranthanhtuanfix@gmail.com | ☎️ 0772698113 | 💬 Zalo: 0708910952
+                            <br>📧 tvu81568890@gmail.com | ☎️ 0337438209 | 💬 Zalo: 0337438209
                         </small>
                     </div>
                 </div>
@@ -458,3 +458,4 @@
         document.addEventListener('DOMContentLoaded', initializeSession);
     </script>
 @endsection
+

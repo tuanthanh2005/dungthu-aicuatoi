@@ -123,7 +123,7 @@
                     <h3>📞 {{ __('7. Liên Hệ Về Chính Sách Bảo Mật') }}</h3>
                     <p>{{ __('Nếu bạn có bất kỳ câu hỏi nào về chính sách này, vui lòng liên hệ:') }}</p>
                     <ul>
-                        <li>📧 Email: <a href="mailto:tranthanhtuanfix@gmail.com">tranthanhtuanfix@gmail.com</a></li>
+                        <li>📧 Email: <a href="mailto:tvu81568890@gmail.com">tvu81568890@gmail.com</a></li>
                         <li>💬 Telegram: <a href="https://t.me/specademy" target="_blank">@specademy</a></li>
                     </ul>
                 </div>
@@ -136,3 +136,4 @@
         </div>
     </div>
 @endsection
+

@@ -126,7 +126,7 @@
                     </h5>
                     <p class="mb-1">
                         <strong>Email:</strong>
-                        <a href="mailto:tranthanhtuanfix@gmail.com">tranthanhtuanfix@gmail.com</a>
+                        <a href="mailto:tvu81568890@gmail.com">tvu81568890@gmail.com</a>
                     </p>
                     <p class="mb-1">
                         <strong>Telegram:</strong>
@@ -134,10 +134,11 @@
                     </p>
                     <p class="mb-0">
                         <strong>Zalo:</strong>
-                        <a href="https://zalo.me/0708910952" target="_blank">0708910952</a>
+                        <a href="https://zalo.me/0337438209" target="_blank">0337438209</a>
                     </p>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+

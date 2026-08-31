@@ -21,7 +21,7 @@ class TestEmailSimple extends Command
             'id' => 999,
             'customer_name' => 'Khách hàng test',
             'customer_email' => $recipient,
-            'customer_phone' => '0772698113',
+            'customer_phone' => '0337438209',
             'total_amount' => 500000,
             'status' => 'completed',
             'order_type' => 'qr',
@@ -72,7 +72,7 @@ class TestEmailSimple extends Command
     {
         $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $lowercase = 'abcdefghijklmnopqrstuvwxyz';
-        $numbers = '0772698113';
+        $numbers = '0337438209';
         $special = '!@#$%^&*';
         
         $allChars = $uppercase . $lowercase . $numbers . $special;
@@ -96,3 +96,4 @@ class TestEmailSimple extends Command
         return implode('', $passwordArray);
     }
 }
+

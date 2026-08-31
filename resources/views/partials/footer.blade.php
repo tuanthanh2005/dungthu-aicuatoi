@@ -150,16 +150,17 @@
                     </p>
 
                     <!-- Email Contact -->
-                    <a href="mailto:support@aicuatoi.com" class="d-block p-3 mb-3 rounded-3"
+                    <a href="mailto:tvu81568890@gmail.com" class="d-block p-3 mb-3 rounded-3"
                         style="background: #faf5ff; border: 2px solid #8b5cf6; text-decoration: none; color: inherit;">
                         <div style="text-align: center;">
                             <i class="fas fa-envelope"
                                 style="font-size: 2rem; color: #8b5cf6; margin-bottom: 10px; display: block;"></i>
                             <h6 class="fw-bold mt-2 mb-1">📧 Email</h6>
-                            <small style="color: #718096;">support@aicuatoi.com</small>
+                            <small style="color: #718096;">tvu81568890@gmail.com</small>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
     </div>
+

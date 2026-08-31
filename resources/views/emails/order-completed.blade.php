@@ -205,7 +205,7 @@
             </div>
 
             <div class="contact">
-                Cần hỗ trợ? Liên hệ: <a href="mailto:tranthanhtuanfix@gmail.com">tranthanhtuanfix@gmail.com</a>
+                Cần hỗ trợ? Liên hệ: <a href="mailto:tvu81568890@gmail.com">tvu81568890@gmail.com</a>
             </div>
         </div>
 
@@ -217,4 +217,5 @@
     </div>
 </body>
 </html>
+
 

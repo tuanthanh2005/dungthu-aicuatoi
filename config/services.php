@@ -70,7 +70,7 @@ return [
     ],
 
     'paypal' => [
-        'email' => env('PAYPAL_EMAIL', 'tranthanhtuanfix@gmail.com'),
+        'email' => env('PAYPAL_EMAIL', 'tvu81568890@gmail.com'),
         'username' => env('PAYPAL_USERNAME', 'tranthanhtuanmt'),
     ],
 
@@ -84,5 +84,6 @@ return [
     ],
 
 ];
+
 
 

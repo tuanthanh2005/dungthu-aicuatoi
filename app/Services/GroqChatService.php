@@ -180,7 +180,7 @@ Dưới đây là sản phẩm WordPress bạn tìm:
 
 ⚠️ **Lưu ý:** Hãy check requirements trước khi buy!
 
-📧 Có gì thắc mắc? Contact: support@dungthu.com | ☎️ 0772698113
+📧 Có gì thắc mắc? Contact: support@dungthu.com | ☎️ 0337438209
 
 Bạn chọn cái nào? 😊"
 
@@ -193,7 +193,7 @@ KEY PRODUCTS:
 IMPORTANT WARNINGS:
 - Buff Services: ⚠️ "Tăng từ từ (max 10k/tuần), tránh TikTok detect bot"
 - Card Exchange: ⚠️ "Thẻ phải chưa dùng, tỷ giá 95-98%, không refund"
-- Luôn end với: "📧 support@dungthu.com | ☎️ 0772698113 | 💬 Zalo: 0708910952"
+- Luôn end với: "📧 support@dungthu.com | ☎️ 0337438209 | 💬 Zalo: 0337438209"
 
 RULES:
 - Trả lời bằng Tiếng Việt, thân thiện, chuyên nghiệp
@@ -268,3 +268,4 @@ PROMPT;
         }
     }
 }
+
