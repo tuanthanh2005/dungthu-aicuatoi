@@ -789,10 +789,10 @@ class AdminController extends Controller
         return redirect()->back()->with('success', $message);
     }
 
-    public function createProduct($category = 'tech')
+    public function createProduct($category = null)
     {
         if ($category === null) {
-            $category = 'tech';
+            return view('admin.products.create-select');
         }
 
         if ($category && !in_array($category, ['tech', 'ebooks', 'doc'])) {
@@ -851,8 +851,8 @@ class AdminController extends Controller
             'file.max' => 'Kích thước file không được vượt quá 50MB',
         ]);
 
-        $categoryRecord = ProductCategory::findOrFail($request->category_id);
-        $categoryType = $categoryRecord->type;
+        $categoryRecord = ProductCategory::find($request->category_id);
+        $categoryType = 'tech';
 
         $slug = \Str::slug($request->name) . '-' . time();
         
@@ -1031,8 +1031,8 @@ class AdminController extends Controller
             'file.max' => 'Kích thước file không được vượt quá 50MB',
         ]);
 
-        $categoryRecord = ProductCategory::findOrFail($request->category_id);
-        $categoryType = $categoryRecord->type;
+        $categoryRecord = ProductCategory::find($request->category_id);
+        $categoryType = 'tech';
 
         $slug = \Str::slug($request->name) . '-' . $product->id;
         
@@ -1361,7 +1361,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
-            'type' => 'required|in:tech,ebooks,doc',
+            'type' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'nullable|string',
             'description_en' => 'nullable|string',
@@ -1393,7 +1393,7 @@ class AdminController extends Controller
             'name' => $request->name,
             'name_en' => $request->name_en,
             'slug' => $slug,
-            'type' => $request->type,
+            'type' => 'tech',
             'image' => $imagePath ? asset($imagePath) : null,
             'description' => $request->description,
             'description_en' => $request->description_en,
@@ -1426,7 +1426,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
-            'type' => 'required|in:tech,ebooks,doc',
+            'type' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'nullable|string',
             'description_en' => 'nullable|string',
@@ -1469,7 +1469,7 @@ class AdminController extends Controller
             'name' => $request->name,
             'name_en' => $request->name_en,
             'slug' => $slug,
-            'type' => $request->type,
+            'type' => 'tech',
             'image' => $imagePath,
             'description' => $request->description,
             'description_en' => $request->description_en,
