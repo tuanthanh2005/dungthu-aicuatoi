@@ -150,17 +150,8 @@
                 <a href="{{ route('admin.orders') }}" class="filter-tab {{ !request('type') || request('type') == 'all' ? 'active' : '' }}">
                     <i class="fas fa-th-list me-2"></i>Tất cả
                 </a>
-                <a href="{{ route('admin.orders', ['type' => 'qr']) }}" class="filter-tab {{ request('type') == 'qr' ? 'active' : '' }}">
-                    <i class="fas fa-qrcode me-2"></i>Đơn QR (TikTok)
-                </a>
-                <a href="{{ route('admin.orders', ['type' => 'document']) }}" class="filter-tab {{ request('type') == 'document' ? 'active' : '' }}">
-                    <i class="fas fa-file-pdf me-2"></i>Đơn Tài liệu
-                </a>
-                <a href="{{ route('admin.orders', ['type' => 'shipping']) }}" class="filter-tab {{ request('type') == 'shipping' ? 'active' : '' }}">
-                    <i class="fas fa-shipping-fast me-2"></i>Đơn Ship
-                </a>
                 <a href="{{ route('admin.orders', ['type' => 'digital']) }}" class="filter-tab {{ request('type') == 'digital' ? 'active' : '' }}">
-                    <i class="fas fa-download me-2"></i>Đơn Digital
+                    <i class="fas fa-download me-2"></i>Sản phẩm số (Digital)
                 </a>
             </div>
 
