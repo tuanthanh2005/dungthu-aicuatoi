@@ -397,7 +397,6 @@
             </div>
 
             <!-- Delete Order -->
-            @if(auth()->user()->role === 'sieusuperadmin')
             <div class="mt-4 text-end">
                 <form action="{{ route('admin.orders.delete', $order) }}" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này?');">
                     @csrf
@@ -407,7 +406,6 @@
                     </button>
                 </form>
             </div>
-            @endif
         </div>
     </div>
 </div>

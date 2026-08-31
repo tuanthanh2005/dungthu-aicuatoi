@@ -178,20 +178,22 @@
                                             </small>
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin.blogs.edit', $blog) }}"
-                                                class="btn btn-sm btn-outline-primary me-1" title="Sửa">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            @if(auth()->user()->role === 'sieusuperadmin')
-                                            <form action="{{ route('admin.blogs.delete', $blog) }}" method="POST" class="d-inline"
-                                                onsubmit="return confirm('Bạn có chắc chắn muốn xóa Blog này?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Xóa">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                            @endif
+                                            <div class="d-inline-flex align-items-center justify-content-center gap-1">
+                                                <a href="{{ route('admin.blogs.edit', $blog) }}"
+                                                    class="btn btn-sm btn-outline-primary" title="Sửa">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                @if(in_array(auth()->user()->role, ['sieusuperadmin'], true))
+                                                <form action="{{ route('admin.blogs.delete', $blog) }}" method="POST" class="d-inline"
+                                                    onsubmit="return confirm('Bạn có chắc chắn muốn xóa Blog này?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger text-white shadow-sm" title="Xóa" style="min-width: 32px;">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                                @endif
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

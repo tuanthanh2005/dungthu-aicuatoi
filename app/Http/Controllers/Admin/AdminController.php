@@ -625,9 +625,6 @@ class AdminController extends Controller
 
     public function deleteOrder(Order $order)
     {
-        if (auth()->user()->role !== 'sieusuperadmin') {
-            abort(403, 'Chỉ Sieusuperadmin mới có quyền xóa đơn hàng.');
-        }
         $order->delete();
         return redirect()->route('admin.orders')->with('success', 'Xóa đơn hàng thành công!');
     }
@@ -1183,13 +1180,6 @@ class AdminController extends Controller
 
     public function deleteProduct(Product $product)
     {
-        if (auth()->user()->role !== 'sieusuperadmin') {
-            if (request()->ajax() || request()->wantsJson()) {
-                return response()->json(['success' => false, 'message' => 'Chỉ Sieusuperadmin mới có quyền xóa sản phẩm.'], 403);
-            }
-            abort(403, 'Chỉ Sieusuperadmin mới có quyền xóa sản phẩm.');
-        }
-
         // Xóa ảnh nếu có
         if ($product->image) {
             $imagePath = parse_url($product->image, PHP_URL_PATH);
@@ -1683,10 +1673,6 @@ class AdminController extends Controller
 
     public function deleteBlog(Blog $blog)
     {
-        if (auth()->user()->role !== 'sieusuperadmin') {
-            abort(403, 'Chỉ Sieusuperadmin mới có quyền xóa bài viết.');
-        }
-
         $this->ensureBlogOwnership($blog);
 
         // Notify Google to remove URL before deleting

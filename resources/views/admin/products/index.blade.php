@@ -349,13 +349,13 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="btn-group" role="group">
+                                <div class="d-flex align-items-center gap-1">
                                     <a href="{{ route('admin.products.edit', array_merge(['product' => $product->id], request()->only(['page', 'search', 'category', 'flash_sale']))) }}" 
-                                       class="btn btn-sm btn-outline-primary rounded-start"
+                                       class="btn btn-sm btn-outline-primary"
                                        title="Chỉnh sửa">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <button type="button" class="btn btn-sm btn-outline-success rounded-0 btn-submit-index" data-url="{{ route('admin.google-indexing.submit-url') }}" data-target-url="{{ url('/product/' . $product->slug) }}" title="Gửi Index Google">
+                                    <button type="button" class="btn btn-sm btn-outline-success btn-submit-index" data-url="{{ route('admin.google-indexing.submit-url') }}" data-target-url="{{ url('/product/' . $product->slug) }}" title="Gửi Index Google">
                                         <i class="fab fa-google"></i>
                                     </button>
                                     <form action="{{ route('admin.products.clone', $product) }}" 
@@ -363,18 +363,18 @@
                                           class="d-inline"
                                           onsubmit="return confirm('Bạn có chắc muốn nhân bản sản phẩm này?')">
                                         @csrf
-                                        <button type="submit" class="btn btn-sm btn-outline-success rounded-0" title="Nhân bản (Clone)">
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary" title="Nhân bản (Clone)">
                                             <i class="fas fa-clone"></i>
                                         </button>
                                     </form>
-                                    @if(auth()->user()->role === 'sieusuperadmin')
+                                    @if(in_array(auth()->user()->role, ['sieusuperadmin'], true))
                                     <form action="{{ route('admin.products.delete', $product) }}" 
                                           method="POST" 
                                           class="d-inline ajax-delete-form"
                                           data-name="{{ $product->name }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger rounded-end" title="Xóa">
+                                        <button type="submit" class="btn btn-sm btn-danger text-white shadow-sm" title="Xóa" style="min-width: 32px;">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
